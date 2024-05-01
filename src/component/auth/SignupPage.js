@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCube } from '@fortawesome/free-solid-svg-icons';
-import axios from 'axios';
+
 const SignupPage = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -10,14 +10,13 @@ const SignupPage = () => {
     confirmPassword: '',
   });
 
-  const [error, setError] = useState(null);
-
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault(); 
+
   
     if (!formData.name || !formData.email || !formData.password || !formData.confirmPassword) {
       alert('Please fill in all required fields.');
@@ -28,27 +27,37 @@ const SignupPage = () => {
       alert('Passwords do not match.');
       return;
     }
+
     
     try {
-      const response = await axios.post('http://localhost:3000/signup', formData);
-      
-      if (response.status === 201) {
+      const response = await fetch('/api/signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
         console.log('Signup successful!');
+        
       } else {
-        console.error('Unexpected response:', response);
+        const errorData = await response.json();
+        console.error('Signup failed:', errorData);
+       
       }
     } catch (error) {
-      console.error('Signup error:', error.response ? error.response.data : error);
+      console.error('Signup error:', error);
+    
     } finally {
+      
       setFormData({
         name: '',
         email: '',
         password: '',
-        confirmPassword: ''
+        confirmPassword: '',
       });
     }
   };
-  
+
   return (
     <div className="flex justify-center items-center h-screen bg-gray-100">
       <div className="w-full max-w-md p-4 bg-white rounded-lg shadow-md">

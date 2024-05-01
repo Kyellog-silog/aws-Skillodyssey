@@ -14,6 +14,7 @@ const FrontPage = () => {
                     <div className='text-3xl font-bold text-[#00df9a]'>SKILL ODESSEY</div>
                 </div>
                 <ul className="flex items-center">
+                
                     <li>
                         <a href="login">
                         <button

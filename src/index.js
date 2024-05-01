@@ -4,8 +4,10 @@ import './index.css';
 import App from './App';
 import SignupPage from './component/auth/SignupPage';
 import LoginPage from './component/auth/LoginPage';
-import FrontendPage from './component/landingpage/FrontendPage';
-import BackendPage from './component/landingpage/BackendPage';
+import FrontendPage from './component/landing-page/FrontendPage';
+import BackendPage from './component/landing-page/BackendPage';
+import FrontPage from './component/auth/FrontPage';
+
 import reportWebVitals from './reportWebVitals';
 import{
   createBrowserRouter,
@@ -32,7 +34,11 @@ const router =createBrowserRouter([
   },
   {
     path:'/backend',
-    element:<BackendPage/>,
+    element:<BackendPage/>
+  },
+  {
+    path:'/FrontPage',
+    element:<FrontPage/>
   },
 ])
 const root = ReactDOM.createRoot(document.getElementById('root'));
