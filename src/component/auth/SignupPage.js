@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCube } from '@fortawesome/free-solid-svg-icons';
+import axios from 'axios';
 
 const SignupPage = () => {
   const [formData, setFormData] = useState({
@@ -28,32 +29,23 @@ const SignupPage = () => {
       return;
     }
 
-    
     try {
-      const response = await fetch('/api/signup', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      });
+      const response = await axios.post('http://localhost:3000/signup', formData);
 
-      if (response.ok) {
+      if (response.status === 201) {
         console.log('Signup successful!');
-        
+        window.location.href = 'http://localhost:3001/LandingPage'
       } else {
-        const errorData = await response.json();
-        console.error('Signup failed:', errorData);
-       
+        console.error('Unexpected response:', response);
       }
     } catch (error) {
-      console.error('Signup error:', error);
-    
+      console.error('Signup error:', error.response ? error.response.data : error);
     } finally {
-      
       setFormData({
         name: '',
         email: '',
         password: '',
-        confirmPassword: '',
+        confirmPassword: ''
       });
     }
   };

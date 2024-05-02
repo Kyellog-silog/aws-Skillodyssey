@@ -1,10 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCube } from '@fortawesome/free-solid-svg-icons';
+import axios from 'axios';
+
+
 
 
 const FrontPage = () => {
     const [showLoginCard, setShowLoginCard] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    useEffect(() => {
+        const checkLoginStatus = async () => {
+    
+        try {
+            const response = await axios.get('http://localhost:3000/api/user-status');
+            setIsLoggedIn(response.data.isLoggedIn);
+        } catch (error) {
+            console.error('Error fetching login status:', error);
+        }
+        };
+    
+        checkLoginStatus();
+    }, [])
+    
 
     return (
         <div>
@@ -54,10 +73,20 @@ const FrontPage = () => {
             </div>
 
             <div class="mt-5 flex items-center justify-center mb-60">
-            <a href="/frontend" class="mr-3 w-60 mt-5 border rounded-lg px-4 py-4 inline-block border-gray-700 hover:border-blue-500 hover:text-white cursor-pointer">
+            <a href={isLoggedIn? "/frontend" : "login"} 
+            class="mr-3 w-60 mt-5 border rounded-lg px-4 py-4 inline-block border-gray-700 hover:border-blue-500 hover:text-white cursor-pointer"
+            onClick={() => {
+                localStorage.setItem('intendedUrl', '/frontend');
+            }}
+            >
                 <div class="text-gray-400 justify-center text-center">Frontend</div>
             </a>
-            <a href="/backend" class="ml-3 w-60 mt-5 border rounded-lg px-4 py-4 inline-block border-gray-700 hover:border-[#00df9a] hover:text-white cursor-pointer">
+            <a href={isLoggedIn? "/backend" : "login"} 
+            class="ml-3 w-60 mt-5 border rounded-lg px-4 py-4 inline-block border-gray-700 hover:border-[#00df9a] hover:text-white cursor-pointer"
+            onClick={() => {
+                localStorage.setItem('intendedUrl', '/backend');
+            }}
+            >
                 <div class="text-gray-400 justify-center text-center">Backend</div>
             </a>
             </div>

@@ -1,24 +1,46 @@
-import React, { useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCube } from '@fortawesome/free-solid-svg-icons';
+  import React, { useState } from 'react';
+  import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+  import { faCube } from '@fortawesome/free-solid-svg-icons';
+  import axios from 'axios'
 
-function LoginPage() {
-  const [formData, setFormData] = useState({
-    username: '',
-    password: '',
-  });
+  function LoginPage() {
+    const [formData, setFormData] = useState({
+      username: '',
+      password: '',
+    });
 
-  const handleChange = (event) => {
-    setFormData({ ...formData, [event.target.name]: event.target.value });
-  };
+    const handleChange = (event) => {
+      setFormData({ ...formData, [event.target.name]: event.target.value });
+    };
 
-  const handleSubmit = (event) => {
-    event.preventDefault(); 
+    const [error, setError] = useState(null);
 
-    console.log('Login form submitted:', formData);
+    const handleSubmit = async(event) => {
+      event.preventDefault(); 
+      
+      try{
+        const response = await axios.post('http://localhost:3000/login', formData);
+        console.log('Login successful:', response.data);  
+        if (response.data && response.data.message === "Login Successful"){
+          const intendedUrl = localStorage.getItem('intendedUrl') || '/'; 
+          localStorage.removeItem('intendedUrl');
+          window.location.href = intendedUrl;
+          
+        } else if (error.response && error.response.status === 401) {
+          setError(error.response.data.message);
+        } else {
+          setError('An unexpected error occurred');
+        }
+      } catch(error){
+        console.error('Login error', error.response ? error.response.data : error);
+      } finally {
 
-    setFormData({ username: '', password: '' });
-  };
+        setFormData({
+          username:'', 
+          password:''
+        });
+      }
+    };
 
   return (
     <div className="flex h-screen items-center justify-center bg-gray-100">
