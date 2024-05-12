@@ -1,35 +1,44 @@
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCube } from '@fortawesome/free-solid-svg-icons';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 
-const FrontPage = () => {
+const LandingPage = () => {
     const [showLoginCard, setShowLoginCard] = useState(false);
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const navigate = useNavigate();
+    const { isLoggedIn, username, setIsLoggedIn, handleFetchUsername } = useLoginStatus();
+
 
     useEffect(() => {
-        const checkLoginStatus = async () => {
-            try {
-                const response = await axios.get('http://localhost:3000/login');
-                setIsLoggedIn(response.data.isLoggedIn);    
-            } catch (error) {
-                console.error('Error fetching login status:', error);
-            }
-        };
-
-        checkLoginStatus();
+        handleFetchUsername();
+        
     }, []);
 
-    const handleRedirect = (path) => {
-        if (isLoggedIn) {
-            window.location.href = path;
-        } else {
-            localStorage.setItem('intendedUrl', path);
-            window.location.href = '/login'; // Redirect to the login page
+    
+
+    const handleLogout = async () => {
+        try {
+            await axios.get('/logout');
+            localStorage.removeItem('userLoggedIn');
+            setIsLoggedIn(false);
+            navigate('/login');
+        } catch (error) {
+            console.error('Error logging out:', error);
         }
     };
+    
+    const handleRedirect = (path) => {
+        if (isLoggedIn) {
+            navigate(path);
+        } else {
+            localStorage.setItem('intendedUrl', path);
+            navigate('/login');
+        }
 
+
+    };
 
     return (
         <div>
@@ -38,34 +47,16 @@ const FrontPage = () => {
                     <div className='flex items-center px-5'><FontAwesomeIcon icon={faCube} style={{ color: "#38bcf5", fontSize: '5em' }} /></div>
                     <div className='text-3xl font-bold text-[#00df9a]'>SKILL ODESSEY</div>
                 </div>
-                <ul className="flex items-center">
-                
-                    <li>
-                        <a href="login">
-                        <button
-                        onClick={() => setShowLoginCard(true)}
-                        className="text-[#9CA3AF] mr-4 rounded-lg px-6 py-2 border border-transparent hover:border-blue-500 focus:outline-none"
-                        >
-                        Login
-                        </button>
-                        </a>
-                    </li>
-                    <li>
-                        <a
-                        href="/signup"
-                        className="rounded-lg px-4 py-2 border-2 border-purple-500 border-opacity-75 hover:bg-purple-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-4 focus:ring-offset-slate-900 dark:focus:ring-offset-slate-900"
-                        >
-                        Sign Up
-                        </a>
-                    </li>
-                    </ul>
+                <div className=''>
+                {isLoggedIn && <p>{username}</p>}
+                </div>
 
             </div>
 
            
-            <div className=' flex-direction: column; text-white mt-24 text-center items-center'>
+            <div className=' flex-direction: column; text-[#9CA3AF] mt-24 text-center items-center'>
                 <div className='text-6xl font-bold mb-10'>Developer Roadmaps</div>
-                <div className='mx-auto text-xl text-[#9CA3AF]'>
+                <div className='mx-auto text-xl'>
                 Skill Odyssey is an open-source educational platform offering precise roadmaps, guides, 
                 and resources <br/>for frontend and backend development. Users can access curated pathways, watch video 
                 tutorials,<br/> and review modules to guide their learning journey effectively.
@@ -79,16 +70,10 @@ const FrontPage = () => {
             </div>
 
             <div class="mt-5 flex items-center justify-center mb-60">
-            <a href={isLoggedIn? "/frontend" : "login"} 
-            class="mr-3 w-60 mt-5 border rounded-lg px-4 py-4 inline-block border-gray-700 hover:border-blue-500 hover:text-white cursor-pointer"
-            onClick={() => handleRedirect('/frontend')}
-            >
+            <a href="/frontend" class="mr-3 w-60 mt-5 border rounded-lg px-4 py-4 inline-block border-gray-700 hover:border-blue-500 hover:text-white cursor-pointer">
                 <div class="text-gray-400 justify-center text-center">Frontend</div>
             </a>
-            <a href={isLoggedIn? "/backend" : "login"} 
-            class="ml-3 w-60 mt-5 border rounded-lg px-4 py-4 inline-block border-gray-700 hover:border-[#00df9a] hover:text-white cursor-pointer"
-            onClick={() => handleRedirect('/backend')}
-            >
+            <a href="/backend" class="ml-3 w-60 mt-5 border rounded-lg px-4 py-4 inline-block border-gray-700 hover:border-[#00df9a] hover:text-white cursor-pointer">
                 <div class="text-gray-400 justify-center text-center">Backend</div>
             </a>
             </div>
@@ -110,4 +95,37 @@ const FrontPage = () => {
     );
 };
 
-export default FrontPage;
+function useLoginStatus() {
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [username, setUsername] = useState('');
+  
+    useEffect(() => {
+      const storedUserLoggedIn = localStorage.getItem('userLoggedIn');
+      if (storedUserLoggedIn === 'true') {
+        setIsLoggedIn(true);
+  
+        const usernameFromStorage = localStorage.getItem('Username');
+        if (usernameFromStorage) {
+          setUsername(usernameFromStorage);
+        } else {
+          handleFetchUsername();
+        }
+      } else {
+        setIsLoggedIn(false);
+      }
+    }, []);
+  
+    const handleFetchUsername = async () => {
+      try {
+        const response = await axios.get('http://localhost:3000/api/user'); // Replace with your endpoint
+        setUsername(response.data.username);
+      } catch (error) {
+        console.error('Error fetching username:', error);
+      }
+    };
+  
+    return { isLoggedIn, username, handleFetchUsername };
+  }
+
+  
+export default LandingPage;

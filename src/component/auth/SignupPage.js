@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCube } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
@@ -10,7 +10,7 @@ const SignupPage = () => {
     password: '',
     confirmPassword: '',
   });
-
+  const [showLoginCard, setShowLoginCard] = useState(false);
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
@@ -33,8 +33,8 @@ const SignupPage = () => {
       const response = await axios.post('http://localhost:3000/signup', formData);
 
       if (response.status === 201) {
-        console.log('Signup successful!');
-        window.location.href = 'http://localhost:3001/LandingPage'
+        window.alert('Signup successful!');
+        window.location.href = 'http://localhost:3001/Landing-Page';
       } else {
         console.error('Unexpected response:', response);
       }
@@ -51,8 +51,37 @@ const SignupPage = () => {
   };
 
   return (
+    <div>
+    <div className='justify-between flex items-center max-w-[1240px] mx-auto text-white py-6'>
+                <div className='flex items-center'>
+                    <div className='flex items-center px-5'><FontAwesomeIcon icon={faCube} style={{ color: "#38bcf5", fontSize: '2em' }} /></div>
+                    <div className='text-3xl font-bold text-[#00df9a]'>SKILL ODESSEY</div>
+                </div>
+                <ul className="flex items-center">
+                
+                    <li>
+                        <a href="login">
+                        <button
+                        onClick={() => setShowLoginCard(true)}
+                        className="text-[#9CA3AF] mr-4 rounded-lg px-6 py-2 border border-transparent hover:border-blue-500 focus:outline-none"
+                        >
+                        Login
+                        </button>
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                        href="/signup"
+                        className="rounded-lg px-4 py-2 border-2 border-purple-500 border-opacity-75 hover:bg-purple-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-4 focus:ring-offset-slate-900 dark:focus:ring-offset-slate-900"
+                        >
+                        Sign Up
+                        </a>
+                    </li>
+                    </ul>
+
+            </div>
     <div className="flex justify-center items-center h-screen bg-gray-100">
-      <div className="w-full max-w-md p-4 bg-white rounded-lg shadow-md">
+      <div className="w-full max-w-md p-4 ">
       <div className='  text-customFont mt-5 items-center text-center px-5 mb-3'><FontAwesomeIcon icon={faCube} style={{ color: "#38bcf5", fontSize: '5em' }} /></div>
         <h1 className=" text-2xl font-semibold text-center j">Sign Up</h1>
         <div className=" text-base font-light mb-5 text-center j">Register an Account</div>
@@ -125,8 +154,15 @@ const SignupPage = () => {
           >
             Sign Up
           </button>
+          <button
+            type="submit"
+          className="bg-white mt-4 shadow appearance-none border rounded w-full py-2 px-3 ">
+            Already have an account? <a href="/login" className="text-blue-700">Login!</a>
+            
+            </button>
         </form>
       </div>
+    </div>
     </div>
   );
 };

@@ -7,6 +7,7 @@ import LoginPage from './component/auth/LoginPage';
 import FrontendPage from './component/landing-page/FrontendPage';
 import BackendPage from './component/landing-page/BackendPage';
 import FrontPage from './component/auth/FrontPage';
+import LandingPage from './component/landing-page/Landing-Page'
 
 import reportWebVitals from './reportWebVitals';
 import{
@@ -40,6 +41,10 @@ const router =createBrowserRouter([
     path:'/FrontPage',
     element:<FrontPage/>
   },
+  {
+    path: '/LandingPage',
+    element:<LandingPage/>
+  }
 ])
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
