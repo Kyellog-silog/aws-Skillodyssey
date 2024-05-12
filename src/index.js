@@ -7,7 +7,7 @@ import LoginPage from './component/auth/LoginPage';
 import FrontendPage from './component/landing-page/FrontendPage';
 import BackendPage from './component/landing-page/BackendPage';
 import FrontPage from './component/auth/FrontPage';
-import LandingPage from './component/landing-page/Landing-Page'
+import Landing from './component/landing-page/Landing-Page'
 
 import reportWebVitals from './reportWebVitals';
 import{
@@ -15,6 +15,7 @@ import{
   RouterProvider,
   Route,
 } from 'react-router-dom';
+import LandingPage from './component/landing-page/Landing-Page';
 
 const router =createBrowserRouter([
   {
@@ -42,7 +43,7 @@ const router =createBrowserRouter([
     element:<FrontPage/>
   },
   {
-    path: '/LandingPage',
+    path:'/Landingpage',
     element:<LandingPage/>
   }
 ])

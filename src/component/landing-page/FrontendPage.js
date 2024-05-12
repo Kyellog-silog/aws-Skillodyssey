@@ -65,6 +65,7 @@ const FrontendPage = () => {
   };
   
  
+
   const navigate = useNavigate();
   const handleStatusChange = (status) => {
     setSelectedStatus(status);
@@ -94,8 +95,6 @@ const FrontendPage = () => {
       console.error('Error logging out:', error);
     }
   };
-
-
 
  
   
@@ -512,7 +511,7 @@ const FrontendPage = () => {
       State Management<br/> Libraries</button>
       
       {showSidebarStateManagementLibraries && (
-  <div className="flex items-center justify-center fixed top-0 left-0 w-screen h-screen bg-gray-200 bg-opacity-10  ">
+  <div className="flex items-center justify-center fixed top-0 left-0 w-screen h-screen bg-gray-200 bg-opacity-10 z-50">
      <div className="w-2/3 md:w-1/2 lg:w-1/2 bg-white rounded-lg shadow-2xl overflow-y-auto max-h-screen p-4">
       
       <div className='flex flex-row justify-between items-center'>
@@ -949,7 +948,7 @@ const FrontendPage = () => {
           <div className="bg-gray-200 w-2/5 h-screen fixed top-0 right-0 overflow-y-auto shadow-2xl shadow-slate-950 text-black z-50 ">
             <div className="flex justify-end p-4 mr-2 ">
             <button onClick={() => setShowSidebarQs1(false)}>
-                <FontAwesomeIcon icon={faTimes} className="text-[#687688]" /> {/* Increase size to 2x */}
+                <FontAwesomeIcon icon={faTimes} className="text-[#687688]" /> 
               </button>
             </div>
             <div className='text-3xl font-bold p-4 text-black'>What are the Job titles of a Frontend Developer?</div>
@@ -978,7 +977,7 @@ const FrontendPage = () => {
       <div className="bg-gray-200 w-2/5 h-screen fixed top-0 right-0 overflow-y-auto shadow-2xl shadow-slate-950 text-black z-50">
         <div className="flex justify-end p-4 mr-2 ">
         <button onClick={() => setShowSidebarQs2(false)}>
-            <FontAwesomeIcon icon={faTimes} className="text-[#687688]" /> {/* Increase size to 2x */}
+            <FontAwesomeIcon icon={faTimes} className="text-[#687688]" />
           </button>
         </div>
         <div className='text-3xl font-bold p-4 text-black'>How to become a frontend developer?</div>
@@ -1007,7 +1006,7 @@ const FrontendPage = () => {
       <div className="bg-gray-200 w-2/5 h-screen fixed top-0 right-0 overflow-y-auto shadow-2xl shadow-slate-950 text-black z-50">
         <div className="flex justify-end p-4 mr-2 ">
         <button onClick={() => setShowSidebarQs3(false)}>
-            <FontAwesomeIcon icon={faTimes} className="text-[#687688]" /> {/* Increase size to 2x */}
+            <FontAwesomeIcon icon={faTimes} className="text-[#687688]" /> 
           </button>
         </div>
         <div className='text-3xl font-bold p-4 text-black'>What are the frontend developer salaries?</div>
@@ -1034,17 +1033,16 @@ const FrontendPage = () => {
 <div className="flex flex-col max-w-[1240px] mx-auto mb-10 ">
     <div className='text-3xl ml-4 mb-4 text-white '> Test your Knowledge</div>
     <div className='text-white ml-4 w-full border mt-2 border-[#1E293C] p-4 text-base cursor-pointer hover:border-slate-600 rounded-lg'>
-      Javascipt
-      <li> <a href = 'https://quizlet.com/914418080/learn'> Here is a link to a quiz to test your knowledge. </a></li>
+    <a href = 'https://quizlet.com/914418080/learn'>Javascipt</a>
+      
     </div>
     <div className='text-white ml-4 w-full border mt-2 border-[#1E293C] p-4 text-base cursor-pointer hover:border-slate-600 rounded-lg'>
-      React
-      <li> <a href = 'https://quizlet.com/914572776/learn'> Here is a link to a quiz to test your knowledge. </a></li>
+    <a href = 'https://quizlet.com/914572776/learn'>React</a>
+     
     </div>
     <div className='text-white ml-4 w-full border mt-2 border-[#1E293C] p-4 text-base cursor-pointer hover:border-slate-600 rounded-lg'>
-      Tailwind
-      <li> <a href = 'https://quizlet.com/914572952/learn'> Here is a link to a quiz to test your knowledge. </a></li>
-    </div>
+    <a href = 'https://quizlet.com/914572952/learn'>Tailwind</a>
+        </div>
 
     
 </div>

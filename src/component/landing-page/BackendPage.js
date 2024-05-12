@@ -1499,16 +1499,16 @@ const BackendPage = () => {
 <div className="flex flex-col max-w-[1240px] mx-auto mb-10 ">
     <div className='text-3xl ml-4 mb-4 text-white '> Test your Knowledge</div>
     <div className='text-white ml-4 w-full border mt-2 border-[#1E293C] p-4 text-base cursor-pointer hover:border-slate-600 rounded-lg'>
-      Javascipt
-      <li> <a href = 'https://quizlet.com/914418080/learn'> Here is a link to a quiz to test your knowledge. </a></li>
+    <a href = 'https://quizlet.com/914418080/learn'>
+      Javascipt  </a>
     </div>
     <div className='text-white ml-4 w-full border mt-2 border-[#1E293C] p-4 text-base cursor-pointer hover:border-slate-600 rounded-lg'>
-      Mysql
-      <li> <a href = 'https://quizlet.com/914573326/learn'> Here is a link to a quiz to test your knowledge. </a></li>
+     <a href = 'https://quizlet.com/914573326/learn'>Mysql
+     </a>
     </div>
     <div className='text-white ml-4 w-full border mt-2 border-[#1E293C] p-4 text-base cursor-pointer hover:border-slate-600 rounded-lg'>
-      Rest
-      <li> <a href = 'https://quizlet.com/914573548/learn'> Here is a link to a quiz to test your knowledge. </a></li>
+   <a href = 'https://quizlet.com/914573548/learn'> Rest
+    </a>
     </div>
 
     
