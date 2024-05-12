@@ -265,7 +265,7 @@ const FrontendPage = () => {
             onClick={() => setShowSidebarVue(!showSidebarVue)}>
               Vue</button>
               {showSidebarVue && (
-          <div className="bg-gray-200 w-2/5 h-screen fixed top-0 right-0 overflow-y-auto shadow-2xl shadow-slate-950 text-black">
+          <div className="bg-gray-200 w-2/5 h-screen fixed top-0 right-0 overflow-y-auto shadow-2xl shadow-slate-950 text-black  z-50">
             <div className="flex justify-end p-4 mr-2 ">
             <button onClick={() => setShowSidebarVue(false)}>
                 <FontAwesomeIcon icon={faTimes} className="text-[#687688]" /> {/* Increase size to 2x */}
@@ -295,7 +295,7 @@ const FrontendPage = () => {
             onClick={() => setShowSidebarReact(!showSidebarReact)}>
               React</button>
               {showSidebarReact && (
-          <div className="bg-gray-200 w-2/5 h-screen fixed top-0 right-0 overflow-y-auto shadow-2xl shadow-slate-950 text-black">
+          <div className="bg-gray-200 w-2/5 h-screen fixed top-0 right-0 overflow-y-auto shadow-2xl shadow-slate-950 text-black  z-50">
             <div className="flex justify-end p-4 mr-2 ">
             <button onClick={() => setShowSidebarReact(false)}>
                 <FontAwesomeIcon icon={faTimes} className="text-[#687688]" /> {/* Increase size to 2x */}
@@ -325,7 +325,7 @@ const FrontendPage = () => {
              onClick={() => setShowSidebarAngular(!showSidebarAngular)}>
               Angular</button>
               {showSidebarAngular && (
-          <div className="bg-gray-200 w-2/5 h-screen fixed top-0 right-0 overflow-y-auto shadow-2xl shadow-slate-950 text-black">
+          <div className="bg-gray-200 w-2/5 h-screen fixed top-0 right-0 overflow-y-auto shadow-2xl shadow-slate-950 text-black z-50">
             <div className="flex justify-end p-4 mr-2 ">
             <button onClick={() => setShowSidebarAngular(false)}>
                 <FontAwesomeIcon icon={faTimes} className="text-[#687688]" /> {/* Increase size to 2x */}
@@ -630,7 +630,7 @@ const FrontendPage = () => {
             Tailwind
           </button>
             {showSidebarTailwind && (
-          <div className="bg-gray-200 w-2/5 h-screen fixed top-0 right-0 overflow-y-auto shadow-2xl shadow-slate-950 text-black">
+          <div className="bg-gray-200 w-2/5 h-screen fixed top-0 right-0 overflow-y-auto shadow-2xl shadow-slate-950 text-black  z-50 ">
             <div className="flex justify-end p-4 mr-2 ">
             <button onClick={() => setShowSidebarTailwind(false)}>
                 <FontAwesomeIcon icon={faTimes} className="text-[#687688]" /> 
@@ -773,7 +773,7 @@ const FrontendPage = () => {
             onClick={() => setShowSidebarRedux(!showSidebarRedux)}
             >Redux</button>
             {showSidebarRedux&& (
-          <div className="bg-gray-200 w-2/5 h-screen fixed top-0 right-0 overflow-y-auto shadow-2xl shadow-slate-950 text-black">
+          <div className="bg-gray-200 w-2/5 h-screen fixed top-0 right-0 overflow-y-auto shadow-2xl shadow-slate-950 text-black z-50">
             <div className="flex justify-end p-4 mr-2 ">
             <button onClick={() => setShowSidebarRedux(false)}>
                 <FontAwesomeIcon icon={faTimes} className="text-[#687688]" /> {/* Increase size to 2x */}
@@ -803,7 +803,7 @@ const FrontendPage = () => {
             onClick={() => setShowSidebarXstate(!showSidebarXState)}
             >XState</button>
             {showSidebarXState&& (
-          <div className="bg-gray-200 w-2/5 h-screen fixed top-0 right-0 overflow-y-auto shadow-2xl shadow-slate-950 text-black">
+          <div className="bg-gray-200 w-2/5 h-screen fixed top-0 right-0 overflow-y-auto shadow-2xl shadow-slate-950 text-black z-50">
             <div className="flex justify-end p-4 mr-2 ">
             <button onClick={() => setShowSidebarXstate(false)}>
                 <FontAwesomeIcon icon={faTimes} className="text-[#687688]" /> {/* Increase size to 2x */}
