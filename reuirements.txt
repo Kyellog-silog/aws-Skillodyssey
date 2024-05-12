@@ -1,0 +1,19 @@
+nodemon
+bycrypt
+tailwindcss
+bcrypt
+body-parser
+cookie-parser
+cors
+debug
+dotenv
+ejs
+express
+express-session
+http-errors
+morgan
+mysql2
+passport
+passport-jwt": "^4.0.1",
+"passport-local": "^1.0.0",
+"react-router-dom": "^6.23.0
