@@ -14,6 +14,6 @@ http-errors
 morgan
 mysql2
 passport
-passport-jwt": "^4.0.1",
-"passport-local": "^1.0.0",
-"react-router-dom": "^6.23.0
+passport-jwt
+passport-local
+react-router-dom
