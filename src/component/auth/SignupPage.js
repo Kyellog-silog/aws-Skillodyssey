@@ -34,7 +34,7 @@ const SignupPage = () => {
 
       if (response.status === 201) {
         window.alert('Signup successful!');
-        window.location.href = 'http://localhost:3001/Landing-Page';
+        window.location.href = '/frontpage';
       } else {
         console.error('Unexpected response:', response);
       }

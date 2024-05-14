@@ -256,8 +256,6 @@ const FrontendPage = () => {
        
 
         <div className="grid grid-cols-3 gap-80 ">
-       
-          
           <div className="flex flex-col mt-64  ">
           <div className="flex flex-col justify-items-center items-center ">
           <div className="flex">
@@ -265,25 +263,22 @@ const FrontendPage = () => {
             onClick={() => setShowSidebarVue(!showSidebarVue)}>
               Vue</button>
               {showSidebarVue && (
+                
           <div className="bg-gray-200 w-2/5 h-screen fixed top-0 right-0 overflow-y-auto shadow-2xl shadow-slate-950 text-black  z-50">
             <div className="flex justify-end p-4 mr-2 ">
             <button onClick={() => setShowSidebarVue(false)}>
                 <FontAwesomeIcon icon={faTimes} className="text-[#687688]" /> {/* Increase size to 2x */}
               </button>
             </div>
+            
             <div className='text-5xl font-bold p-4'>Vue</div>
-            <p className="p-4 text-[#262d36]">HTML stands for HyperText Markup Language. It is used on the frontend and gives the structure to the webpage which you can style using CSS and make interactive using JavaScript.</p>
+            <p className="p-4 text-[#262d36]">Vue.js is a progressive JavaScript framework used for building user interfaces, known for its simplicity and flexibility, enabling developers to create interactive and reactive web interfaces efficiently.</p>
             <p className='p-4 text-[#262d36]'>Visit the following resources to learn more:</p>
             <ul className='list-disc pl-14 underline leading-relaxed font-semibold'>
-              <li><a href="https://www.w3schools.com/html/">W3Schools: Learn HTML</a></li>
-              <li><a href="https://htmlreference.io/">htmlreference.io: All HTML elements at a glance</a></li>
-              <li><a href="https://html.com/">HTML For Beginners The Easy Way</a></li>
-              <li><a href="https://www.freecodecamp.org/news/web-development-basics-html/">Web Development Basics</a></li>
-              <li><a href="https://www.codecademy.com/learn/learn-html">Codecademy - Learn HTML</a></li>
-              <li><a href="https://www.khanacademy.org/computing/computer-programming/html-css">Interactive HTML Course</a></li>
-              <li><a href="https://www.youtube.com/watch?v=pQN-pnXPaVg">HTML Full Course for Beginners | Complete All-in-One Tutorial</a></li>
-              <li><a href="https://www.youtube.com/watch?v=UB1O30fR-EE">HTML Full Course - Build a Website Tutorial</a></li>
-              <li><a href="https://www.youtube.com/watch?v=UB1O30fR-EE">HTML Tutorial for Beginners: HTML Crash Course</a></li>
+              <li><a href="https://www.creolestudios.com/react-js-vs-angular-js-vs-vue-js/">REACT JS, ANGULAR JS, VUE JS – THE 4W’S OF JAVASCRIPT (WHO, WHAT, WHY, & WHEN)</a></li>
+              <li><a href="https://www.valuecoders.com/blog/technology-and-apps/vue-js-angularjs-reactjs-updates/">ValueCoders:  Vue</a></li>
+              <li><a href="https://www.digitalocean.com/community/tutorials/how-to-manage-state-in-a-vue-js-application-with-vuex">How To Manage State in a Vue.js Application with Vuex</a></li>
+
             </ul>
           </div>
         )}
@@ -302,18 +297,13 @@ const FrontendPage = () => {
               </button>
             </div>
             <div className='text-5xl font-bold p-4'>React</div>
-            <p className="p-4 text-[#262d36]">HTML stands for HyperText Markup Language. It is used on the frontend and gives the structure to the webpage which you can style using CSS and make interactive using JavaScript.</p>
+            <p className="p-4 text-[#262d36]">React is a popular JavaScript library for building user interfaces, maintained by Facebook, focusing on component-based development, facilitating the creation of reusable UI components and managing state efficiently.</p>
             <p className='p-4 text-[#262d36]'>Visit the following resources to learn more:</p>
             <ul className='list-disc pl-14 underline leading-relaxed font-semibold'>
-              <li><a href="https://www.w3schools.com/html/">W3Schools: Learn HTML</a></li>
-              <li><a href="https://htmlreference.io/">htmlreference.io: All HTML elements at a glance</a></li>
-              <li><a href="https://html.com/">HTML For Beginners The Easy Way</a></li>
-              <li><a href="https://www.freecodecamp.org/news/web-development-basics-html/">Web Development Basics</a></li>
-              <li><a href="https://www.codecademy.com/learn/learn-html">Codecademy - Learn HTML</a></li>
-              <li><a href="https://www.khanacademy.org/computing/computer-programming/html-css">Interactive HTML Course</a></li>
-              <li><a href="https://www.youtube.com/watch?v=pQN-pnXPaVg">HTML Full Course for Beginners | Complete All-in-One Tutorial</a></li>
-              <li><a href="https://www.youtube.com/watch?v=UB1O30fR-EE">HTML Full Course - Build a Website Tutorial</a></li>
-              <li><a href="https://www.youtube.com/watch?v=UB1O30fR-EE">HTML Tutorial for Beginners: HTML Crash Course</a></li>
+              <li><a href="https://www.w3schools.com/whatis/whatis_react.asp">W3Schools: What is React?</a></li>
+              <li><a href="https://blog.hubspot.com/website/react-js">What is React.js? Uses, Examples, & More</a></li>
+              <li><a href="https://www.youtube.com/watch?v=SqcY0GlETPk"> React Tutorial for Beginners</a></li>
+              <li><a href="https://www.youtube.com/watch?v=RVFAyFWO4go">React JS Full Course for Beginners | Complete All-in-One Tutorial</a></li>
             </ul>
           </div>
         )}
@@ -332,18 +322,12 @@ const FrontendPage = () => {
               </button>
             </div>
             <div className='text-5xl font-bold p-4'>Angular</div>
-            <p className="p-4 text-[#262d36]">HTML stands for HyperText Markup Language. It is used on the frontend and gives the structure to the webpage which you can style using CSS and make interactive using JavaScript.</p>
+            <p className="p-4 text-[#262d36]">Angular is a comprehensive front-end framework developed by Google, offering a robust structure for building single-page web applications using TypeScript, along with features like dependency injection and powerful data binding.</p>
             <p className='p-4 text-[#262d36]'>Visit the following resources to learn more:</p>
             <ul className='list-disc pl-14 underline leading-relaxed font-semibold'>
-              <li><a href="https://www.w3schools.com/html/">W3Schools: Learn HTML</a></li>
-              <li><a href="https://htmlreference.io/">htmlreference.io: All HTML elements at a glance</a></li>
-              <li><a href="https://html.com/">HTML For Beginners The Easy Way</a></li>
-              <li><a href="https://www.freecodecamp.org/news/web-development-basics-html/">Web Development Basics</a></li>
-              <li><a href="https://www.codecademy.com/learn/learn-html">Codecademy - Learn HTML</a></li>
-              <li><a href="https://www.khanacademy.org/computing/computer-programming/html-css">Interactive HTML Course</a></li>
-              <li><a href="https://www.youtube.com/watch?v=pQN-pnXPaVg">HTML Full Course for Beginners | Complete All-in-One Tutorial</a></li>
-              <li><a href="https://www.youtube.com/watch?v=UB1O30fR-EE">HTML Full Course - Build a Website Tutorial</a></li>
-              <li><a href="https://www.youtube.com/watch?v=UB1O30fR-EE">HTML Tutorial for Beginners: HTML Crash Course</a></li>
+              <li><a href="https://www.w3schools.com/whatis/whatis_angularjs.asp">W3Schools: What is AngularJS?</a></li>
+              <li><a href="https://angular.io/guide/what-is-angular">What is Angular?</a></li>
+              <li><a href="https://www.youtube.com/watch?v=i9MHigUZKEM">AngularJS Fundamentals In 60-ish Minutes</a></li>
             </ul>
           </div>
         )}
@@ -355,25 +339,19 @@ const FrontendPage = () => {
             onClick={() => setShowSidebarJest(!showSidebarJest)}>
               Jest</button>
               {showSidebarJest && (
-          <div className="bg-gray-200 w-2/5 h-screen fixed top-0 right-0 overflow-y-auto shadow-2xl shadow-slate-950 text-black">
+          <div className="bg-gray-200 w-2/5 h-screen fixed top-0 right-0 overflow-y-auto shadow-2xl shadow-slate-950 text-black z-50">
             <div className="flex justify-end p-4 mr-2 ">
             <button onClick={() => setShowSidebarJest(false)}>
                 <FontAwesomeIcon icon={faTimes} className="text-[#687688]" /> {/* Increase size to 2x */}
               </button>
             </div>
             <div className='text-5xl font-bold p-4'>Jest</div>
-            <p className="p-4 text-[#262d36]">HTML stands for HyperText Markup Language. It is used on the frontend and gives the structure to the webpage which you can style using CSS and make interactive using JavaScript.</p>
+            <p className="p-4 text-[#262d36]">Jest is a delightful JavaScript testing framework with a focus on simplicity and ease of use, providing features like built-in assertions, mocking, and snapshot testing to ensure the quality and reliability of JavaScript codebases.</p>
             <p className='p-4 text-[#262d36]'>Visit the following resources to learn more:</p>
             <ul className='list-disc pl-14 underline leading-relaxed font-semibold'>
-              <li><a href="https://www.w3schools.com/html/">W3Schools: Learn HTML</a></li>
-              <li><a href="https://htmlreference.io/">htmlreference.io: All HTML elements at a glance</a></li>
-              <li><a href="https://html.com/">HTML For Beginners The Easy Way</a></li>
-              <li><a href="https://www.freecodecamp.org/news/web-development-basics-html/">Web Development Basics</a></li>
-              <li><a href="https://www.codecademy.com/learn/learn-html">Codecademy - Learn HTML</a></li>
-              <li><a href="https://www.khanacademy.org/computing/computer-programming/html-css">Interactive HTML Course</a></li>
-              <li><a href="https://www.youtube.com/watch?v=pQN-pnXPaVg">HTML Full Course for Beginners | Complete All-in-One Tutorial</a></li>
-              <li><a href="https://www.youtube.com/watch?v=UB1O30fR-EE">HTML Full Course - Build a Website Tutorial</a></li>
-              <li><a href="https://www.youtube.com/watch?v=UB1O30fR-EE">HTML Tutorial for Beginners: HTML Crash Course</a></li>
+              <li><a href="https://www.valentinog.com/blog/jest/">Jest Tutorial for Beginners: Getting Started With JavaScript Testing</a></li>
+              <li><a href="https://www.lambdatest.com/jest">Jest Tutorial: Complete Guide to Jest Testing</a></li>
+              <li><a href="https://www.youtube.com/watch?v=IPiUDhwnZxA">JavaScript Testing with Jest – Crash Course</a></li>
             </ul>
           </div>
         )}
@@ -385,25 +363,19 @@ const FrontendPage = () => {
              onClick={() => setShowSidebarCypress(!showSidebarCypress)}
              >Cypress</button>
              {showSidebarCypress && (
-          <div className="bg-gray-200 w-2/5 h-screen fixed top-0 right-0 overflow-y-auto shadow-2xl shadow-slate-950 text-black">
+          <div className="bg-gray-200 w-2/5 h-screen fixed top-0 right-0 overflow-y-auto shadow-2xl shadow-slate-950 text-black z-50">
             <div className="flex justify-end p-4 mr-2 ">
             <button onClick={() => setShowSidebarCypress(false)}>
                 <FontAwesomeIcon icon={faTimes} className="text-[#687688]" /> {/* Increase size to 2x */}
               </button>
             </div>
             <div className='text-5xl font-bold p-4'>Cypress</div>
-            <p className="p-4 text-[#262d36]">HTML stands for HyperText Markup Language. It is used on the frontend and gives the structure to the webpage which you can style using CSS and make interactive using JavaScript.</p>
+            <p className="p-4 text-[#262d36]">Cypress is a fast, reliable, and easy-to-use end-to-end testing framework for web applications, offering features like automatic waiting, time travel, and real-time reloads to streamline the testing process.</p>
             <p className='p-4 text-[#262d36]'>Visit the following resources to learn more:</p>
             <ul className='list-disc pl-14 underline leading-relaxed font-semibold'>
-              <li><a href="https://www.w3schools.com/html/">W3Schools: Learn HTML</a></li>
-              <li><a href="https://htmlreference.io/">htmlreference.io: All HTML elements at a glance</a></li>
-              <li><a href="https://html.com/">HTML For Beginners The Easy Way</a></li>
-              <li><a href="https://www.freecodecamp.org/news/web-development-basics-html/">Web Development Basics</a></li>
-              <li><a href="https://www.codecademy.com/learn/learn-html">Codecademy - Learn HTML</a></li>
-              <li><a href="https://www.khanacademy.org/computing/computer-programming/html-css">Interactive HTML Course</a></li>
-              <li><a href="https://www.youtube.com/watch?v=pQN-pnXPaVg">HTML Full Course for Beginners | Complete All-in-One Tutorial</a></li>
-              <li><a href="https://www.youtube.com/watch?v=UB1O30fR-EE">HTML Full Course - Build a Website Tutorial</a></li>
-              <li><a href="https://www.youtube.com/watch?v=UB1O30fR-EE">HTML Tutorial for Beginners: HTML Crash Course</a></li>
+              <li><a href="https://docs.cypress.io/guides/overview/why-cypress">Why Cypress?</a></li>
+              <li><a href="https://docs.cypress.io/guides/component-testing/getting-started">Cypress Component Testing</a></li>
+
             </ul>
           </div>
         )}
@@ -466,7 +438,7 @@ const FrontendPage = () => {
       </div>
       <hr className='mt-2'></hr>
       <p className="p-4 text-[#262d36]">
-        Software development fundamentals are provided by programming languages, which also include syntax. Clear and effective code writing in any language requires a solid understanding of basic concepts such as variables, functions, control structures, and data kinds. Developers that comprehend these fundamentals are better equipped to solve challenges creatively and effectively by adapting to new languages and technologies.
+      CSS  (Cascading Style Sheets)is a styling language used to enhance the presentation of HTML elements, controlling aspects such as layout, colors, fonts, and spacing to create visually appealing and consistent designs across web pages.
       </p>
     </div>
   </div>
@@ -644,7 +616,6 @@ const FrontendPage = () => {
   Update Status
     <span className="h-5 w-5 text-gray-400 inline-flex items-center justify-center ml-[2px]">&#9660;</span>  
   </div>
-
   <button type="button" aria-haspopup="true" aria-expanded="false" className="w-full h-full focus:outline-none  ">
     <select onChange={(e) => handleSelect(e.target.value)} className="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer ">
       <option value="">Update Status</option>
@@ -656,19 +627,15 @@ const FrontendPage = () => {
 </div>
 <div className='ml-8'>
             <div className='text-5xl font-bold '>Tailwind</div>
-            <p className=" text-[#262d36] mt-4">HTML stands for HyperText Markup Language. It is used on the frontend and gives the structure to the webpage which you can style using CSS and make interactive using JavaScript.</p>
+            <p className=" text-[#262d36] mt-4">Tailwind CSS is a utility-first CSS framework that provides a set of pre-designed utility classes to quickly style web interfaces without the need for writing custom CSS, offering a highly customizable and scalable approach to styling.</p>
             <p className=' text-[#262d36] mt-4'>Visit the following resources to learn more:</p>
             </div>
             <ul className='list-disc pl-20 mt-4 underline leading-relaxed font-semibold'>
-              <li><a href="https://www.w3schools.com/html/">W3Schools: Learn HTML</a></li>
-              <li><a href="https://htmlreference.io/">htmlreference.io: All HTML elements at a glance</a></li>
-              <li><a href="https://html.com/">HTML For Beginners The Easy Way</a></li>
-              <li><a href="https://www.freecodecamp.org/news/web-development-basics-html/">Web Development Basics</a></li>
-              <li><a href="https://www.codecademy.com/learn/learn-html">Codecademy - Learn HTML</a></li>
-              <li><a href="https://www.khanacademy.org/computing/computer-programming/html-css">Interactive HTML Course</a></li>
-              <li><a href="https://www.youtube.com/watch?v=pQN-pnXPaVg">HTML Full Course for Beginners | Complete All-in-One Tutorial</a></li>
-              <li><a href="https://www.youtube.com/watch?v=UB1O30fR-EE">HTML Full Course - Build a Website Tutorial</a></li>
-              <li><a href="https://www.youtube.com/watch?v=UB1O30fR-EE">HTML Tutorial for Beginners: HTML Crash Course</a></li>
+              <li><a href="https://blog.hubspot.com/website/what-is-tailwind-css">Tailwind CSS: What It Is, Why Use It & ExamplesL</a></li>
+              <li><a href="https://www.geeksforgeeks.org/introduction-to-tailwind-css//">hIntroduction to Tailwind CSS</a></li>
+              <li><a href="https://www.freecodecamp.org/news/what-is-tailwind-css-a-beginners-guide/">What is Tailwind CSS? A Beginner's Guide</a></li>
+              <li><a href="https://www.youtube.com/watch?v=lCxcTsOHrjo">Tailwind CSS Full Course for Beginners | Complete All-in-One Tutorial</a></li>
+
             </ul>
           </div>
         )}
@@ -681,25 +648,20 @@ const FrontendPage = () => {
            onClick={() => setShowSidebarBootstrap(!showSidebarBootstrap)}
             >Bootstrap</button>
             {showSidebarBootstrap && (
-          <div className="bg-gray-200 w-2/5 h-screen fixed top-0 right-0 overflow-y-auto shadow-2xl shadow-slate-950 text-black">
+          <div className="bg-gray-200 w-2/5 h-screen fixed top-0 right-0 overflow-y-auto shadow-2xl shadow-slate-950 text-black z-50">
             <div className="flex justify-end p-4 mr-2 ">
             <button onClick={() => setShowSidebarBootstrap(false)}>
                 <FontAwesomeIcon icon={faTimes} className="text-[#687688]" /> {/* Increase size to 2x */}
               </button>
             </div>
             <div className='text-5xl font-bold p-4'>Bootstrap</div>
-            <p className="p-4 text-[#262d36]">HTML stands for HyperText Markup Language. It is used on the frontend and gives the structure to the webpage which you can style using CSS and make interactive using JavaScript.</p>
+            <p className="p-4 text-[#262d36]">Bootstrap is a widely-used CSS framework that provides a collection of pre-designed components and responsive layout utilities, simplifying the process of building responsive and mobile-first websites and web applications.</p>
             <p className='p-4 text-[#262d36]'>Visit the following resources to learn more:</p>
             <ul className='list-disc pl-14 underline leading-relaxed font-semibold'>
-              <li><a href="https://www.w3schools.com/html/">W3Schools: Learn HTML</a></li>
-              <li><a href="https://htmlreference.io/">htmlreference.io: All HTML elements at a glance</a></li>
-              <li><a href="https://html.com/">HTML For Beginners The Easy Way</a></li>
-              <li><a href="https://www.freecodecamp.org/news/web-development-basics-html/">Web Development Basics</a></li>
-              <li><a href="https://www.codecademy.com/learn/learn-html">Codecademy - Learn HTML</a></li>
-              <li><a href="https://www.khanacademy.org/computing/computer-programming/html-css">Interactive HTML Course</a></li>
-              <li><a href="https://www.youtube.com/watch?v=pQN-pnXPaVg">HTML Full Course for Beginners | Complete All-in-One Tutorial</a></li>
-              <li><a href="https://www.youtube.com/watch?v=UB1O30fR-EE">HTML Full Course - Build a Website Tutorial</a></li>
-              <li><a href="https://www.youtube.com/watch?v=UB1O30fR-EE">HTML Tutorial for Beginners: HTML Crash Course</a></li>
+              <li><a href="https://www.w3schools.com/whatis/whatis_bootstrap.asp">W3Schools: What is Bootstrap?</a></li>
+              <li><a href="https://www.investopedia.com/terms/b/bootstrapping.asp">Bootstrapping Definition, Strategies, and Pros/Cons</a></li>
+              <li><a href="https://www.youtube.com/watch?v=MyCvTSjkD74">What is Bootstrap? / Beginner CSS Frameworks</a></li>
+              <li><a href="https://www.youtube.com/watch?v=4sosXZsdy-s">Bootstrap 5 Crash Course | Website Build & Deploy</a></li>
             </ul>
           </div>
         )}
@@ -711,25 +673,20 @@ const FrontendPage = () => {
               onClick={() => setShowSidebarNpm(!showSidebarNpm)}
               >Npm</button>
               {showSidebarNpm&& (
-          <div className="bg-gray-200 w-2/5 h-screen fixed top-0 right-0 overflow-y-auto shadow-2xl shadow-slate-950 text-black">
+          <div className="bg-gray-200 w-2/5 h-screen fixed top-0 right-0 overflow-y-auto shadow-2xl shadow-slate-950 text-black z-50">
             <div className="flex justify-end p-4 mr-2 ">
             <button onClick={() => setShowSidebarNpm(false)}>
                 <FontAwesomeIcon icon={faTimes} className="text-[#687688]" /> {/* Increase size to 2x */}
               </button>
             </div>
             <div className='text-5xl font-bold p-4'>Npm</div>
-            <p className="p-4 text-[#262d36]">HTML stands for HyperText Markup Language. It is used on the frontend and gives the structure to the webpage which you can style using CSS and make interactive using JavaScript.</p>
+            <p className="p-4 text-[#262d36]"> (Node Package Manager) is the default package manager for Node.js, used to install, manage, and share packages of JavaScript code, providing access to a vast ecosystem of libraries and tools for web development.</p>
             <p className='p-4 text-[#262d36]'>Visit the following resources to learn more:</p>
             <ul className='list-disc pl-14 underline leading-relaxed font-semibold'>
-              <li><a href="https://www.w3schools.com/html/">W3Schools: Learn HTML</a></li>
-              <li><a href="https://htmlreference.io/">htmlreference.io: All HTML elements at a glance</a></li>
-              <li><a href="https://html.com/">HTML For Beginners The Easy Way</a></li>
-              <li><a href="https://www.freecodecamp.org/news/web-development-basics-html/">Web Development Basics</a></li>
-              <li><a href="https://www.codecademy.com/learn/learn-html">Codecademy - Learn HTML</a></li>
-              <li><a href="https://www.khanacademy.org/computing/computer-programming/html-css">Interactive HTML Course</a></li>
-              <li><a href="https://www.youtube.com/watch?v=pQN-pnXPaVg">HTML Full Course for Beginners | Complete All-in-One Tutorial</a></li>
-              <li><a href="https://www.youtube.com/watch?v=UB1O30fR-EE">HTML Full Course - Build a Website Tutorial</a></li>
-              <li><a href="https://www.youtube.com/watch?v=UB1O30fR-EE">HTML Tutorial for Beginners: HTML Crash Course</a></li>
+              <li><a href="https://www.w3schools.com/whatis/whatis_npm.asp">W3Schools: What is npm?</a></li>
+              <li><a href="https://docs.npmjs.com/about-npm">NPM Docs: About npm</a></li>
+              <li><a href="https://www.youtube.com/watch?v=jHDhaSSKmB0">NPM Crash Course</a></li>
+              <li><a href="https://www.freecodecamp.org/news/what-is-npm-a-node-package-manager-tutorial-for-beginners/">What is npm? A Node Package Manager Tutorial for Beginners</a></li>
             </ul>
           </div>
         )}
@@ -749,18 +706,14 @@ const FrontendPage = () => {
               </button>
             </div>
             <div className='text-5xl font-bold p-4'>Yarn</div>
-            <p className="p-4 text-[#262d36]">HTML stands for HyperText Markup Language. It is used on the frontend and gives the structure to the webpage which you can style using CSS and make interactive using JavaScript.</p>
+            <p className="p-4 text-[#262d36]">Yarn is a fast, reliable, and secure alternative package manager for JavaScript projects, offering features like deterministic dependency resolution, parallel installation, and offline mode to optimize the package management workflow.</p>
             <p className='p-4 text-[#262d36]'>Visit the following resources to learn more:</p>
             <ul className='list-disc pl-14 underline leading-relaxed font-semibold'>
-              <li><a href="https://www.w3schools.com/html/">W3Schools: Learn HTML</a></li>
-              <li><a href="https://htmlreference.io/">htmlreference.io: All HTML elements at a glance</a></li>
-              <li><a href="https://html.com/">HTML For Beginners The Easy Way</a></li>
-              <li><a href="https://www.freecodecamp.org/news/web-development-basics-html/">Web Development Basics</a></li>
-              <li><a href="https://www.codecademy.com/learn/learn-html">Codecademy - Learn HTML</a></li>
-              <li><a href="https://www.khanacademy.org/computing/computer-programming/html-css">Interactive HTML Course</a></li>
-              <li><a href="https://www.youtube.com/watch?v=pQN-pnXPaVg">HTML Full Course for Beginners | Complete All-in-One Tutorial</a></li>
-              <li><a href="https://www.youtube.com/watch?v=UB1O30fR-EE">HTML Full Course - Build a Website Tutorial</a></li>
-              <li><a href="https://www.youtube.com/watch?v=UB1O30fR-EE">HTML Tutorial for Beginners: HTML Crash Course</a></li>
+              <li><a href="https://www.digitalocean.com/community/tutorials/js-yarn-package-manager-quick-intro">A Quick Introduction to the Yarn Package Manager</a></li>
+              <li><a href="https://www.freecodecamp.org/news/javascript-package-manager-npm-and-yarn/">JavaScript Package Manager – Complete Guide to NPM and Yarn</a></li>
+              <li><a href="https://www.pluralsight.com/courses/play-by-play-yarn-package-manager">Play by Play: Getting Started with Yarn as a Package Manager</a></li>
+              <li><a href="https://www.gatsbyjs.com/docs/glossary/yarn/">Gatsby: Yarn</a></li>
+
             </ul>
           </div>
         )}
@@ -780,18 +733,13 @@ const FrontendPage = () => {
               </button>
             </div>
             <div className='text-5xl font-bold p-4'>Redux</div>
-            <p className="p-4 text-[#262d36]">HTML stands for HyperText Markup Language. It is used on the frontend and gives the structure to the webpage which you can style using CSS and make interactive using JavaScript.</p>
+            <p className="p-4 text-[#262d36]">Redux is a predictable state container for JavaScript applications, commonly used with React, to manage application state in a centralized and predictable manner, enabling efficient data flow and state management in complex applications.</p>
             <p className='p-4 text-[#262d36]'>Visit the following resources to learn more:</p>
             <ul className='list-disc pl-14 underline leading-relaxed font-semibold'>
-              <li><a href="https://www.w3schools.com/html/">W3Schools: Learn HTML</a></li>
-              <li><a href="https://htmlreference.io/">htmlreference.io: All HTML elements at a glance</a></li>
-              <li><a href="https://html.com/">HTML For Beginners The Easy Way</a></li>
-              <li><a href="https://www.freecodecamp.org/news/web-development-basics-html/">Web Development Basics</a></li>
-              <li><a href="https://www.codecademy.com/learn/learn-html">Codecademy - Learn HTML</a></li>
-              <li><a href="https://www.khanacademy.org/computing/computer-programming/html-css">Interactive HTML Course</a></li>
-              <li><a href="https://www.youtube.com/watch?v=pQN-pnXPaVg">HTML Full Course for Beginners | Complete All-in-One Tutorial</a></li>
-              <li><a href="https://www.youtube.com/watch?v=UB1O30fR-EE">HTML Full Course - Build a Website Tutorial</a></li>
-              <li><a href="https://www.youtube.com/watch?v=UB1O30fR-EE">HTML Tutorial for Beginners: HTML Crash Course</a></li>
+              <li><a href="https://medium.com/swlh/what-is-redux-b16b42b33820">What Is Redux?</a></li>
+              <li><a href="https://www.freecodecamp.org/news/what-is-redux-store-actions-reducers-explained/">What is Redux? Store, Actions, and Reducers Explained for Beginners</a></li>
+              <li><a href="https://www.bairesdev.com/blog/what-is-redux-and-why-it-matters/">What is Redux and Why It Matters in Web Development</a></li>
+              <li><a href="https://www.youtube.com/watch?v=NqzdVN2tyvQ">React Redux Full Course for Beginners | Redux Toolkit Complete TutorialL</a></li>
             </ul>
           </div>
         )}
@@ -810,18 +758,13 @@ const FrontendPage = () => {
               </button>
             </div>
             <div className='text-5xl font-bold p-4'>XState</div>
-            <p className="p-4 text-[#262d36]">HTML stands for HyperText Markup Language. It is used on the frontend and gives the structure to the webpage which you can style using CSS and make interactive using JavaScript.</p>
+            <p className="p-4 text-[#262d36]">XState is a JavaScript library for creating state machines and statecharts, providing a declarative way to manage application state and behavior, facilitating better understanding, testing, and maintenance of complex stateful logic.</p>
             <p className='p-4 text-[#262d36]'>Visit the following resources to learn more:</p>
             <ul className='list-disc pl-14 underline leading-relaxed font-semibold'>
-              <li><a href="https://www.w3schools.com/html/">W3Schools: Learn HTML</a></li>
-              <li><a href="https://htmlreference.io/">htmlreference.io: All HTML elements at a glance</a></li>
-              <li><a href="https://html.com/">HTML For Beginners The Easy Way</a></li>
-              <li><a href="https://www.freecodecamp.org/news/web-development-basics-html/">Web Development Basics</a></li>
-              <li><a href="https://www.codecademy.com/learn/learn-html">Codecademy - Learn HTML</a></li>
-              <li><a href="https://www.khanacademy.org/computing/computer-programming/html-css">Interactive HTML Course</a></li>
-              <li><a href="https://www.youtube.com/watch?v=pQN-pnXPaVg">HTML Full Course for Beginners | Complete All-in-One Tutorial</a></li>
-              <li><a href="https://www.youtube.com/watch?v=UB1O30fR-EE">HTML Full Course - Build a Website Tutorial</a></li>
-              <li><a href="https://www.youtube.com/watch?v=UB1O30fR-EE">HTML Tutorial for Beginners: HTML Crash Course</a></li>
+              <li><a href="https://medium.com/weekly-webtips/intro-to-xstate-a-true-state-management-system-library-for-react-d8c0051c71e4">Intro to Xstate — a true state management library for react</a></li>
+              <li><a href="https://xstate.js.org/docs/">What is XState? </a></li>
+              <li><a href="https://pavlo-lompas.medium.com/how-to-think-in-statecharts-with-xstate-a-react-guide-39ad65a2e3c">How to Think in Statecharts with XState: A React Guide </a></li>
+              <li><a href="https://dev.to/mattpocockuk/what-is-xstate-used-for-38ei">What is XState used for? </a></li>
             </ul>
           </div>
         )}
@@ -834,25 +777,20 @@ const FrontendPage = () => {
              onClick={() => setShowSidebarGit(!showSidebarGit)}
              >Git</button>
              {showSidebarGit&& (
-          <div className="bg-gray-200 w-2/5 h-screen fixed top-0 right-0 overflow-y-auto shadow-2xl shadow-slate-950 text-black">
+          <div className="bg-gray-200 w-2/5 h-screen fixed top-0 right-0 overflow-y-auto shadow-2xl shadow-slate-950 text-black z-50">
             <div className="flex justify-end p-4 mr-2 ">
             <button onClick={() => setShowSidebarGit(false)}>
                 <FontAwesomeIcon icon={faTimes} className="text-[#687688]" /> {/* Increase size to 2x */}
               </button>
             </div>
             <div className='text-5xl font-bold p-4'>Git</div>
-            <p className="p-4 text-[#262d36]">HTML stands for HyperText Markup Language. It is used on the frontend and gives the structure to the webpage which you can style using CSS and make interactive using JavaScript.</p>
+            <p className="p-4 text-[#262d36]">Git is a distributed version control system used for tracking changes in source code during software development, facilitating collaboration among developers and enabling efficient code management through features like branching and merging</p>
             <p className='p-4 text-[#262d36]'>Visit the following resources to learn more:</p>
             <ul className='list-disc pl-14 underline leading-relaxed font-semibold'>
-              <li><a href="https://www.w3schools.com/html/">W3Schools: Learn HTML</a></li>
-              <li><a href="https://htmlreference.io/">htmlreference.io: All HTML elements at a glance</a></li>
-              <li><a href="https://html.com/">HTML For Beginners The Easy Way</a></li>
-              <li><a href="https://www.freecodecamp.org/news/web-development-basics-html/">Web Development Basics</a></li>
-              <li><a href="https://www.codecademy.com/learn/learn-html">Codecademy - Learn HTML</a></li>
-              <li><a href="https://www.khanacademy.org/computing/computer-programming/html-css">Interactive HTML Course</a></li>
-              <li><a href="https://www.youtube.com/watch?v=pQN-pnXPaVg">HTML Full Course for Beginners | Complete All-in-One Tutorial</a></li>
-              <li><a href="https://www.youtube.com/watch?v=UB1O30fR-EE">HTML Full Course - Build a Website Tutorial</a></li>
-              <li><a href="https://www.youtube.com/watch?v=UB1O30fR-EE">HTML Tutorial for Beginners: HTML Crash Course</a></li>
+              <li><a href="https://www.w3schools.com/git/">W3Schools: Git Tutorial</a></li>
+              <li><a href="https://www.w3schools.com/git/git_intro.asp?remote=github">W3Schools: Git and GitHub Introduction</a></li>
+              <li><a href="https://www.youtube.com/watch?v=zTjRZNkhiEU">Learn Git – Full Course for Beginners</a></li>
+
             </ul>
           </div>
         )}
@@ -867,25 +805,20 @@ const FrontendPage = () => {
     onClick={() => setShowSidebarGithub(!showSidebarGithub)}
     >Github</button>
     {showSidebarGithub&& (
-          <div className="bg-gray-200 w-2/5 h-screen fixed top-0 right-0 overflow-y-auto shadow-2xl shadow-slate-950 text-black">
+          <div className="bg-gray-200 w-2/5 h-screen fixed top-0 right-0 overflow-y-auto shadow-2xl shadow-slate-950 text-black z-50">
             <div className="flex justify-end p-4 mr-2 ">
             <button onClick={() => setShowSidebarGithub(false)}>
                 <FontAwesomeIcon icon={faTimes} className="text-[#687688]" /> {/* Increase size to 2x */}
               </button>
             </div>
             <div className='text-5xl font-bold p-4'>Github</div>
-            <p className="p-4 text-[#262d36]">HTML stands for HyperText Markup Language. It is used on the frontend and gives the structure to the webpage which you can style using CSS and make interactive using JavaScript.</p>
+            <p className="p-4 text-[#262d36]">GitHub is a web-based platform for hosting and collaborating on Git repositories, widely used for version control, code review, and project management, providing features like issue tracking, pull requests, and continuous integration.</p>
             <p className='p-4 text-[#262d36]'>Visit the following resources to learn more:</p>
             <ul className='list-disc pl-14 underline leading-relaxed font-semibold'>
-              <li><a href="https://www.w3schools.com/html/">W3Schools: Learn HTML</a></li>
-              <li><a href="https://htmlreference.io/">htmlreference.io: All HTML elements at a glance</a></li>
-              <li><a href="https://html.com/">HTML For Beginners The Easy Way</a></li>
-              <li><a href="https://www.freecodecamp.org/news/web-development-basics-html/">Web Development Basics</a></li>
-              <li><a href="https://www.codecademy.com/learn/learn-html">Codecademy - Learn HTML</a></li>
-              <li><a href="https://www.khanacademy.org/computing/computer-programming/html-css">Interactive HTML Course</a></li>
-              <li><a href="https://www.youtube.com/watch?v=pQN-pnXPaVg">HTML Full Course for Beginners | Complete All-in-One Tutorial</a></li>
-              <li><a href="https://www.youtube.com/watch?v=UB1O30fR-EE">HTML Full Course - Build a Website Tutorial</a></li>
-              <li><a href="https://www.youtube.com/watch?v=UB1O30fR-EE">HTML Tutorial for Beginners: HTML Crash Course</a></li>
+              <li><a href="https://kinsta.com/knowledgebase/what-is-github/">What Is GitHub? A Beginner’s Introduction to GitHub</a></li>
+              <li><a href="https://learn.microsoft.com/en-us/azure/deployment-environments/tutorial-deploy-environments-in-cicd-github">Tutorial: Deploy environments in CI/CD by using GitHub and Azure Deployment Environments</a></li>
+              <li><a href="https://resources.github.com/learn/pathways/automation/essentials/automating-deploying-workflows-with-github-actions/">Automating and deploying workflows with GitHub Actions</a></li>
+              <li><a href="https://docs.github.com/en/actions/deployment/targeting-different-environments/using-environments-for-deployment">AUsing environments for deployment</a></li>
             </ul>
           </div>
         )}
@@ -897,25 +830,19 @@ const FrontendPage = () => {
     onClick={() => setShowSidebarFirebase(!showSidebarFirebase)}
     >Firebase</button>
     {showSidebarFirebase&& (
-          <div className="bg-gray-200 w-2/5 h-screen fixed top-0 right-0 overflow-y-auto shadow-2xl shadow-slate-950 text-black">
+          <div className="bg-gray-200 w-2/5 h-screen fixed top-0 right-0 overflow-y-auto shadow-2xl shadow-slate-950 text-black z-50">
             <div className="flex justify-end p-4 mr-2 ">
             <button onClick={() => setShowSidebarFirebase(false)}>
                 <FontAwesomeIcon icon={faTimes} className="text-[#687688]" /> {/* Increase size to 2x */}
               </button>
             </div>
             <div className='text-5xl font-bold p-4'>Firebase</div>
-            <p className="p-4 text-[#262d36]">HTML stands for HyperText Markup Language. It is used on the frontend and gives the structure to the webpage which you can style using CSS and make interactive using JavaScript.</p>
+            <p className="p-4 text-[#262d36]">Firebase is a mobile and web application development platform developed by Google, offering a suite of tools and services for building and deploying scalable and secure applications, including hosting, authentication, database, and analytics features.</p>
             <p className='p-4 text-[#262d36]'>Visit the following resources to learn more:</p>
             <ul className='list-disc pl-14 underline leading-relaxed font-semibold'>
-              <li><a href="https://www.w3schools.com/html/">W3Schools: Learn HTML</a></li>
-              <li><a href="https://htmlreference.io/">htmlreference.io: All HTML elements at a glance</a></li>
-              <li><a href="https://html.com/">HTML For Beginners The Easy Way</a></li>
-              <li><a href="https://www.freecodecamp.org/news/web-development-basics-html/">Web Development Basics</a></li>
-              <li><a href="https://www.codecademy.com/learn/learn-html">Codecademy - Learn HTML</a></li>
-              <li><a href="https://www.khanacademy.org/computing/computer-programming/html-css">Interactive HTML Course</a></li>
-              <li><a href="https://www.youtube.com/watch?v=pQN-pnXPaVg">HTML Full Course for Beginners | Complete All-in-One Tutorial</a></li>
-              <li><a href="https://www.youtube.com/watch?v=UB1O30fR-EE">HTML Full Course - Build a Website Tutorial</a></li>
-              <li><a href="https://www.youtube.com/watch?v=UB1O30fR-EE">HTML Tutorial for Beginners: HTML Crash Course</a></li>
+              <li><a href="https://firebase.google.com/docs/web/setup">Add Firebase to your JavaScript project</a></li>
+              <li><a href="https://www.youtube.com/watch?v=9kRgVxULbag">Firebase - Ultimate Beginner's Guide</a></li>
+              <li><a href="https://www.youtube.com/watch?v=2hR-uWjBAgw">Firebase React Course For Beginners</a></li>
             </ul>
           </div>
         )}
