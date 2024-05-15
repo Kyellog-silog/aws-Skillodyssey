@@ -26,7 +26,11 @@ function LoginPage() {
       const response = await axios.post('http://localhost:3000/login', formData);
       console.log('Login successful:', response.data);  
       if (response.data && response.data.isLoggedIn === true) {
+        const userId = response.data.userID;
+        const Username = response.data.Username;
         localStorage.setItem('userLoggedIn', 'true');
+        localStorage.setItem('userId', userId);
+        localStorage.setItem('Username', Username);
         navigate('/Landingpage');
       } else if (error.response && error.response.status === 401) {
         setError(error.response.data.message);

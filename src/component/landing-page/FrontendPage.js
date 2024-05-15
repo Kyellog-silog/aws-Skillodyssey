@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, setState } from 'react';
 import logoImage from './AAAAA (6).png';
 import icon from './User_fill@2x.png';
 import mortar from './Mortarboard_light@2x.png';
@@ -44,23 +44,79 @@ const FrontendPage = () => {
 
   const [selectedOption, setSelectedOption] = useState(null);
   const [selectedStatus, setSelectedStatus] = useState(null);
-  const handleSelect = (value) => {
-    setSelectedOption(value);
-    const buttonElement = document.getElementById('tailwindButton');
-    if (value === 'Done') {
-      buttonElement.classList.add('line-through', 'text-red-500'); // Adding line-through and red text color
-      localStorage.setItem('selectedOption', value); // Store the selected option in localStorage
-    } else if (value === 'Reset') {
-      buttonElement.classList.remove('bg-blue-500', 'text-black', 'border-none', 'line-through', 'text-red-500'); // Removing all classes
-      localStorage.removeItem('selectedOption'); // Remove the stored option from localStorage
-    } else if (value === 'In progress') {
-      buttonElement.classList.add('bg-yellow-500', 'text-black', 'border-none'); // Adding yellow background for "In progress"
-      buttonElement.classList.remove('line-through', 'text-red-500'); // Removing line-through and red text color
-      localStorage.setItem('selectedOption', value); // Store the selected option in localStorage
-    } else {
-      buttonElement.classList.remove('line-through', 'text-red-500', 'bg-yellow-500'); // Removing all other classes
-      buttonElement.classList.add('bg-blue-500', 'text-black', 'border-none'); // Adding default classes
-      localStorage.removeItem('selectedOption'); // Remove the stored option from localStorage
+
+  const [selectedOptiontailwind, setSelectedOptiontailwind] = useState('');
+  const [selectedOptionbootstrap, setSelectedOptionbootstrap] = useState('');
+  const [selectedOptionnpm, setSelectedOptionnpm] = useState('');
+  const [selectedOptionyarn, setSelectedOptionyarn] = useState('');
+  const [selectedOptionvue, setSelectedOptionvue] = useState('');
+  const [selectedOptionreact, setSelectedOptionreact] = useState('');
+  const [selectedOptionangular, setSelectedOptionangular] = useState('');
+  const [selectedOptionredux, setSelectedOptionredux] = useState('');
+  const [selectedOptionxstate, setSelectedOptionxstate] = useState('');
+  const [selectedOptionjest, setSelectedOptionjest] = useState('');
+  const [selectedOptioncypress, setSelectedOptioncypress] = useState('');
+  const [selectedOptiongit, setSelectedOptiongit] = useState('');
+  const [selectedOptiongithub, setSelectedOptiongithub] = useState('');
+  const [selectedOptionfirebase, setSelectedOptionfirebase] = useState('');
+
+  const [progressData, setProgressData] = useState(null);
+
+
+
+  const handleSelect = async (value, buttonId) => {
+    try {
+      const userId = localStorage.getItem('userId');
+      await axios.post('http://localhost:3000/saveProgress/frontend', { userId, buttonId, status: value });
+      
+      switch (buttonId) {
+        case 'tailwindButton':
+          setSelectedOptiontailwind(value);
+          break;
+        case 'bootstrapButton':
+          setSelectedOptionbootstrap(value);
+          break;
+        case 'npmButton':
+          setSelectedOptionnpm(value);
+          break;
+        case 'yarnButton':
+          setSelectedOptionyarn(value);
+          break;
+        case 'veuButton':
+          setSelectedOptionvue(value);
+            break;
+        case 'reactButton':
+          setSelectedOptionreact(value);
+          break;
+        case 'angularButton':
+          setSelectedOptionangular(value);
+          break;
+        case 'reduxButton':
+          setSelectedOptionredux(value);
+          break;
+        case 'xstateButton':
+          setSelectedOptionxstate(value);
+          break;
+        case 'jestButton':
+          setSelectedOptionjest(value);
+          break;
+        case 'cypressButton':
+          setSelectedOptioncypress(value);
+          break;
+        case 'gitButton':
+          setSelectedOptiongit(value);
+          break;
+        case 'githubButton':
+          setSelectedOptiongithub(value);
+          break;
+        case 'firebaseButton':
+          setSelectedOptionfirebase(value);
+          break;
+        default:
+          break;
+      }
+    } catch (error) {
+      console.error('Failed to update progress:', error);
     }
   };
   
@@ -95,9 +151,104 @@ const FrontendPage = () => {
       console.error('Error logging out:', error);
     }
   };
-
- 
   
+  useEffect(() => {
+    const isLoggedIn = localStorage.getItem('userLoggedIn');
+    if (!isLoggedIn) {
+      navigate('/login');
+    }
+  }, [navigate]);
+
+  useEffect(() => {
+    const userId = localStorage.getItem('userId');
+    const fetchProgress = async () => {
+      try {
+        const buttonIds = ['tailwindButton', 'veuButton', 'npmButton', 'reactButton', 
+                          'angularButton', 'jestButton', 'yarnButton', 'reduxButton',
+                          'xstateButton', 'cypressButton', 'gitButton', 'githubButton',
+                          'firebaseButton', 'bootstrapButton']; 
+        const promises = buttonIds.map(async (buttonId) => {
+          try {
+            const response = await axios.get(`http://localhost:3000/getProgressfrontend/${userId}/${buttonId}`);
+            return { buttonId, progress: response.data[buttonId] };
+          } catch (error) {
+            // Handle error (e.g., log error)
+            console.error(`Failed to fetch progress for button ${buttonId}:`, error);
+            return { buttonId, progress: null }; // Return null if progress data is not available
+          }
+        });
+        const progressData = await Promise.all(promises);
+        const progress = progressData.reduce((acc, curr) => {
+          acc[curr.buttonId] = curr.progress;
+          return acc;
+        }, {});
+  
+        buttonIds.forEach((buttonId) => {
+          const setterFunction = `setSelectedOption${buttonId.charAt(0)}${buttonId.slice(1)}`;
+          console.log('Selected option setter:', setterFunction);
+          console.log(`${buttonId}:`, progress[buttonId]);
+          let setter;
+          switch (buttonId) {
+            case 'tailwindButton':
+              setter = setSelectedOptiontailwind;
+              break;
+            case 'bootstrapButton':
+              setter = setSelectedOptionbootstrap;
+              break;
+            case 'npmButton':
+              setter = setSelectedOptionnpm;
+              break;
+            case 'yarnButton':
+              setter = setSelectedOptionyarn;
+              break;
+            case 'veuButton':
+              setter = setSelectedOptionvue;
+                break;
+            case 'reactButton':
+              setter = setSelectedOptionreact;
+              break;
+            case 'angularButton':
+              setter = setSelectedOptionangular;
+              break;
+            case 'reduxButton':
+              setter = setSelectedOptionredux;
+              break;
+            case 'xstateButton':
+              setter = setSelectedOptionxstate;
+              break;
+            case 'jestButton':
+              setter = setSelectedOptionjest;
+              break;
+            case 'cypressButton':
+              setter = setSelectedOptioncypress;
+              break;
+            case 'gitButton':
+              setter = setSelectedOptiongit;
+              break;
+            case 'githubButton':
+              setter = setSelectedOptiongithub;
+              break;
+            case 'firebaseButton':
+              setter = setSelectedOptionfirebase;
+              break;
+            default:
+              console.error(`Setter function not found for button ID: ${buttonId}`);
+              return;
+          }
+          console.log('Selected option setter:', setter.name);
+          console.log(`${buttonId}:`, progress[buttonId]);
+
+          if (progress[buttonId] !== undefined) {
+            // Update state only if progress data is available
+            setter(progress[buttonId] || '');
+        }
+        });
+      } catch (error) {
+        console.error('Failed to fetch progress:', error);
+      }
+    };
+    fetchProgress();
+  }, []);
 
   return (
     <div>
@@ -224,7 +375,7 @@ const FrontendPage = () => {
 
       <div className="flex flex-col justify-items-center items-center ">
           <div className="flex">
-        <button className='border-2 p-2 rounded-xl mt-[153px] mr-12 mb-24 px-6'
+        <button className='border-2 p-2 rounded-xl mt-[153px] mr-12 mb-24 px-6 z-50'
         onClick={() => setShowSidebarFundamentals(!showSidebarFundamentals)}>
           Fundamentals</button>
           {showSidebarFundamentals && (
@@ -258,10 +409,18 @@ const FrontendPage = () => {
         <div className="grid grid-cols-3 gap-80 ">
           <div className="flex flex-col mt-64  ">
           <div className="flex flex-col justify-items-center items-center ">
-          <div className="flex">
-            <button className="border-2 mt-5  p-2 rounded-xl ml-[220px] mr-[-70px] px-10  "
-            onClick={() => setShowSidebarVue(!showSidebarVue)}>
-              Vue</button>
+          <div className="flex">            
+          <button 
+              id="veuButton"
+              className={`border-2 mt-5 p-2 rounded-xl ml-[220px] mr-[-70px] px-10 ${
+                selectedOptionvue === 'Done' ? 'line-through text-red-500' :
+                selectedOptionvue === 'In progress' ? 'bg-yellow-500 text-black' :
+                ''
+              }`}
+              onClick={() => setShowSidebarVue(!showSidebarVue)}
+            >
+              Vue
+            </button>
               {showSidebarVue && (
                 
           <div className="bg-gray-200 w-2/5 h-screen fixed top-0 right-0 overflow-y-auto shadow-2xl shadow-slate-950 text-black  z-50">
@@ -270,7 +429,23 @@ const FrontendPage = () => {
                 <FontAwesomeIcon icon={faTimes} className="text-[#687688]" /> {/* Increase size to 2x */}
               </button>
             </div>
-            
+            <div className="ml-6 mt-[-20px] mb-4 dropdown relative w-52 py-2 flex flex-row  px-2 rounded-md shadow-sm border border-gray-300 hover:border-gray-400 text-sm">
+                <div className="selected-option overflow-hidden whitespace-nowrap pr-10 border-r border-gray-300"> 
+                  {selectedOptionvue ? selectedOptionvue : "Pending"}
+                </div>
+                <div className="dropdown-icon absolute right-2 top-1/2 transform -translate-y-1/2  ">
+                Update Status
+                  <span className="h-5 w-5 text-gray-400 inline-flex items-center justify-center ml-[2px]">&#9660;</span>  
+                </div>
+                <button type="button" aria-haspopup="true" aria-expanded="false" className="w-full h-full focus:outline-none  ">
+                  <select onChange={(e) => handleSelect(e.target.value, 'veuButton')} className="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer ">
+                    <option value="">Update Status</option>
+                    <option value="Done">Done</option>
+                    <option value="In progress">In progress</option>
+                    <option value="Reset">Reset</option>
+                  </select>
+                </button>
+              </div>
             <div className='text-5xl font-bold p-4'>Vue</div>
             <p className="p-4 text-[#262d36]">Vue.js is a progressive JavaScript framework used for building user interfaces, known for its simplicity and flexibility, enabling developers to create interactive and reactive web interfaces efficiently.</p>
             <p className='p-4 text-[#262d36]'>Visit the following resources to learn more:</p>
@@ -286,7 +461,13 @@ const FrontendPage = () => {
       </div>
       <div className="flex flex-col justify-items-center items-center ">
           <div className="flex">
-            <button className=" border-2 p-2 mt-5  rounded-xl ml-[200px] mr-[-70px] border-yellow-300"
+            <button 
+            id="reactButton"
+            className={` border-2 p-2 mt-5  rounded-xl ml-[200px] mr-[-70px] border-yellow-300  ${
+              selectedOptionreact === 'Done' ? 'line-through text-red-500' :
+              selectedOptionreact === 'In progress' ? 'bg-yellow-500 text-black' :
+              ''
+            } `}
             onClick={() => setShowSidebarReact(!showSidebarReact)}>
               React</button>
               {showSidebarReact && (
@@ -294,6 +475,23 @@ const FrontendPage = () => {
             <div className="flex justify-end p-4 mr-2 ">
             <button onClick={() => setShowSidebarReact(false)}>
                 <FontAwesomeIcon icon={faTimes} className="text-[#687688]" /> {/* Increase size to 2x */}
+              </button>
+            </div>
+            <div className="ml-6 mt-[-20px] mb-4 dropdown relative w-52 py-2 flex flex-row  px-2 rounded-md shadow-sm border border-gray-300 hover:border-gray-400 text-sm">
+              <div className="selected-option overflow-hidden whitespace-nowrap pr-10 border-r border-gray-300"> 
+                {selectedOptionreact ? selectedOptionreact: "Pending"}
+              </div>
+              <div className="dropdown-icon absolute right-2 top-1/2 transform -translate-y-1/2  ">
+              Update Status
+                <span className="h-5 w-5 text-gray-400 inline-flex items-center justify-center ml-[2px]">&#9660;</span>  
+              </div>
+              <button type="button" aria-haspopup="true" aria-expanded="false" className="w-full h-full focus:outline-none  ">
+                <select onChange={(e) => handleSelect(e.target.value, 'reactButton')} className="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer ">
+                  <option value="">Update Status</option>
+                  <option value="Done">Done</option>
+                  <option value="In progress">In progress</option>
+                  <option value="Reset">Reset</option>
+                </select>
               </button>
             </div>
             <div className='text-5xl font-bold p-4'>React</div>
@@ -311,7 +509,13 @@ const FrontendPage = () => {
       </div>
       <div className="flex flex-col justify-items-center items-center ">
           <div className="flex">
-            <button className="border- border-2 p-2 mt-5 rounded-xl ml-[200px] mr-[-70px] border-green-400 "
+            <button 
+            id="angularButton"
+            className={`border- border-2 p-2 mt-5 rounded-xl ml-[200px] mr-[-70px] border-green-400  ${
+              selectedOptionangular === 'Done' ? 'line-through text-red-500' :
+              selectedOptionangular === 'In progress' ? 'bg-yellow-500 text-black' :
+              ''
+            }`}
              onClick={() => setShowSidebarAngular(!showSidebarAngular)}>
               Angular</button>
               {showSidebarAngular && (
@@ -321,6 +525,23 @@ const FrontendPage = () => {
                 <FontAwesomeIcon icon={faTimes} className="text-[#687688]" /> {/* Increase size to 2x */}
               </button>
             </div>
+            <div className="ml-6 mt-[-20px] mb-4 dropdown relative w-52 py-2 flex flex-row  px-2 rounded-md shadow-sm border border-gray-300 hover:border-gray-400 text-sm">
+                <div className="selected-option overflow-hidden whitespace-nowrap pr-10 border-r border-gray-300"> 
+                  {selectedOptionangular ? selectedOptionangular: "Pending"}
+                </div>
+                <div className="dropdown-icon absolute right-2 top-1/2 transform -translate-y-1/2  ">
+                Update Status
+                  <span className="h-5 w-5 text-gray-400 inline-flex items-center justify-center ml-[2px]">&#9660;</span>  
+                </div>
+                <button type="button" aria-haspopup="true" aria-expanded="false" className="w-full h-full focus:outline-none  ">
+                  <select onChange={(e) => handleSelect(e.target.value, 'angularButton')} className="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer ">
+                    <option value="">Update Status</option>
+                    <option value="Done">Done</option>
+                    <option value="In progress">In progress</option>
+                    <option value="Reset">Reset</option>
+                  </select>
+                </button>
+                </div>
             <div className='text-5xl font-bold p-4'>Angular</div>
             <p className="p-4 text-[#262d36]">Angular is a comprehensive front-end framework developed by Google, offering a robust structure for building single-page web applications using TypeScript, along with features like dependency injection and powerful data binding.</p>
             <p className='p-4 text-[#262d36]'>Visit the following resources to learn more:</p>
@@ -335,7 +556,13 @@ const FrontendPage = () => {
       </div>
       <div className="flex flex-col justify-items-center items-center ">
           <div className="flex">
-            <button className=" border-2 p-2 mt-12 justify-center rounded-xl  ml-[280px] mr-[-100px] border-yellow-300 "
+            <button 
+            id="jestButton"
+            className={` border-2 p-2 mt-12 justify-center rounded-xl  ml-[280px] mr-[-100px] border-yellow-300  ${
+              selectedOptionjest === 'Done' ? 'line-through text-red-500' :
+              selectedOptionjest === 'In progress' ? 'bg-yellow-500 text-black' :
+              ''
+            }`}
             onClick={() => setShowSidebarJest(!showSidebarJest)}>
               Jest</button>
               {showSidebarJest && (
@@ -343,6 +570,23 @@ const FrontendPage = () => {
             <div className="flex justify-end p-4 mr-2 ">
             <button onClick={() => setShowSidebarJest(false)}>
                 <FontAwesomeIcon icon={faTimes} className="text-[#687688]" /> {/* Increase size to 2x */}
+              </button>
+            </div>
+            <div className="ml-6 mt-[-20px] mb-4 dropdown relative w-52 py-2 flex flex-row  px-2 rounded-md shadow-sm border border-gray-300 hover:border-gray-400 text-sm">
+              <div className="selected-option overflow-hidden whitespace-nowrap pr-10 border-r border-gray-300"> 
+                {selectedOptionjest ? selectedOptionjest: "Pending"}
+              </div>
+              <div className="dropdown-icon absolute right-2 top-1/2 transform -translate-y-1/2  ">
+              Update Status
+                <span className="h-5 w-5 text-gray-400 inline-flex items-center justify-center ml-[2px]">&#9660;</span>  
+              </div>
+              <button type="button" aria-haspopup="true" aria-expanded="false" className="w-full h-full focus:outline-none  ">
+                <select onChange={(e) => handleSelect(e.target.value, 'jestButton')} className="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer ">
+                  <option value="">Update Status</option>
+                  <option value="Done">Done</option>
+                  <option value="In progress">In progress</option>
+                  <option value="Reset">Reset</option>
+                </select>
               </button>
             </div>
             <div className='text-5xl font-bold p-4'>Jest</div>
@@ -359,7 +603,13 @@ const FrontendPage = () => {
       </div>
       <div className="flex flex-col justify-items-center items-center ">
           <div className="flex">
-            <button className="  border-2 p-2 mt-14 justify-center rounded-xl  ml-[280px] mr-[-100px]"
+            <button 
+            id="cypressButton"
+            className={`border-2 p-2 mt-14 justify-center rounded-xl  ml-[280px] mr-[-100px]  ${
+              selectedOptioncypress === 'Done' ? 'line-through text-red-500' :
+              selectedOptioncypress === 'In progress' ? 'bg-yellow-500 text-black' :
+              ''
+            }`}
              onClick={() => setShowSidebarCypress(!showSidebarCypress)}
              >Cypress</button>
              {showSidebarCypress && (
@@ -369,6 +619,23 @@ const FrontendPage = () => {
                 <FontAwesomeIcon icon={faTimes} className="text-[#687688]" /> {/* Increase size to 2x */}
               </button>
             </div>
+            <div className="ml-6 mt-[-20px] mb-4 dropdown relative w-52 py-2 flex flex-row  px-2 rounded-md shadow-sm border border-gray-300 hover:border-gray-400 text-sm">
+                <div className="selected-option overflow-hidden whitespace-nowrap pr-10 border-r border-gray-300"> 
+                  {selectedOptioncypress ? selectedOptioncypress : "Pending"}
+                </div>
+                <div className="dropdown-icon absolute right-2 top-1/2 transform -translate-y-1/2  ">
+                Update Status
+                  <span className="h-5 w-5 text-gray-400 inline-flex items-center justify-center ml-[2px]">&#9660;</span>  
+                </div>
+                <button type="button" aria-haspopup="true" aria-expanded="false" className="w-full h-full focus:outline-none  ">
+                  <select onChange={(e) => handleSelect(e.target.value, 'cypressButton')} className="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer ">
+                    <option value="">Update Status</option>
+                    <option value="Done">Done</option>
+                    <option value="In progress">In progress</option>
+                    <option value="Reset">Reset</option>
+                  </select>
+                </button>
+              </div>
             <div className='text-5xl font-bold p-4'>Cypress</div>
             <p className="p-4 text-[#262d36]">Cypress is a fast, reliable, and easy-to-use end-to-end testing framework for web applications, offering features like automatic waiting, time travel, and real-time reloads to streamline the testing process.</p>
             <p className='p-4 text-[#262d36]'>Visit the following resources to learn more:</p>
@@ -386,7 +653,7 @@ const FrontendPage = () => {
           <div className="flex flex-col justify-items-center items-center ">
           <div className="flex">
           <button
-          className="border-2 p-2  mr-16 mt-[-15px] rounded-xl"
+          className="border-2 p-2  mr-16 mt-[-15px] rounded-xl z-50"
           onClick={() => setShowSidebar(!showSidebar)}>
           Html
         </button>
@@ -449,7 +716,7 @@ const FrontendPage = () => {
 
       <div className="flex flex-col justify-items-center items-center ">
       <div className="flex">
-  <button className="border-2 p-2 rounded-xl mt-[120px] mr-[55px] "
+  <button className="border-2 p-2 rounded-xl mt-[120px] mr-[55px] z-50 "
   onClick={() => setShowSidebarJavascript(!showSidebarJavascript)}
   >Javascript</button>
   {showSidebarJavascript && (
@@ -478,7 +745,7 @@ const FrontendPage = () => {
       <div className="flex flex-col justify-items-center items-center ">
 
       <div className="flex">
-      <button className="border-2 py-1 px-2 rounded-xl mt-[86px] text-sm mr-14"
+      <button className="border-2 py-1 px-2 rounded-xl mt-[86px] text-sm mr-14 z-50"
       onClick={() => setShowSidebarStateManagementLibraries(!showSidebarStateManagementLibraries)}>
       State Management<br/> Libraries</button>
       
@@ -507,7 +774,7 @@ const FrontendPage = () => {
   
       <div className="flex flex-col justify-items-center items-center ">
       <div className="flex">
-      <button className="border-2 p-2 rounded-xl mt-[105px] mr-16"
+      <button className="border-2 p-2 rounded-xl mt-[105px] mr-16 z-50"
       onClick={() => setShowSidebarTesting(!showSidebarTesting)}>
         Testing</button>
         {showSidebarTesting && (
@@ -535,7 +802,7 @@ const FrontendPage = () => {
 
       <div className="flex flex-col justify-items-center items-center ">
       <div className="flex">
-      <button className="border-2 p-2 rounded-xl mt-[106px] mr-14"
+      <button className="border-2 p-2 rounded-xl mt-[106px] mr-14 z-50"
       onClick={() => setShowSidebarVersionControl(!showSidebarVersionControl)}>
         Version Control</button>
         {showSidebarVersionControl && (
@@ -563,7 +830,7 @@ const FrontendPage = () => {
 
       <div className="flex flex-col justify-items-center items-center ">
       <div className="flex">
-      <button className="border-2 p-2 rounded-xl mt-[100px] mr-14 "
+      <button className="border-2 p-2 rounded-xl mt-[100px] mr-14 z-50"
       onClick={() => setShowSidebarDeployment(!showSidebarDeployment)}>
         Deployment</button>
         {showSidebarDeployment && (
@@ -596,7 +863,11 @@ const FrontendPage = () => {
           <div className="flex">
           <button
             id="tailwindButton"
-            className="border-2 p-2 ml-[-110px] justify-center rounded-xl mr-[250px] mt-10 mb-8 border-yellow-300 "
+            className={`border-2 p-2 ml-[-110px] justify-center rounded-xl mr-[250px] mt-10 mb-8 border-yellow-300  ${
+              selectedOptiontailwind === 'Done' ? 'line-through text-red-500' :
+              selectedOptiontailwind === 'In progress' ? 'bg-yellow-500 text-black' :
+              ''
+            }`}
             onClick={() => setShowSidebarTailwind(!showSidebarTailwind)}
           >
             Tailwind
@@ -610,14 +881,14 @@ const FrontendPage = () => {
             </div>
             <div className="ml-6 mt-[-20px] mb-4 dropdown relative w-52 py-2 flex flex-row  px-2 rounded-md shadow-sm border border-gray-300 hover:border-gray-400 text-sm">
   <div className="selected-option overflow-hidden whitespace-nowrap pr-10 border-r border-gray-300"> 
-    {selectedOption ? selectedOption : "Pending"}
+    {selectedOptiontailwind ? selectedOptiontailwind : "Pending"}
   </div>
   <div className="dropdown-icon absolute right-2 top-1/2 transform -translate-y-1/2  ">
   Update Status
     <span className="h-5 w-5 text-gray-400 inline-flex items-center justify-center ml-[2px]">&#9660;</span>  
   </div>
   <button type="button" aria-haspopup="true" aria-expanded="false" className="w-full h-full focus:outline-none  ">
-    <select onChange={(e) => handleSelect(e.target.value)} className="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer ">
+    <select onChange={(e) => handleSelect(e.target.value, 'tailwindButton')} className="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer ">
       <option value="">Update Status</option>
       <option value="Done">Done</option>
       <option value="In progress">In progress</option>
@@ -644,7 +915,13 @@ const FrontendPage = () => {
 
       <div className="flex flex-col justify-items-center">
           <div className="flex">
-          <button className=" border-2 p-2 ml-[-110px] justify-center rounded-xl mr-[250px] border-green-400 "
+          <button 
+          id="bootstrapButton"
+           className={` border-2 p-2 ml-[-110px] justify-center rounded-xl mr-[250px] border-green-400  ${
+            selectedOptionbootstrap === 'Done' ? 'line-through text-red-500' :
+            selectedOptionbootstrap === 'In progress' ? 'bg-yellow-500 text-black' :
+            ''
+          }`}
            onClick={() => setShowSidebarBootstrap(!showSidebarBootstrap)}
             >Bootstrap</button>
             {showSidebarBootstrap && (
@@ -654,7 +931,25 @@ const FrontendPage = () => {
                 <FontAwesomeIcon icon={faTimes} className="text-[#687688]" /> {/* Increase size to 2x */}
               </button>
             </div>
+            <div className="ml-6 mt-[-20px] mb-4 dropdown relative w-52 py-2 flex flex-row  px-2 rounded-md shadow-sm border border-gray-300 hover:border-gray-400 text-sm">
+  <div className="selected-option overflow-hidden whitespace-nowrap pr-10 border-r border-gray-300"> 
+    {selectedOptionbootstrap ? selectedOptionbootstrap : "Pending"}
+  </div>
+  <div className="dropdown-icon absolute right-2 top-1/2 transform -translate-y-1/2  ">
+  Update Status
+    <span className="h-5 w-5 text-gray-400 inline-flex items-center justify-center ml-[2px]">&#9660;</span>  
+  </div>
+  <button type="button" aria-haspopup="true" aria-expanded="false" className="w-full h-full focus:outline-none  ">
+    <select onChange={(e) => handleSelect(e.target.value, 'bootstrapButton')} className="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer ">
+      <option value="">Update Status</option>
+      <option value="Done">Done</option>
+      <option value="In progress">In progress</option>
+      <option value="Reset">Reset</option>
+    </select>
+  </button>
+</div>
             <div className='text-5xl font-bold p-4'>Bootstrap</div>
+            
             <p className="p-4 text-[#262d36]">Bootstrap is a widely-used CSS framework that provides a collection of pre-designed components and responsive layout utilities, simplifying the process of building responsive and mobile-first websites and web applications.</p>
             <p className='p-4 text-[#262d36]'>Visit the following resources to learn more:</p>
             <ul className='list-disc pl-14 underline leading-relaxed font-semibold'>
@@ -669,8 +964,15 @@ const FrontendPage = () => {
       </div>
       <div className="flex flex-col justify-items-center">
           <div className="flex">
-              <button className="border-2 p-2  justify-center rounded-xl mt-4 ml-[-250px] mr-[440px] border-yellow-300"
+              <button
+              id="npmButton" 
+              className={`border-2 p-2  justify-center rounded-xl mt-4 ml-[-250px] mr-[440px] border-yellow-300 ${
+                selectedOptionnpm === 'Done' ? 'line-through text-red-500' :
+                selectedOptionnpm === 'In progress' ? 'bg-yellow-500 text-black' :
+                ''
+              }`}
               onClick={() => setShowSidebarNpm(!showSidebarNpm)}
+              style={{ zIndex: 1 }} 
               >Npm</button>
               {showSidebarNpm&& (
           <div className="bg-gray-200 w-2/5 h-screen fixed top-0 right-0 overflow-y-auto shadow-2xl shadow-slate-950 text-black z-50">
@@ -679,6 +981,24 @@ const FrontendPage = () => {
                 <FontAwesomeIcon icon={faTimes} className="text-[#687688]" /> {/* Increase size to 2x */}
               </button>
             </div>
+            <div className="ml-6 mt-[-20px] mb-4 dropdown relative w-52 py-2 flex flex-row  px-2 rounded-md shadow-sm border border-gray-300 hover:border-gray-400 text-sm">
+  <div className="selected-option overflow-hidden whitespace-nowrap pr-10 border-r border-gray-300"> 
+    {selectedOptionnpm ? selectedOptionnpm: "Pending"}
+  </div>
+  <div className="dropdown-icon absolute right-2 top-1/2 transform -translate-y-1/2  ">
+  Update Status
+    <span className="h-5 w-5 text-gray-400 inline-flex items-center justify-center ml-[2px]">&#9660;</span>  
+  </div>
+  <button type="button" aria-haspopup="true" aria-expanded="false" className="w-full h-full focus:outline-none  ">
+    <select onChange={(e) => handleSelect(e.target.value, 'npmButton')} className="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer ">
+      <option value="">Update Status</option>
+      <option value="Done">Done</option>
+      <option value="In progress">In progress</option>
+      <option value="Reset">Reset</option>
+    </select>
+  </button>
+</div>
+
             <div className='text-5xl font-bold p-4'>Npm</div>
             <p className="p-4 text-[#262d36]"> (Node Package Manager) is the default package manager for Node.js, used to install, manage, and share packages of JavaScript code, providing access to a vast ecosystem of libraries and tools for web development.</p>
             <p className='p-4 text-[#262d36]'>Visit the following resources to learn more:</p>
@@ -695,14 +1015,39 @@ const FrontendPage = () => {
 
       <div className="flex flex-col justify-items-center">
           <div className="flex">
-            <button className="border-2 p-2 mt-5 justify-center rounded-xl ml-[-250px] mr-[440px] border-green-400 "
-             onClick={() => setShowSidebarYarn(!showSidebarYarn)}
+            <button 
+            id="yarnButton"
+            className={`border-2 p-2 mt-5 justify-center rounded-xl ml-[-250px] mr-[440px] border-green-400 ${
+              selectedOptionyarn === 'Done' ? 'line-through text-red-500' :
+              selectedOptionyarn === 'In progress' ? 'bg-yellow-500 text-black' :
+              ''
+            }`}
+             onClick={
+              () => setShowSidebarYarn(!showSidebarYarn)}
+              style={{ zIndex: 1 }} 
              >Yarn</button>
              {showSidebarYarn&& (
-          <div className="bg-gray-200 w-2/5 h-screen fixed top-0 right-0 overflow-y-auto shadow-2xl shadow-slate-950 text-black">
+          <div className="bg-gray-200 w-2/5 h-screen fixed top-0 right-0 overflow-y-auto shadow-2xl shadow-slate-950 text-black z-50">
             <div className="flex justify-end p-4 mr-2 ">
             <button onClick={() => setShowSidebarYarn(false)}>
                 <FontAwesomeIcon icon={faTimes} className="text-[#687688]" /> {/* Increase size to 2x */}
+              </button>
+            </div>
+            <div className="ml-6 mt-[-20px] mb-4 dropdown relative w-52 py-2 flex flex-row  px-2 rounded-md shadow-sm border border-gray-300 hover:border-gray-400 text-sm">
+              <div className="selected-option overflow-hidden whitespace-nowrap pr-10 border-r border-gray-300"> 
+                { selectedOptionyarn ? selectedOptionyarn: "Pending"}
+              </div>
+              <div className="dropdown-icon absolute right-2 top-1/2 transform -translate-y-1/2  ">
+              Update Status
+                <span className="h-5 w-5 text-gray-400 inline-flex items-center justify-center ml-[2px]">&#9660;</span>  
+              </div>
+              <button type="button" aria-haspopup="true" aria-expanded="false" className="w-full h-full focus:outline-none  ">
+                <select onChange={(e) => handleSelect(e.target.value, 'yarnButton')} className="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer ">
+                  <option value="">Update Status</option>
+                  <option value="Done">Done</option>
+                  <option value="In progress">In progress</option>
+                  <option value="Reset">Reset</option>
+                </select>
               </button>
             </div>
             <div className='text-5xl font-bold p-4'>Yarn</div>
@@ -722,7 +1067,13 @@ const FrontendPage = () => {
 
       <div className="flex flex-col justify-items-center">
           <div className="flex">
-            <button className="border-2 p-2  justify-center rounded-xl mt-20 mb-12 ml-[-70px] mr-[260px] border-yellow-300"
+            <button 
+            id="reduxButton"
+            className={`border-2 p-2  justify-center rounded-xl mt-20 mb-12 ml-[-70px] mr-[260px] border-yellow-300 ${
+              selectedOptionredux === 'Done' ? 'line-through text-red-500' :
+              selectedOptionredux === 'In progress' ? 'bg-yellow-500 text-black' :
+              ''
+            }`}
             onClick={() => setShowSidebarRedux(!showSidebarRedux)}
             >Redux</button>
             {showSidebarRedux&& (
@@ -732,6 +1083,23 @@ const FrontendPage = () => {
                 <FontAwesomeIcon icon={faTimes} className="text-[#687688]" /> {/* Increase size to 2x */}
               </button>
             </div>
+            <div className="ml-6 mt-[-20px] mb-4 dropdown relative w-52 py-2 flex flex-row  px-2 rounded-md shadow-sm border border-gray-300 hover:border-gray-400 text-sm">
+                <div className="selected-option overflow-hidden whitespace-nowrap pr-10 border-r border-gray-300"> 
+                  {selectedOptionredux ? selectedOptionredux: "Pending"}
+                </div>
+                <div className="dropdown-icon absolute right-2 top-1/2 transform -translate-y-1/2  ">
+                Update Status
+                  <span className="h-5 w-5 text-gray-400 inline-flex items-center justify-center ml-[2px]">&#9660;</span>  
+                </div>
+                <button type="button" aria-haspopup="true" aria-expanded="false" className="w-full h-full focus:outline-none  ">
+                  <select onChange={(e) => handleSelect(e.target.value, 'reduxButton')} className="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer ">
+                    <option value="">Update Status</option>
+                    <option value="Done">Done</option>
+                    <option value="In progress">In progress</option>
+                    <option value="Reset">Reset</option>
+                  </select>
+                </button>
+              </div>
             <div className='text-5xl font-bold p-4'>Redux</div>
             <p className="p-4 text-[#262d36]">Redux is a predictable state container for JavaScript applications, commonly used with React, to manage application state in a centralized and predictable manner, enabling efficient data flow and state management in complex applications.</p>
             <p className='p-4 text-[#262d36]'>Visit the following resources to learn more:</p>
@@ -747,7 +1115,13 @@ const FrontendPage = () => {
       </div>
       <div className="flex flex-col justify-items-center">
           <div className="flex">
-            <button className="border-2 p-2  justify-center rounded-xl ml-[-70px] mr-[260px] "
+            <button 
+            id="xstateButton"
+            className={`border-2 p-2  justify-center rounded-xl ml-[-70px] mr-[260px]  ${
+              selectedOptionxstate=== 'Done' ? 'line-through text-red-500' :
+              selectedOptionxstate === 'In progress' ? 'bg-yellow-500 text-black' :
+              ''
+            }`}
             onClick={() => setShowSidebarXstate(!showSidebarXState)}
             >XState</button>
             {showSidebarXState&& (
@@ -757,6 +1131,23 @@ const FrontendPage = () => {
                 <FontAwesomeIcon icon={faTimes} className="text-[#687688]" /> {/* Increase size to 2x */}
               </button>
             </div>
+            <div className="ml-6 mt-[-20px] mb-4 dropdown relative w-52 py-2 flex flex-row  px-2 rounded-md shadow-sm border border-gray-300 hover:border-gray-400 text-sm">
+                <div className="selected-option overflow-hidden whitespace-nowrap pr-10 border-r border-gray-300"> 
+                  {selectedOptionxstate ? selectedOptionxstate: "Pending"}
+                </div>
+                <div className="dropdown-icon absolute right-2 top-1/2 transform -translate-y-1/2  ">
+                Update Status
+                  <span className="h-5 w-5 text-gray-400 inline-flex items-center justify-center ml-[2px]">&#9660;</span>  
+                </div>
+                <button type="button" aria-haspopup="true" aria-expanded="false" className="w-full h-full focus:outline-none  ">
+                  <select onChange={(e) => handleSelect(e.target.value, 'xstateButton')} className="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer ">
+                    <option value="">Update Status</option>
+                    <option value="Done">Done</option>
+                    <option value="In progress">In progress</option>
+                    <option value="Reset">Reset</option>
+                  </select>
+                </button>
+              </div>
             <div className='text-5xl font-bold p-4'>XState</div>
             <p className="p-4 text-[#262d36]">XState is a JavaScript library for creating state machines and statecharts, providing a declarative way to manage application state and behavior, facilitating better understanding, testing, and maintenance of complex stateful logic.</p>
             <p className='p-4 text-[#262d36]'>Visit the following resources to learn more:</p>
@@ -773,8 +1164,15 @@ const FrontendPage = () => {
 
       <div className="flex flex-col justify-items-center">
           <div className="flex">
-            <button className="border-2 p-2  justify-center rounded-xl ml-[-170px] mr-[300px] mt-[205px] "
+            <button 
+            id="gitButton"
+            className={`border-2 p-2  justify-center rounded-xl ml-[-170px] mr-[300px] mt-[205px]  ${
+              selectedOptiongit === 'Done' ? 'line-through text-red-500' :
+              selectedOptiongit === 'In progress' ? 'bg-yellow-500 text-black' :
+              ''
+            }`}
              onClick={() => setShowSidebarGit(!showSidebarGit)}
+             style={{ zIndex: 1 }} 
              >Git</button>
              {showSidebarGit&& (
           <div className="bg-gray-200 w-2/5 h-screen fixed top-0 right-0 overflow-y-auto shadow-2xl shadow-slate-950 text-black z-50">
@@ -783,6 +1181,23 @@ const FrontendPage = () => {
                 <FontAwesomeIcon icon={faTimes} className="text-[#687688]" /> {/* Increase size to 2x */}
               </button>
             </div>
+            <div className="ml-6 mt-[-20px] mb-4 dropdown relative w-52 py-2 flex flex-row  px-2 rounded-md shadow-sm border border-gray-300 hover:border-gray-400 text-sm">
+                <div className="selected-option overflow-hidden whitespace-nowrap pr-10 border-r border-gray-300"> 
+                  {selectedOptiongit ? selectedOptiongit : "Pending"}
+                </div>
+                <div className="dropdown-icon absolute right-2 top-1/2 transform -translate-y-1/2  ">
+                Update Status
+                  <span className="h-5 w-5 text-gray-400 inline-flex items-center justify-center ml-[2px]">&#9660;</span>  
+                </div>
+                <button type="button" aria-haspopup="true" aria-expanded="false" className="w-full h-full focus:outline-none  ">
+                  <select onChange={(e) => handleSelect(e.target.value, 'gitButton')} className="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer ">
+                    <option value="">Update Status</option>
+                    <option value="Done">Done</option>
+                    <option value="In progress">In progress</option>
+                    <option value="Reset">Reset</option>
+                  </select>
+                </button>
+              </div>
             <div className='text-5xl font-bold p-4'>Git</div>
             <p className="p-4 text-[#262d36]">Git is a distributed version control system used for tracking changes in source code during software development, facilitating collaboration among developers and enabling efficient code management through features like branching and merging</p>
             <p className='p-4 text-[#262d36]'>Visit the following resources to learn more:</p>
@@ -801,7 +1216,13 @@ const FrontendPage = () => {
 <div className="flex flex-row justify-items-center w-auto   ">
 <div className="flex flex-col justify-items-center">
           <div className="flex">
-    <button className="border-2 p-2 rounded-xl mt-36 px-8 ml-[-60px] mr-[160px]  border-yellow-300 "
+    <button 
+    id="githubButton"
+    className={`border-2 p-2 rounded-xl mt-36 px-8 ml-[-60px] mr-[160px]  border-yellow-300  ${
+      selectedOptiongithub === 'Done' ? 'line-through text-red-500' :
+      selectedOptiongithub === 'In progress' ? 'bg-yellow-500 text-black' :
+      ''
+    }`}
     onClick={() => setShowSidebarGithub(!showSidebarGithub)}
     >Github</button>
     {showSidebarGithub&& (
@@ -811,6 +1232,23 @@ const FrontendPage = () => {
                 <FontAwesomeIcon icon={faTimes} className="text-[#687688]" /> {/* Increase size to 2x */}
               </button>
             </div>
+            <div className="ml-6 mt-[-20px] mb-4 dropdown relative w-52 py-2 flex flex-row  px-2 rounded-md shadow-sm border border-gray-300 hover:border-gray-400 text-sm">
+                <div className="selected-option overflow-hidden whitespace-nowrap pr-10 border-r border-gray-300"> 
+                  {selectedOptiongithub ? selectedOptiongithub: "Pending"}
+                </div>
+                <div className="dropdown-icon absolute right-2 top-1/2 transform -translate-y-1/2  ">
+                Update Status
+                  <span className="h-5 w-5 text-gray-400 inline-flex items-center justify-center ml-[2px]">&#9660;</span>  
+                </div>
+                <button type="button" aria-haspopup="true" aria-expanded="false" className="w-full h-full focus:outline-none  ">
+                  <select onChange={(e) => handleSelect(e.target.value, 'githubButton')} className="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer ">
+                    <option value="">Update Status</option>
+                    <option value="Done">Done</option>
+                    <option value="In progress">In progress</option>
+                    <option value="Reset">Reset</option>
+                  </select>
+                </button>
+              </div>
             <div className='text-5xl font-bold p-4'>Github</div>
             <p className="p-4 text-[#262d36]">GitHub is a web-based platform for hosting and collaborating on Git repositories, widely used for version control, code review, and project management, providing features like issue tracking, pull requests, and continuous integration.</p>
             <p className='p-4 text-[#262d36]'>Visit the following resources to learn more:</p>
@@ -826,7 +1264,13 @@ const FrontendPage = () => {
       </div>
       <div className="flex flex-col justify-items-center">
           <div className="flex">
-    <button className="border-2 p-2 rounded-xl mt-36 px-4 "
+    <button 
+    id="firebaseButton"
+    className={`border-2 p-2 rounded-xl mt-36 px-4 ${
+      selectedOptionfirebase === 'Done' ? 'line-through text-red-500' :
+      selectedOptionfirebase === 'In progress' ? 'bg-yellow-500 text-black' :
+      ''
+    }`}
     onClick={() => setShowSidebarFirebase(!showSidebarFirebase)}
     >Firebase</button>
     {showSidebarFirebase&& (
@@ -834,6 +1278,23 @@ const FrontendPage = () => {
             <div className="flex justify-end p-4 mr-2 ">
             <button onClick={() => setShowSidebarFirebase(false)}>
                 <FontAwesomeIcon icon={faTimes} className="text-[#687688]" /> {/* Increase size to 2x */}
+              </button>
+            </div>
+            <div className="ml-6 mt-[-20px] mb-4 dropdown relative w-52 py-2 flex flex-row  px-2 rounded-md shadow-sm border border-gray-300 hover:border-gray-400 text-sm">
+              <div className="selected-option overflow-hidden whitespace-nowrap pr-10 border-r border-gray-300"> 
+                {selectedOptionfirebase ? selectedOptionfirebase : "Pending"}
+              </div>
+              <div className="dropdown-icon absolute right-2 top-1/2 transform -translate-y-1/2  ">
+              Update Status
+                <span className="h-5 w-5 text-gray-400 inline-flex items-center justify-center ml-[2px]">&#9660;</span>  
+              </div>
+              <button type="button" aria-haspopup="true" aria-expanded="false" className="w-full h-full focus:outline-none  ">
+                <select onChange={(e) => handleSelect(e.target.value, 'firebaseButton')} className="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer ">
+                  <option value="">Update Status</option>
+                  <option value="Done">Done</option>
+                  <option value="In progress">In progress</option>
+                  <option value="Reset">Reset</option>
+                </select>
               </button>
             </div>
             <div className='text-5xl font-bold p-4'>Firebase</div>

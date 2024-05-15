@@ -54,12 +54,162 @@ const BackendPage = () => {
   const [showSidebarMysql, setShowSidebarMysql] = useState(false);
   const [showSidebarJwt, setShowSidebarJwt] = useState(false);
   const [showSidebarRest, setShowSidebarRest] = useState(false);
-  const [showSidebarJason, setShowSidebarJason] = useState(false);
+  const [showSidebarJson, setShowSidebarJson] = useState(false);
   const [showSidebarGraphql, setShowSidebarGraphql] = useState(false);
   const [showSidebarCDN, setShowSidebarCDN] = useState(false);
   const [showSidebarRelationalDatabase, setShowSidebarRelationalDatabase] = useState(false);
   const [showSidebarAPIS, setShowSidebarAPIS] = useState(false);
   const [showSidebarClientSide, setShowSidebarClientSide] = useState(false);
+
+  const [selectedOptionjava, setSelectedOptionjava] = useState('');
+  const [selectedOptionphp, setSelectedOptionphp] = useState('');
+  const [selectedOptionjavascript, setSelectedOptionjavascript] = useState('');
+  const [selectedOptionpython, setSelectedOptionpython] = useState('');
+  const [selectedOptionpostgressql, setSelectedOptionpostgressql] = useState('');
+  const [selectedOptionmysql, setSelectedOptionmysql] = useState('');
+  const [selectedOptionmariadb, setSelectedOptionmariadb] = useState('');
+  const [selectedOptionrest, setSelectedOptionrest] = useState('');
+  const [selectedOptionjson, setSelectedOptionjson] = useState('');
+  const [selectedOptiongraphql, setSelectedOptiongraphql] = useState('');
+  const [selectedOptionjwt, setSelectedOptionjwt] = useState('');
+  const [selectedOptionbasic, setSelectedOptionbasic] = useState('');
+  const [selectedOptiontoken, setSelectedOptiontoken] = useState('');
+  const [selectedOptionauth, setSelectedOptionauth] = useState('');
+  const [selectedOptioncnd, setSelectedOptioncnd] = useState('');
+  const [selectedOptionclient, setSelectedOptionclient] = useState('');
+  const [selectedOptionbcrypt, setSelectedOptionbcrypt] = useState('');
+  const [selectedOptionscrypt, setSelectedOptionscrypt] = useState('');
+  const [selectedOptionhttps, setSelectedOptionhttps] = useState('');
+  const [selectedOptioncors, setSelectedOptioncors] = useState('');
+  const [selectedOptionserver, setSelectedOptionserver] = useState('');
+  const [selectedOptionunit, setSelectedOptionunit] = useState('');
+  const [selectedOptionintegration, setSelectedOptionintegration] = useState('');
+  const [selectedOptioncontinuos, setSelectedOptioncontinuos] = useState('');
+  const [selectedOptiondatabase, setSelectedOptiondatabase] = useState('');
+  const [selectedOptioncap, setSelectedOptioncap] = useState('');
+  const [selectedOptionsharding, setSelectedOptionsharding] = useState('');
+  const [selectedOptionnginx, setSelectedOptionnginx] = useState('');
+  const [selectedOptionapache, setSelectedOptionapache] = useState('');
+  const [selectedOptioncaddy, setSelectedOptioncaddy] = useState('');
+  const [selectedOptionsse, setSelectedOptionsse] = useState('');
+  const [selectedOptionwebsockets, setSelectedOptionwebsockets] = useState('');
+  const [selectedOptionlongshort, setSelectedOptionlongshort] = useState('');
+ 
+  
+  const handleSelect = async (value, buttonId) => {
+    try {
+      const userId = localStorage.getItem('userId');
+      await axios.post('http://localhost:3000/saveProgress/backend', { userId, buttonId, status: value });
+      console.log('POST Request Body:', { userId, buttonId, status: value });
+  
+      switch (buttonId) {
+        case 'javaButton':
+          setSelectedOptionjava(value);
+          break;
+        case 'phpButton':
+          setSelectedOptionphp(value);
+          break;
+        case 'javascriptButton':
+          setSelectedOptionjavascript(value);
+          break;
+        case 'pythonButton':
+          setSelectedOptionpython(value);
+          break;
+        case 'postgressqlButton':
+          setSelectedOptionpostgressql(value);
+          break;
+        case 'mysqlButton':
+          setSelectedOptionmysql(value);
+          break;
+        case 'mariadbButton':
+          setSelectedOptionmariadb(value);
+          break;
+        case 'restButton':
+          setSelectedOptionrest(value);
+          break;
+        case 'jsonButton':
+          setSelectedOptionjson(value);
+          break;
+        case 'graphqlButton':
+          setSelectedOptiongraphql(value);
+          break;
+        case 'jwtButton':
+          setSelectedOptionjwt(value);
+          break;
+        case 'basicButton':
+          setSelectedOptionbasic(value);
+          break;
+        case 'tokenButton':
+          setSelectedOptiontoken(value);
+          break;
+        case 'authButton':
+          setSelectedOptionauth(value);
+          break;
+        case 'cndButton':
+          setSelectedOptioncnd(value);
+          break;
+        case 'clientButton':
+          setSelectedOptionclient(value);
+          break;
+        case 'bcryptButton':
+          setSelectedOptionbcrypt(value);
+          break;
+        case 'scryptButton':
+          setSelectedOptionscrypt(value);
+          break;
+        case 'httpsButton':
+          setSelectedOptionhttps(value);
+          break;
+        case 'corsButton':
+          setSelectedOptioncors(value);
+          break;
+        case 'serverButton':
+          setSelectedOptionserver(value);
+          break;
+        case 'unitButton':
+          setSelectedOptionunit(value);
+          break;
+        case 'integrationButton':
+          setSelectedOptionintegration(value);
+          break;
+        case 'continuosButton':
+          setSelectedOptioncontinuos(value);
+          break;
+        case 'databaseButton':
+          setSelectedOptiondatabase(value);
+          break;
+        case 'capButton':
+          setSelectedOptioncap(value);
+          break;
+        case 'shardingButton':
+          setSelectedOptionsharding(value);
+          break;
+        case 'nginxButton':
+          setSelectedOptionnginx(value);
+          break;
+        case 'apacheButton':
+          setSelectedOptionapache(value);
+          break;
+        case 'caddyButton':
+          setSelectedOptioncaddy(value);
+          break;
+        case 'sseButton':
+          setSelectedOptionsse(value);
+          break;
+        case 'websocketsButton':
+          setSelectedOptionwebsockets(value);
+          break;
+        case 'longshortButton':
+          setSelectedOptionlongshort(value);
+          break;
+        default:
+          break;
+      }
+    } catch (error) {
+      console.error('Failed to update progress:', error);
+    }
+  };
+  
 
   const navigate = useNavigate();
   const [showLoginCard, setShowLoginCard] = useState(false);
@@ -90,6 +240,159 @@ const BackendPage = () => {
       console.error('Error logging out:', error);
     }
   };
+
+  useEffect(() => {
+    const userId = localStorage.getItem('userId');
+    const fetchProgress = async () => {
+      try {
+        const buttonIds =  ['javaButton', 'phpButton', 'javascriptButton', 'pythonButton', 
+                            'postgressqlButton', 'mysqlButton', 'mariadbButton', 'restButton',
+                            'jsonButton', 'graphqlButton', 'jwtButton', 'basicButton', 
+                            'tokenButton', 'authButton', 'cndButton', 'clientButton', 
+                            'bcryptButton', 'scryptButton', 'httpsButton', 'corsButton',
+                            'serverButton', 'unitButton', 'integrationButton', 
+                            'continuosButton', 'databaseButton', 'capButton', 
+                            'shardingButton', 'nginxButton', 'apacheButton', 
+                            'caddyButton', 'sseButton', 'websocketsButton', 'longshortButton'];
+ 
+        const promises = buttonIds.map(async (buttonId) => {
+          try {
+            const response = await axios.get(`http://localhost:3000/getProgressBackend/${userId}/${buttonId}`);
+            return { buttonId, progress: response.data[buttonId] };
+          } catch (error) {
+            // Handle error (e.g., log error)
+            console.error(`Failed to fetch progress for button ${buttonId}:`, error);
+            return { buttonId, progress: null }; // Return null if progress data is not available
+          }
+        });
+        const progressData = await Promise.all(promises);
+        const progress = progressData.reduce((acc, curr) => {
+          acc[curr.buttonId] = curr.progress;
+          return acc;
+        }, {});
+  
+        buttonIds.forEach((buttonId) => {
+          const setterFunction = `setSelectedOption${buttonId.charAt(0)}${buttonId.slice(1)}`;
+          console.log('Selected option setter:', setterFunction);
+          console.log(`${buttonId}:`, progress[buttonId]);
+          let setter;
+          switch (buttonId) {
+            case 'javaButton':
+                setter = setSelectedOptionjava;
+                break;
+            case 'phpButton':
+                setter = setSelectedOptionphp;
+                break;
+            case 'javascriptButton':
+                setter = setSelectedOptionjavascript;
+                break;
+            case 'pythonButton':
+                setter = setSelectedOptionpython;
+                break;
+            case 'postgressqlButton':
+                setter = setSelectedOptionpostgressql;
+                break;
+            case 'mysqlButton':
+                setter = setSelectedOptionmysql;
+                break;
+            case 'mariadbButton':
+                setter = setSelectedOptionmariadb;
+                break;
+            case 'restButton':
+                setter = setSelectedOptionrest;
+                break;
+            case 'jsonButton':
+                setter = setSelectedOptionjson;
+                break;
+            case 'graphqlButton':
+                setter = setSelectedOptiongraphql;
+                break;
+            case 'jwtButton':
+                setter = setSelectedOptionjwt;
+                break;
+            case 'basicButton':
+                setter = setSelectedOptionbasic;
+                break;
+            case 'tokenButton':
+                setter = setSelectedOptiontoken;
+                break;
+            case 'authButton':
+                setter = setSelectedOptionauth;
+                break;
+            case 'cndButton':
+                setter = setSelectedOptioncnd;
+                break;
+            case 'clientButton':
+                setter = setSelectedOptionclient;
+                break;
+            case 'bcryptButton':
+                setter = setSelectedOptionbcrypt;
+                break;
+            case 'scryptButton':
+                setter = setSelectedOptionscrypt;
+                break;
+            case 'httpsButton':
+                setter = setSelectedOptionhttps;
+                break;
+            case 'corsButton':
+                setter = setSelectedOptioncors;
+                break;
+            case 'serverButton':
+                setter = setSelectedOptionserver;
+                break;
+            case 'unitButton':
+                setter = setSelectedOptionunit;
+                break;
+            case 'integrationButton':
+                setter = setSelectedOptionintegration;
+                break;
+            case 'continuosButton':
+                setter = setSelectedOptioncontinuos;
+                break;
+            case 'databaseButton':
+                setter = setSelectedOptiondatabase;
+                break;
+            case 'capButton':
+                setter = setSelectedOptioncap;
+                break;
+            case 'shardingButton':
+                setter = setSelectedOptionsharding;
+                break;
+            case 'nginxButton':
+                setter = setSelectedOptionnginx;
+                break;
+            case 'apacheButton':
+                setter = setSelectedOptionapache;
+                break;
+            case 'caddyButton':
+                setter = setSelectedOptioncaddy;
+                break;
+            case 'sseButton':
+                setter = setSelectedOptionsse;
+                break;
+            case 'websocketsButton':
+                setter = setSelectedOptionwebsockets;
+                break;
+            case 'longshortButton':
+                setter = setSelectedOptionlongshort;
+        break;
+            default:
+              console.error(`Setter function not found for button ID: ${buttonId}`);
+              return;
+          }
+          console.log('Selected option setter:', setter.name);
+          console.log(`${buttonId}:`, progress[buttonId]);
+
+          if (progress[buttonId] !== undefined) {
+            setter(progress[buttonId] || '');
+        }
+        });
+      } catch (error) {
+        console.error('Failed to fetch progress:', error);
+      }
+    };
+    fetchProgress();
+  }, []);
 
   return (
     <div>
@@ -213,7 +516,7 @@ const BackendPage = () => {
         <div className='flex flex-row '> 
         <div className="flex flex-col ">
   <div className="flex">
-        <button className='p-2 border-2 rounded-xl mt-[108px] ml-[350px] h-[45px] cursor-pointer z-40 '
+        <button className='p-2 border-2 rounded-xl mt-[108px] ml-[350px] h-[45px] cursor-pointer z-50 '
         onClick={() => setShowSidebarFundamentals(!showSidebarFundamentals)}>
           Fundamentals</button>
           {showSidebarFundamentals && (
@@ -242,7 +545,13 @@ const BackendPage = () => {
 <div>
   <div className="flex flex-col ">
   <div className="flex">
-  <button className=' p-2 border-2 rounded-xl  px-[30px] ml-64 mb-4 border-green-400 cursor-pointer z-40'
+  <button
+  id="javaButton"
+  className={` border-2  p-2 rounded-xl  px-[30px] ml-64 mb-4 border-green-400 cursor-pointer z-40 ${
+    selectedOptionjava === 'Done' ? 'line-through text-red-500' :
+    selectedOptionjava === 'In progress' ? 'bg-yellow-500 text-black' :
+    ''
+  }`}
     onClick={() => setShowSidebarJava(!showSidebarJava)}>
     Java</button>
     {showSidebarJava && (
@@ -252,6 +561,23 @@ const BackendPage = () => {
       <FontAwesomeIcon icon={faTimes} className="text-[#687688]" /> {/* Increase size to 2x */}
     </button>
   </div>
+  <div className="ml-6 mt-[-20px] mb-4 dropdown relative w-52 py-2 flex flex-row  px-2 rounded-md shadow-sm border border-gray-300 hover:border-gray-400 text-sm">
+                <div className="selected-option overflow-hidden whitespace-nowrap pr-10 border-r border-gray-300"> 
+                  {selectedOptionjava ? selectedOptionjava : "Pending"}
+                </div>
+                <div className="dropdown-icon absolute right-2 top-1/2 transform -translate-y-1/2  ">
+                Update Status
+                  <span className="h-5 w-5 text-gray-400 inline-flex items-center justify-center ml-[2px]">&#9660;</span>  
+                </div>
+                <button type="button" aria-haspopup="true" aria-expanded="false" className="w-full h-full focus:outline-none  ">
+                  <select onChange={(e) => handleSelect(e.target.value, 'javaButton')} className="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer ">
+                    <option value="">Update Status</option>
+                    <option value="Done">Done</option>
+                    <option value="In progress">In progress</option>
+                    <option value="Reset">Reset</option>
+                  </select>
+                </button>
+              </div>
   <div className='ml-8'>   
   <div className='text-5xl font-bold p-4'>Java</div>
       <p className="p-4 text-[#262d36]">Java is a popular, flexible programming language that is scalable and platform independent. Its reliability and large standard library make it a preferred choice for a wide range of applications, including Android app development and corporate software. Java emphasizes object-oriented concepts heavily, which makes it possible to create sophisticated and dependable software systems.</p>
@@ -268,9 +594,15 @@ const BackendPage = () => {
          
 <div className="flex flex-col ">
   <div className=" flex ">
-        <div className=' p-2 border-2 rounded-xl ml-64 mb-4 z-40 px-8 cursor-pointer'
+        <button 
+        id="phpButton"
+        className={`p-2 border-2 rounded-xl ml-64 mb-4 z-40 px-8 cursor-pointer ${
+          selectedOptionphp === 'Done' ? 'line-through text-red-500' :
+          selectedOptionphp === 'In progress' ? 'bg-yellow-500 text-black' :
+          ''
+        }` }
          onClick={() => setShowSidebarPhp(!showSidebarPhp)}>
-          PHP</div>
+          PHP</button>
           
           {showSidebarPhp && (
       <div className="bg-gray-200 w-2/5 h-screen fixed top-0 right-0 overflow-y-auto shadow-2xl shadow-slate-950  text-black z-50 ">
@@ -279,6 +611,23 @@ const BackendPage = () => {
             <FontAwesomeIcon icon={faTimes} className="text-[#687688]" /> {/* Increase size to 2x */}
           </button>
         </div>
+        <div className="ml-6 mt-[-20px] mb-4 dropdown relative w-52 py-2 flex flex-row  px-2 rounded-md shadow-sm border border-gray-300 hover:border-gray-400 text-sm">
+                <div className="selected-option overflow-hidden whitespace-nowrap pr-10 border-r border-gray-300"> 
+                  {selectedOptionphp ? selectedOptionphp : "Pending"}
+                </div>
+                <div className="dropdown-icon absolute right-2 top-1/2 transform -translate-y-1/2  ">
+                Update Status
+                  <span className="h-5 w-5 text-gray-400 inline-flex items-center justify-center ml-[2px]">&#9660;</span>  
+                </div>
+                <button type="button" aria-haspopup="true" aria-expanded="false" className="w-full h-full focus:outline-none  ">
+                  <select onChange={(e) => handleSelect(e.target.value, 'phpButton')} className="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer ">
+                    <option value="">Update Status</option>
+                    <option value="Done">Done</option>
+                    <option value="In progress">In progress</option>
+                    <option value="Reset">Reset</option>
+                  </select>
+                </button>
+              </div>
         <div className='text-5xl font-bold p-4'>PHP</div>
             <p className="p-4 text-[#262d36]">PHP is a popular server-side scripting language for web development that blends seamlessly with HTML and is easy to use. For dynamic online content, such as forms, databases, and content management systems, it is perfect. It is a great option for dynamic web applications because of its widespread use and robust community support..</p>
             <p className='p-4 text-[#262d36]'>Visit the following resources to learn more:</p>
@@ -292,7 +641,13 @@ const BackendPage = () => {
 </div>
 <div className="flex flex-col ">
   <div className="flex">
-        <div className=' p-2 border-2 rounded-xl ml-64 mb-4 border-yellow-300 z-40 cursor-pointer' 
+        <div 
+        id="javascriptButton"
+        className={`p-2 border-2 rounded-xl ml-64 mb-4 border-yellow-300 z-40 cursor-pointer ${
+          selectedOptionjavascript === 'Done' ? 'line-through text-red-500' :
+          selectedOptionjavascript === 'In progress' ? 'bg-yellow-500 text-black' :
+          ''
+        }`}
         onClick={() => setShowSidebarJavascript(!showSidebarJavascript)}>
           Javascript</div>
           {showSidebarJavascript && (
@@ -302,6 +657,24 @@ const BackendPage = () => {
             <FontAwesomeIcon icon={faTimes} className="text-[#687688]" /> {/* Increase size to 2x */}
           </button>
         </div>
+        <div className="ml-6 mt-[-20px] mb-4 dropdown relative w-52 py-2 flex flex-row  px-2 rounded-md shadow-sm border border-gray-300 hover:border-gray-400 text-sm">
+                <div className="selected-option overflow-hidden whitespace-nowrap pr-10 border-r border-gray-300"> 
+                  {selectedOptionjavascript ? selectedOptionjavascript : "Pending"}
+                </div>
+                <div className="dropdown-icon absolute right-2 top-1/2 transform -translate-y-1/2  ">
+                Update Status
+                  <span className="h-5 w-5 text-gray-400 inline-flex items-center justify-center ml-[2px]">&#9660;</span>  
+                </div>
+                <button type="button" aria-haspopup="true" aria-expanded="false" className="w-full h-full focus:outline-none  ">
+                  <select onChange={(e) => handleSelect(e.target.value, 'javascriptButton')} className="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer ">
+                    <option value="">Update Status</option>
+                    <option value="Done">Done</option>
+                    <option value="In progress">In progress</option>
+                    <option value="Reset">Reset</option>
+                  </select>
+                </button>
+              </div>
+			  
         <div className='text-5xl font-bold p-4'>Javascipt</div>
             <p className="p-4 text-[#262d36]">JavaScript runs directly in browsers and adds interaction to webpages. It's necessary for contemporary web development since it makes features like animation and form validation possible. With server-side programming frameworks like Node.js, its usefulness goes beyond the web.</p>
             <p className='p-4 text-[#262d36]'>Visit the following resources to learn more:</p>
@@ -315,7 +688,13 @@ const BackendPage = () => {
 </div>
 <div className="flex flex-col ">
   <div className="flex">
-        <div className=' p-2 border-2 rounded-xl ml-64 border-yellow-300 z-40 cursor-pointer'
+        <div 
+        id="pythonButton"
+        className={`p-2 border-2 rounded-xl ml-64 border-yellow-300 z-40 cursor-pointer ${
+          selectedOptionpython === 'Done' ? 'line-through text-red-500' :
+          selectedOptionpython === 'In progress' ? 'bg-yellow-500 text-black' :
+          ''
+        }`}
          onClick={() => setShowSidebarPython(!showSidebarPython)}>
           Python</div>
           {showSidebarPython && (
@@ -325,6 +704,23 @@ const BackendPage = () => {
             <FontAwesomeIcon icon={faTimes} className="text-[#687688]" /> {/* Increase size to 2x */}
           </button>
         </div>
+        <div className="ml-6 mt-[-20px] mb-4 dropdown relative w-52 py-2 flex flex-row  px-2 rounded-md shadow-sm border border-gray-300 hover:border-gray-400 text-sm">
+                <div className="selected-option overflow-hidden whitespace-nowrap pr-10 border-r border-gray-300"> 
+                  {selectedOptionpython ? selectedOptionpython : "Pending"}
+                </div>
+                <div className="dropdown-icon absolute right-2 top-1/2 transform -translate-y-1/2  ">
+                Update Status
+                  <span className="h-5 w-5 text-gray-400 inline-flex items-center justify-center ml-[2px]">&#9660;</span>  
+                </div>
+                <button type="button" aria-haspopup="true" aria-expanded="false" className="w-full h-full focus:outline-none  ">
+                  <select onChange={(e) => handleSelect(e.target.value, 'pythonButton')} className="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer ">
+                    <option value="">Update Status</option>
+                    <option value="Done">Done</option>
+                    <option value="In progress">In progress</option>
+                    <option value="Reset">Reset</option>
+                  </select>
+                </button>
+              </div>
         <div className='text-5xl font-bold p-4'>Python</div>
             <p className="p-4 text-[#262d36]">Python is a high-level, multipurpose language with a reputation for readability and simplicity. AI, data analysis, web development, and other fields all use it. Python's extensive library and clear syntax facilitate quick creation and upkeep. Its versatility for a range of jobs and strong community support are the main reasons for its appeal.</p>
             <p className='p-4 text-[#262d36]'>Visit the following resources to learn more:</p>
@@ -343,7 +739,13 @@ const BackendPage = () => {
         <div className='flex flex-col mt-12 mr-20 '>
         <div className="flex flex-col ">
   <div className="flex">
-        <div className=' p-2 border-2 rounded-xl  mb-6 cursor-pointer z-40 ' 
+        <div 
+        id="postgressqlButton"
+        className={`p-2 border-2 rounded-xl  mb-6 cursor-pointer z-40 ${
+          selectedOptionpostgressql === 'Done' ? 'line-through text-red-500' :
+          selectedOptionpostgressql === 'In progress' ? 'bg-yellow-500 text-black' :
+          ''
+        }`} 
         onClick={() => setShowSidebarPostgressql(!showSidebarPostgressql)}>
           Postgressql
         </div>
@@ -354,6 +756,23 @@ const BackendPage = () => {
             <FontAwesomeIcon icon={faTimes} className="text-[#687688]" /> {/* Increase size to 2x */}
           </button>
         </div>
+        <div className="ml-6 mt-[-20px] mb-4 dropdown relative w-52 py-2 flex flex-row  px-2 rounded-md shadow-sm border border-gray-300 hover:border-gray-400 text-sm">
+                <div className="selected-option overflow-hidden whitespace-nowrap pr-10 border-r border-gray-300"> 
+                  {selectedOptionpostgressql ? selectedOptionpostgressql : "Pending"}
+                </div>
+                <div className="dropdown-icon absolute right-2 top-1/2 transform -translate-y-1/2  ">
+                Update Status
+                  <span className="h-5 w-5 text-gray-400 inline-flex items-center justify-center ml-[2px]">&#9660;</span>  
+                </div>
+                <button type="button" aria-haspopup="true" aria-expanded="false" className="w-full h-full focus:outline-none  ">
+                  <select onChange={(e) => handleSelect(e.target.value, 'postgressqlButton')} className="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer ">
+                    <option value="">Update Status</option>
+                    <option value="Done">Done</option>
+                    <option value="In progress">In progress</option>
+                    <option value="Reset">Reset</option>
+                  </select>
+                </button>
+              </div>
         <div className='text-5xl font-bold p-4'>Postgressql</div>
             <p className="p-4 text-[#262d36]">Reliability and cutting-edge functionality are hallmarks of PostgreSQL, an open-source relational database. Small projects to large-scale business systems can benefit from its support for a variety of data formats, indexing strategies, and SQL extensions. It is a well-liked option for developers looking for a reliable database solution because of its emphasis on standards compliance and vibrant community support.</p>
             <p className='p-4 text-[#262d36]'>Visit the following resources to learn more:</p>
@@ -368,7 +787,12 @@ const BackendPage = () => {
 </div>
 <div className="flex flex-col ">
   <div className="flex">
-        <div className=' p-2 border-2 rounded-xl  mb-6 border-yellow-300  text-center cursor-pointer z-40'
+        <div 
+        id="mysqlButton"
+        className={`p-2 border-2 rounded-xl  mb-6 border-yellow-300  text-center cursor-pointer z-40 ${
+                selectedOptionmysql === 'Done' ? 'line-through text-red-500' :
+                selectedOptionmysql === 'In progress' ? 'bg-yellow-500 text-black' :
+                ''}`}
         onClick={() => setShowSidebarMysql(!showSidebarMysql)}>
           Mysql</div>
           {showSidebarMysql&& (
@@ -378,6 +802,23 @@ const BackendPage = () => {
             <FontAwesomeIcon icon={faTimes} className="text-[#687688]" /> {/* Increase size to 2x */}
           </button>
         </div>
+        <div className="ml-6 mt-[-20px] mb-4 dropdown relative w-52 py-2 flex flex-row  px-2 rounded-md shadow-sm border border-gray-300 hover:border-gray-400 text-sm">
+                <div className="selected-option overflow-hidden whitespace-nowrap pr-10 border-r border-gray-300"> 
+                  {selectedOptionmysql ? selectedOptionmysql : "Pending"}
+                </div>
+                <div className="dropdown-icon absolute right-2 top-1/2 transform -translate-y-1/2  ">
+                Update Status
+                  <span className="h-5 w-5 text-gray-400 inline-flex items-center justify-center ml-[2px]">&#9660;</span>  
+                </div>
+                <button type="button" aria-haspopup="true" aria-expanded="false" className="w-full h-full focus:outline-none  ">
+                  <select onChange={(e) => handleSelect(e.target.value, 'mysqlButton')} className="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer ">
+                    <option value="">Update Status</option>
+                    <option value="Done">Done</option>
+                    <option value="In progress">In progress</option>
+                    <option value="Reset">Reset</option>
+                  </select>
+                </button>
+              </div>
         <div className='text-5xl font-bold p-4'>Mysql</div>
             <p className="p-4 text-[#262d36]">Well-known for its speed, scalability, and user-friendliness, MySQL is an open-source relational database. Medium-sized databases and web applications frequently use it because of its features, which include multiple storage engines for performance optimization and high availability. Businesses and developers looking for stability and efficiency can trust MySQL because of its large user base and comprehensive documentation.</p>
             <p className='p-4 text-[#262d36]'>Visit the following resources to learn more:</p>
@@ -391,7 +832,13 @@ const BackendPage = () => {
 </div>
 <div className="flex flex-col ">
   <div className="flex">
-        <div className=' p-2 border-2 rounded-xl border-green-400  text-center cursor-pointer z-40'
+        <div 
+        id="mariadbButton"
+        className={` p-2 border-2 rounded-xl border-green-400  text-center cursor-pointer z-40 ${
+          selectedOptionmariadb === 'Done' ? 'line-through text-red-500' :
+          selectedOptionmariadb === 'In progress' ? 'bg-yellow-500 text-black' :
+          ''
+        }`}
         onClick={() => setShowSidebarMariaDb(!showSidebarMariaDb)}>
           MariaDb</div>
           {showSidebarMariaDb&& (
@@ -401,6 +848,23 @@ const BackendPage = () => {
             <FontAwesomeIcon icon={faTimes} className="text-[#687688]" /> {/* Increase size to 2x */}
           </button>
         </div>
+        <div className="ml-6 mt-[-20px] mb-4 dropdown relative w-52 py-2 flex flex-row  px-2 rounded-md shadow-sm border border-gray-300 hover:border-gray-400 text-sm">
+                <div className="selected-option overflow-hidden whitespace-nowrap pr-10 border-r border-gray-300"> 
+                  {selectedOptionmariadb ? selectedOptionmariadb : "Pending"}
+                </div>
+                <div className="dropdown-icon absolute right-2 top-1/2 transform -translate-y-1/2  ">
+                Update Status
+                  <span className="h-5 w-5 text-gray-400 inline-flex items-center justify-center ml-[2px]">&#9660;</span>  
+                </div>
+                <button type="button" aria-haspopup="true" aria-expanded="false" className="w-full h-full focus:outline-none  ">
+                  <select onChange={(e) => handleSelect(e.target.value, 'mariadbButton')} className="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer ">
+                    <option value="">Update Status</option>
+                    <option value="Done">Done</option>
+                    <option value="In progress">In progress</option>
+                    <option value="Reset">Reset</option>
+                  </select>
+                </button>
+              </div>
         <div className='text-5xl font-bold p-4'>MariaDb</div>
             <p className="p-4 text-[#262d36]">With the goal of preserving compatibility while introducing new features and performance enhancements, MariaDB is an open-source database that forked from MySQL. While it has the same functionality as MySQL, it has security, scalability, and reliability improvements. MariaDB, which prioritizes robustness, is a good option for companies looking for a strong and safe database solution.</p>
             <p className='p-4 text-[#262d36]'>Visit the following resources to learn more:</p>
@@ -487,7 +951,13 @@ const BackendPage = () => {
         <div className='flex flex-col   '>
         <div className="flex flex-col ">
   <div className="flex">
-        <div className=' p-2 border-2 rounded-xl  ml-[350px] mb-4 mt-[-16px] border-yellow-300 cursor-pointer z-40'
+        <div 
+        id="restButton"
+        className={`' p-2 border-2 rounded-xl  ml-[350px] mb-4 mt-[-16px] border-yellow-300 cursor-pointer z-40' ${
+          selectedOptionrest === 'Done' ? 'line-through text-red-500' :
+          selectedOptionrest === 'In progress' ? 'bg-yellow-500 text-black' :
+          ''
+        }`}
         onClick={() => setShowSidebarRest(!showSidebarRest)} >Rest</div>
         {showSidebarRest&& (
       <div className="bg-gray-200 w-2/5 h-screen fixed top-0 right-0 overflow-y-auto shadow-2xl shadow-slate-950  text-black z-50 ">
@@ -496,6 +966,24 @@ const BackendPage = () => {
             <FontAwesomeIcon icon={faTimes} className="text-[#687688]" /> {/* Increase size to 2x */}
           </button>
         </div>
+        <div className="ml-6 mt-[-20px] mb-4 dropdown relative w-52 py-2 flex flex-row  px-2 rounded-md shadow-sm border border-gray-300 hover:border-gray-400 text-sm">
+                <div className="selected-option overflow-hidden whitespace-nowrap pr-10 border-r border-gray-300"> 
+                  {selectedOptionrest ? selectedOptionrest : "Pending"}
+                </div>
+                <div className="dropdown-icon absolute right-2 top-1/2 transform -translate-y-1/2  ">
+                Update Status
+                  <span className="h-5 w-5 text-gray-400 inline-flex items-center justify-center ml-[2px]">&#9660;</span>  
+                </div>
+                <button type="button" aria-haspopup="true" aria-expanded="false" className="w-full h-full focus:outline-none  ">
+                  <select onChange={(e) => handleSelect(e.target.value, 'restButton')} className="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer ">
+                    <option value="">Update Status</option>
+                    <option value="Done">Done</option>
+                    <option value="In progress">In progress</option>
+                    <option value="Reset">Reset</option>
+                  </select>
+                </button>
+              </div>
+			  
         <div className='text-5xl font-bold p-4'>Rest</div>
             <p className="p-4 text-[#262d36]">A REST API (also called a RESTful API or RESTful web API) is an application programming interface (API) that conforms to the design principles of the representational state transfer (REST) architectural style. REST APIs provide a flexible, lightweight way to integrate applications and to connect components in microservices architectures.</p>
             <p className='p-4 text-[#262d36]'>Visit the following resources to learn more:</p>
@@ -510,15 +998,37 @@ const BackendPage = () => {
 </div>
 <div className="flex flex-col ">
   <div className="flex">
-        <div className=' p-2 border-2 rounded-xl ml-[350px] mb-4 border-green-400  cursor-pointer z-40' 
-        onClick={() => setShowSidebarJason(!showSidebarJason)}>Jason</div>
-        {showSidebarJason&& (
+        <div 
+        id="jsonButton"
+        className={`' p-2 border-2 rounded-xl ml-[350px] mb-4 border-green-400  cursor-pointer z-40' ${
+          selectedOptionjson === 'Done' ? 'line-through text-red-500' :
+          selectedOptionjson === 'In progress' ? 'bg-yellow-500 text-black' :
+          ''}`}
+        onClick={() => setShowSidebarJson(!showSidebarJson)}>Json</div>
+        {showSidebarJson&& (
       <div className="bg-gray-200 w-2/5 h-screen fixed top-0 right-0 overflow-y-auto shadow-2xl shadow-slate-950  text-black z-50 ">
         <div className="flex justify-end p-4 mr-2">
-          <button onClick={() => setShowSidebarJason(false)}>
+          <button onClick={() => setShowSidebarJson(false)}>
             <FontAwesomeIcon icon={faTimes} className="text-[#687688]" /> {/* Increase size to 2x */}
           </button>
         </div>
+        <div className="ml-6 mt-[-20px] mb-4 dropdown relative w-52 py-2 flex flex-row  px-2 rounded-md shadow-sm border border-gray-300 hover:border-gray-400 text-sm">
+                <div className="selected-option overflow-hidden whitespace-nowrap pr-10 border-r border-gray-300"> 
+                  { selectedOptionjson ? selectedOptionjson : "Pending"}
+                </div>
+                <div className="dropdown-icon absolute right-2 top-1/2 transform -translate-y-1/2  ">
+                Update Status
+                  <span className="h-5 w-5 text-gray-400 inline-flex items-center justify-center ml-[2px]">&#9660;</span>  
+                </div>
+                <button type="button" aria-haspopup="true" aria-expanded="false" className="w-full h-full focus:outline-none  ">
+                  <select onChange={(e) => handleSelect(e.target.value, 'jsonButton')} className="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer ">
+                    <option value="">Update Status</option>
+                    <option value="Done">Done</option>
+                    <option value="In progress">In progress</option>
+                    <option value="Reset">Reset</option>
+                  </select>
+                </button>
+              </div>
         <div className='text-5xl font-bold p-4'>Json</div>
             <p className="p-4 text-[#262d36]">JSON (JavaScript Object Notation) API is an application programming interface designed for lightweight data interchange (text-based data exchange format) between two computer applications operating on the same hardware device or between different computers in different geographical areas.</p>
             <p className='p-4 text-[#262d36]'>Visit the following resources to learn more:</p>
@@ -534,7 +1044,12 @@ const BackendPage = () => {
 </div>
 <div className="flex flex-col ">
   <div className="flex">
-        <div className=' p-2 border-2 rounded-xl ml-[350px] mb-4 cursor-pointer z-40' 
+        <div 
+        id="graphqlButton"
+        className={`' p-2 border-2 rounded-xl ml-[350px] mb-4 cursor-pointer z-40' ${
+          selectedOptiongraphql === 'Done' ? 'line-through text-red-500' :
+          selectedOptiongraphql === 'In progress' ? 'bg-yellow-500 text-black' :
+          ''}`}
         onClick={() => setShowSidebarGraphql(!showSidebarGraphql)}
          >Graphql</div>
          {showSidebarGraphql&& (
@@ -544,6 +1059,23 @@ const BackendPage = () => {
             <FontAwesomeIcon icon={faTimes} className="text-[#687688]" /> {/* Increase size to 2x */}
           </button>
         </div>
+        <div className="ml-6 mt-[-20px] mb-4 dropdown relative w-52 py-2 flex flex-row  px-2 rounded-md shadow-sm border border-gray-300 hover:border-gray-400 text-sm">
+                <div className="selected-option overflow-hidden whitespace-nowrap pr-10 border-r border-gray-300"> 
+                  { selectedOptiongraphql ? selectedOptiongraphql : "Pending"}
+                </div>
+                <div className="dropdown-icon absolute right-2 top-1/2 transform -translate-y-1/2  ">
+                Update Status
+                  <span className="h-5 w-5 text-gray-400 inline-flex items-center justify-center ml-[2px]">&#9660;</span>  
+                </div>
+                <button type="button" aria-haspopup="true" aria-expanded="false" className="w-full h-full focus:outline-none  ">
+                  <select onChange={(e) => handleSelect(e.target.value, 'graphqlButton')} className="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer ">
+                    <option value="">Update Status</option>
+                    <option value="Done">Done</option>
+                    <option value="In progress">In progress</option>
+                    <option value="Reset">Reset</option>
+                  </select>
+                </button>
+              </div>
         <div className='text-5xl font-bold p-4'>Graphql</div>
             <p className="p-4 text-[#262d36]">GraphQL is a query language for APIs and a runtime for fulfilling those queries with your existing data. GraphQL provides a complete and understandable description of the data in your API, gives clients the power to ask for exactly what they need and nothing more, makes it easier to evolve APIs over time, and enables powerful developer tools.</p>
             <p className='p-4 text-[#262d36]'>Visit the following resources to learn more:</p>
@@ -563,8 +1095,13 @@ const BackendPage = () => {
         <div className='flex flex-row mr-52  '> 
         <div className='flex flex-col  mt-[-130px] mr-[300px] '>
         <div className="flex flex-col ">
-  <div className="flex">
-        <div className=' p-2 border-2 rounded-xl  mb-6 border-green-400  cursor-pointer z-40' 
+        <div className="flex">
+        <div
+        id="jwtButton"
+        className={`' p-2 border-2 rounded-xl  mb-6 border-green-400  cursor-pointer z-40' ${
+          selectedOptionjwt === 'Done' ? 'line-through text-red-500' :
+          selectedOptionjwt === 'In progress' ? 'bg-yellow-500 text-black' :
+          ''}`}
         onClick={() => setShowSidebarJwt(!showSidebarJwt)}>
           Jwt</div>
           {showSidebarJwt&& (
@@ -574,6 +1111,23 @@ const BackendPage = () => {
             <FontAwesomeIcon icon={faTimes} className="text-[#687688]" /> {/* Increase size to 2x */}
           </button>
         </div>
+        <div className="ml-6 mt-[-20px] mb-4 dropdown relative w-52 py-2 flex flex-row  px-2 rounded-md shadow-sm border border-gray-300 hover:border-gray-400 text-sm">
+                <div className="selected-option overflow-hidden whitespace-nowrap pr-10 border-r border-gray-300"> 
+                  { selectedOptionjwt ? selectedOptionjwt : "Pending"}
+                </div>
+                <div className="dropdown-icon absolute right-2 top-1/2 transform -translate-y-1/2  ">
+                Update Status
+                  <span className="h-5 w-5 text-gray-400 inline-flex items-center justify-center ml-[2px]">&#9660;</span>  
+                </div>
+                <button type="button" aria-haspopup="true" aria-expanded="false" className="w-full h-full focus:outline-none  ">
+                  <select onChange={(e) => handleSelect(e.target.value, 'jwtButton')} className="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer ">
+                    <option value="">Update Status</option>
+                    <option value="Done">Done</option>
+                    <option value="In progress">In progress</option>
+                    <option value="Reset">Reset</option>
+                  </select>
+                </button>
+              </div>
         <div className='text-5xl font-bold p-4'>Jwt</div>
             <p className="p-4 text-[#262d36]">JSON Web Token (JWT) is an open standard that defines a compact and self-contained way for securely transmitting information between parties as a JSON object. This information can be verified and trusted because it is digitally signed. JWTs can be signed using a secret (with the HMAC algorithm) or a public/private key pair using RSA or ECDSA.</p>
             <p className='p-4 text-[#262d36]'>Visit the following resources to learn more:</p>
@@ -589,7 +1143,12 @@ const BackendPage = () => {
 </div>
 <div className="flex flex-col ">
   <div className="flex">
-        <div className=' p-2 border-2 rounded-xl  mb-6 border-green-400 cursor-pointer z-40'
+        <div 
+        id="basicButton"
+        className={` p-2 border-2 rounded-xl  mb-6 border-green-400 cursor-pointer z-40 ${
+          selectedOptionbasic === 'Done' ? 'line-through text-red-500' :
+          selectedOptionbasic === 'In progress' ? 'bg-yellow-500 text-black' :
+          ''}`}
         onClick={() => setShowSidebarBasicAuth(!showSidebarBasicAuth)}>
           Basic Auth</div>
           {showSidebarBasicAuth&& (
@@ -599,6 +1158,23 @@ const BackendPage = () => {
             <FontAwesomeIcon icon={faTimes} className="text-[#687688]" /> {/* Increase size to 2x */}
           </button>
         </div>
+        <div className="ml-6 mt-[-20px] mb-4 dropdown relative w-52 py-2 flex flex-row  px-2 rounded-md shadow-sm border border-gray-300 hover:border-gray-400 text-sm">
+                <div className="selected-option overflow-hidden whitespace-nowrap pr-10 border-r border-gray-300"> 
+                  { selectedOptionbasic ? selectedOptionbasic : "Pending"}
+                </div>
+                <div className="dropdown-icon absolute right-2 top-1/2 transform -translate-y-1/2  ">
+                Update Status
+                  <span className="h-5 w-5 text-gray-400 inline-flex items-center justify-center ml-[2px]">&#9660;</span>  
+                </div>
+                <button type="button" aria-haspopup="true" aria-expanded="false" className="w-full h-full focus:outline-none  ">
+                  <select onChange={(e) => handleSelect(e.target.value, 'basicButton')} className="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer ">
+                    <option value="">Update Status</option>
+                    <option value="Done">Done</option>
+                    <option value="In progress">In progress</option>
+                    <option value="Reset">Reset</option>
+                  </select>
+                </button>
+              </div>
         <div className='text-5xl font-bold p-4'>Basic Auth</div>
             <p className="p-4 text-[#262d36]">Basic access authentication is a way for a user to provide a username and password or username and API key when making an API request.</p>
             <p className='p-4 text-[#262d36]'>Visit the following resources to learn more:</p>
@@ -613,16 +1189,38 @@ const BackendPage = () => {
 </div>
 <div className="flex flex-col ">
   <div className="flex">
-        <div className=' p-2 border-2 rounded-xl  mb-6 border-yellow-300 cursor-pointer z-40 ' 
-        onClick={() => setShowSidebarBasicAuth(!showSidebarBasicAuth)}>
+        <div 
+        id="tokenButton"
+        className={`' p-2 border-2 rounded-xl  mb-6 border-yellow-300 cursor-pointer z-40 ' ${
+          selectedOptiontoken === 'Done' ? 'line-through text-red-500' :
+          selectedOptiontoken === 'In progress' ? 'bg-yellow-500 text-black' :
+          ''}`}
+        onClick={() => setShowSidebarTokenAuth(!showSidebarTokenAuth)}>
           Token Auth</div>
-          {showSidebarBasicAuth&& (
+          {showSidebarTokenAuth&& (
       <div className="bg-gray-200 w-2/5 h-screen fixed top-0 right-0 overflow-y-auto shadow-2xl shadow-slate-950  text-black z-50 ">
         <div className="flex justify-end p-4 mr-2">
-          <button onClick={() => setShowSidebarBasicAuth(false)}>
+          <button onClick={() => setShowSidebarTokenAuth(false)}>
             <FontAwesomeIcon icon={faTimes} className="text-[#687688]" /> {/* Increase size to 2x */}
           </button>
         </div>
+        <div className="ml-6 mt-[-20px] mb-4 dropdown relative w-52 py-2 flex flex-row  px-2 rounded-md shadow-sm border border-gray-300 hover:border-gray-400 text-sm">
+                <div className="selected-option overflow-hidden whitespace-nowrap pr-10 border-r border-gray-300"> 
+                  { selectedOptiontoken ? selectedOptiontoken : "Pending"}
+                </div>
+                <div className="dropdown-icon absolute right-2 top-1/2 transform -translate-y-1/2  ">
+                Update Status
+                  <span className="h-5 w-5 text-gray-400 inline-flex items-center justify-center ml-[2px]">&#9660;</span>  
+                </div>
+                <button type="button" aria-haspopup="true" aria-expanded="false" className="w-full h-full focus:outline-none  ">
+                  <select onChange={(e) => handleSelect(e.target.value, 'tokenButton')} className="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer ">
+                    <option value="">Update Status</option>
+                    <option value="Done">Done</option>
+                    <option value="In progress">In progress</option>
+                    <option value="Reset">Reset</option>
+                  </select>
+                </button>
+              </div>
         <div className='text-5xl font-bold p-4'>Token Auth</div>
             <p className="p-4 text-[#262d36]">An API token is similar to a password and allows you to authenticate to Dataverse Software APIs to perform actions as you. Many Dataverse Software APIs require the use of an API token.</p>
             <p className='p-4 text-[#262d36]'>Visit the following resources to learn more:</p>
@@ -638,9 +1236,14 @@ const BackendPage = () => {
 </div>
 <div className="flex flex-col ">
   <div className="flex">
-        <div className=' p-2 border-2 rounded-xl  border-yellow-300  cursor-pointer z-40' 
+        <div 
+        id="authButton"
+        className={`' p-2 border-2 rounded-xl  border-yellow-300  cursor-pointer z-40' ${
+          selectedOptionauth === 'Done' ? 'line-through text-red-500' :
+          selectedOptionauth === 'In progress' ? 'bg-yellow-500 text-black' :
+          ''}`}
         onClick={() => setShowSidebarAuth(!showSidebarAuth)}>
-           Auth</div>
+           OAuth</div>
            {showSidebarAuth&& (
       <div className="bg-gray-200 w-2/5 h-screen fixed top-0 right-0 overflow-y-auto shadow-2xl shadow-slate-950  text-black z-50 ">
         <div className="flex justify-end p-4 mr-2">
@@ -648,6 +1251,23 @@ const BackendPage = () => {
             <FontAwesomeIcon icon={faTimes} className="text-[#687688]" /> {/* Increase size to 2x */}
           </button>
         </div>
+        <div className="ml-6 mt-[-20px] mb-4 dropdown relative w-52 py-2 flex flex-row  px-2 rounded-md shadow-sm border border-gray-300 hover:border-gray-400 text-sm">
+                <div className="selected-option overflow-hidden whitespace-nowrap pr-10 border-r border-gray-300"> 
+                  { selectedOptionauth ? selectedOptionauth : "Pending"}
+                </div>
+                <div className="dropdown-icon absolute right-2 top-1/2 transform -translate-y-1/2  ">
+                Update Status
+                  <span className="h-5 w-5 text-gray-400 inline-flex items-center justify-center ml-[2px]">&#9660;</span>  
+                </div>
+                <button type="button" aria-haspopup="true" aria-expanded="false" className="w-full h-full focus:outline-none  ">
+                  <select onChange={(e) => handleSelect(e.target.value, 'authButton')} className="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer ">
+                    <option value="">Update Status</option>
+                    <option value="Done">Done</option>
+                    <option value="In progress">In progress</option>
+                    <option value="Reset">Reset</option>
+                  </select>
+                </button>
+              </div>
         <div className='text-5xl font-bold p-4'>OAuth</div>
             <p className="p-4 text-[#262d36]">OAuth is an open standard that enables secure data sharing and access delegation between applications. It allows users to grant limited access to their accounts and data to third-party applications without compromising their passwords.</p>
             <p className='p-4 text-[#262d36]'>Visit the following resources to learn more:</p>
@@ -738,7 +1358,12 @@ const BackendPage = () => {
         <div className='flex flex-col    '>
         <div className="flex flex-col ">
   <div className="flex">
-        <div className=' p-2 border-2 rounded-xl  ml-[325px] mb-12 mt-[-16px] cursor-pointer z-40 '
+        <div 
+        id ="cndButton"
+        className={`' p-2 border-2 rounded-xl  ml-[325px] mb-12 mt-[-16px] cursor-pointer z-40 ' ${
+          selectedOptioncnd === 'Done' ? 'line-through text-red-500' :
+          selectedOptioncnd === 'In progress' ? 'bg-yellow-500 text-black' :
+          ''}`}
         onClick={() => setShowSidebarCDN(!showSidebarCDN)}>
           CDN</div>
           {showSidebarCDN&& (
@@ -748,6 +1373,23 @@ const BackendPage = () => {
             <FontAwesomeIcon icon={faTimes} className="text-[#687688]" /> {/* Increase size to 2x */}
           </button>
         </div>
+        <div className="ml-6 mt-[-20px] mb-4 dropdown relative w-52 py-2 flex flex-row  px-2 rounded-md shadow-sm border border-gray-300 hover:border-gray-400 text-sm">
+                <div className="selected-option overflow-hidden whitespace-nowrap pr-10 border-r border-gray-300"> 
+                  { selectedOptioncnd ? selectedOptioncnd : "Pending"}
+                </div>
+                <div className="dropdown-icon absolute right-2 top-1/2 transform -translate-y-1/2  ">
+                Update Status
+                  <span className="h-5 w-5 text-gray-400 inline-flex items-center justify-center ml-[2px]">&#9660;</span>  
+                </div>
+                <button type="button" aria-haspopup="true" aria-expanded="false" className="w-full h-full focus:outline-none  ">
+                  <select onChange={(e) => handleSelect(e.target.value, 'cndButton')} className="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer ">
+                    <option value="">Update Status</option>
+                    <option value="Done">Done</option>
+                    <option value="In progress">In progress</option>
+                    <option value="Reset">Reset</option>
+                  </select>
+                </button>
+              </div>
         <div className='text-5xl font-bold p-4'>CDN</div>
             <p className="p-4 text-[#262d36]">A CDN is a network of servers distributed geographically to deliver content more efficiently to users. It caches static content, such as images, videos, CSS, and JavaScript files, on servers located closer to the user's location. CDNs improve the performance of websites and applications by reducing latency and speeding up content delivery. When a user requests content, the CDN serves it from the nearest server rather than the origin server, resulting in faster load times.</p>
             <p className='p-4 text-[#262d36]'>Visit the following resources to learn more:</p>
@@ -763,7 +1405,12 @@ const BackendPage = () => {
 </div>
 <div className="flex flex-col ">
   <div className="flex">
-        <div className=' p-2 border-2 rounded-xl ml-[325px] border-yellow-300 cursor-pointer z-40'
+        <div 
+        id="clientButton"
+        className={`' p-2 border-2 rounded-xl ml-[325px] border-yellow-300 cursor-pointer z-40' ${
+          selectedOptionclient === 'Done' ? 'line-through text-red-500' :
+          selectedOptionclient === 'In progress' ? 'bg-yellow-500 text-black' :
+          ''}`}
         onClick={() => setShowSidebarClientSide(!showSidebarClientSide)}>
           Client Side</div>
           {showSidebarClientSide&& (
@@ -773,6 +1420,23 @@ const BackendPage = () => {
             <FontAwesomeIcon icon={faTimes} className="text-[#687688]" /> {/* Increase size to 2x */}
           </button>
         </div>
+        <div className="ml-6 mt-[-20px] mb-4 dropdown relative w-52 py-2 flex flex-row  px-2 rounded-md shadow-sm border border-gray-300 hover:border-gray-400 text-sm">
+                <div className="selected-option overflow-hidden whitespace-nowrap pr-10 border-r border-gray-300"> 
+                  { selectedOptionclient ? selectedOptionclient : "Pending"}
+                </div>
+                <div className="dropdown-icon absolute right-2 top-1/2 transform -translate-y-1/2  ">
+                Update Status
+                  <span className="h-5 w-5 text-gray-400 inline-flex items-center justify-center ml-[2px]">&#9660;</span>  
+                </div>
+                <button type="button" aria-haspopup="true" aria-expanded="false" className="w-full h-full focus:outline-none  ">
+                  <select onChange={(e) => handleSelect(e.target.value, 'clientButton')} className="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer ">
+                    <option value="">Update Status</option>
+                    <option value="Done">Done</option>
+                    <option value="In progress">In progress</option>
+                    <option value="Reset">Reset</option>
+                  </select>
+                </button>
+              </div>
         <div className='text-5xl font-bold p-4'>Client Side</div>
             <p className="p-4 text-[#262d36]">Client-side caching involves storing data on the client's device, such as a web browser or mobile app, to reduce the need for repeated requests to the server. This can include caching of HTML, CSS, JavaScript files, images, and other resources. It improves the user experience by reducing page load times and decreasing server load. It works by storing copies of resources locally on the client's device, allowing subsequent requests for the same resources to be served more quickly.</p>
             <p className='p-4 text-[#262d36]'>Visit the following resources to learn more:</p>
@@ -794,7 +1458,12 @@ const BackendPage = () => {
         <div className='flex flex-col mt-[-55px] mr-[190px] '>
         <div className="flex flex-col ">
   <div className="flex">
-        <div className=' p-2 border-2 rounded-xl  mb-4 border-yellow-300  cursor-pointer z-40'
+        <div 
+        id="bcryptButton"
+        className={` p-2 border-2 rounded-xl  mb-4 border-yellow-300  cursor-pointer z-40 ${
+          selectedOptionbcrypt === 'Done' ? 'line-through text-red-500' :
+          selectedOptionbcrypt === 'In progress' ? 'bg-yellow-500 text-black' :
+          ''}`}
         onClick={() => setShowSidebarBcrypt(!showSidebarBcrypt)}>
           Bcrypt</div>
           {showSidebarBcrypt&& (
@@ -804,6 +1473,23 @@ const BackendPage = () => {
             <FontAwesomeIcon icon={faTimes} className="text-[#687688]" /> 
           </button>
         </div>
+        <div className="ml-6 mt-[-20px] mb-4 dropdown relative w-52 py-2 flex flex-row  px-2 rounded-md shadow-sm border border-gray-300 hover:border-gray-400 text-sm">
+                <div className="selected-option overflow-hidden whitespace-nowrap pr-10 border-r border-gray-300"> 
+                  { selectedOptionbcrypt ? selectedOptionbcrypt : "Pending"}
+                </div>
+                <div className="dropdown-icon absolute right-2 top-1/2 transform -translate-y-1/2  ">
+                Update Status
+                  <span className="h-5 w-5 text-gray-400 inline-flex items-center justify-center ml-[2px]">&#9660;</span>  
+                </div>
+                <button type="button" aria-haspopup="true" aria-expanded="false" className="w-full h-full focus:outline-none  ">
+                  <select onChange={(e) => handleSelect(e.target.value, 'bcryptButton')} className="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer ">
+                    <option value="">Update Status</option>
+                    <option value="Done">Done</option>
+                    <option value="In progress">In progress</option>
+                    <option value="Reset">Reset</option>
+                  </select>
+                </button>
+              </div>
         <div className='text-5xl font-bold p-4'>Bcrypt</div>
             <p className="p-4 text-[#262d36]">BCrypt is a password-hashing function designed to securely store passwords. It uses a cryptographic hash function to generate a salted hash of the password, making it difficult for attackers to reverse-engineer the original password.</p>
             <p className='p-4 text-[#262d36]'>Visit the following resources to learn more:</p>
@@ -817,7 +1503,12 @@ const BackendPage = () => {
 </div>
 <div className="flex flex-col ">
   <div className="flex">
-        <div className=' p-2 border-2 rounded-xl  mb-4 border-green-400 cursor-pointer z-40'
+        <div 
+        id="scryptButton"
+        className={`p-2 border-2 rounded-xl  mb-4 border-green-400 cursor-pointer z-40 ${
+          selectedOptionscrypt === 'Done' ? 'line-through text-red-500' :
+          selectedOptionscrypt === 'In progress' ? 'bg-yellow-500 text-black' :
+          ''}`}
         onClick={() => setShowSidebarScrypt(!showSidebarScrypt)}>
           Scrypt</div>
           {showSidebarScrypt&& (
@@ -827,6 +1518,23 @@ const BackendPage = () => {
             <FontAwesomeIcon icon={faTimes} className="text-[#687688]" /> 
           </button>
         </div>
+        <div className="ml-6 mt-[-20px] mb-4 dropdown relative w-52 py-2 flex flex-row  px-2 rounded-md shadow-sm border border-gray-300 hover:border-gray-400 text-sm">
+                <div className="selected-option overflow-hidden whitespace-nowrap pr-10 border-r border-gray-300"> 
+                  { selectedOptionscrypt ? selectedOptionscrypt : "Pending"}
+                </div>
+                <div className="dropdown-icon absolute right-2 top-1/2 transform -translate-y-1/2  ">
+                Update Status
+                  <span className="h-5 w-5 text-gray-400 inline-flex items-center justify-center ml-[2px]">&#9660;</span>  
+                </div>
+                <button type="button" aria-haspopup="true" aria-expanded="false" className="w-full h-full focus:outline-none  ">
+                  <select onChange={(e) => handleSelect(e.target.value, 'scryptButton')} className="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer ">
+                    <option value="">Update Status</option>
+                    <option value="Done">Done</option>
+                    <option value="In progress">In progress</option>
+                    <option value="Reset">Reset</option>
+                  </select>
+                </button>
+              </div>
         <div className='text-5xl font-bold p-4'>Scrypt</div>
             <p className="p-4 text-[#262d36]">Scrypt is another password-based key derivation function similar to BCrypt but with a focus on being memory-intensive, thereby increasing the difficulty and cost of brute-force attacks.</p>
             <p className='p-4 text-[#262d36]'>Visit the following resources to learn more:</p>
@@ -840,7 +1548,12 @@ const BackendPage = () => {
 </div>
 <div className="flex flex-col ">
   <div className="flex">
-        <div className=' p-2 border-2 rounded-xl  mb-4 border-yellow-300 cursor-pointer z-40' 
+        <div 
+        id="httpsButton"
+        className={` p-2 border-2 rounded-xl  mb-4 border-yellow-300 cursor-pointer z-40 ${
+          selectedOptionhttps === 'Done' ? 'line-through text-red-500' :
+          selectedOptionhttps === 'In progress' ? 'bg-yellow-500 text-black' :
+          ''}`}
         onClick={() => setShowSidebarHttps(!showSidebarHttps)}>
           HTTPS</div>
           {showSidebarHttps&& (
@@ -850,6 +1563,23 @@ const BackendPage = () => {
             <FontAwesomeIcon icon={faTimes} className="text-[#687688]" /> 
           </button>
         </div>
+        <div className="ml-6 mt-[-20px] mb-4 dropdown relative w-52 py-2 flex flex-row  px-2 rounded-md shadow-sm border border-gray-300 hover:border-gray-400 text-sm">
+                <div className="selected-option overflow-hidden whitespace-nowrap pr-10 border-r border-gray-300"> 
+                  { selectedOptionhttps ? selectedOptionhttps: "Pending"}
+                </div>
+                <div className="dropdown-icon absolute right-2 top-1/2 transform -translate-y-1/2  ">
+                Update Status
+                  <span className="h-5 w-5 text-gray-400 inline-flex items-center justify-center ml-[2px]">&#9660;</span>  
+                </div>
+                <button type="button" aria-haspopup="true" aria-expanded="false" className="w-full h-full focus:outline-none  ">
+                  <select onChange={(e) => handleSelect(e.target.value, 'httpsButton')} className="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer ">
+                    <option value="">Update Status</option>
+                    <option value="Done">Done</option>
+                    <option value="In progress">In progress</option>
+                    <option value="Reset">Reset</option>
+                  </select>
+                </button>
+              </div>
         <div className='text-5xl font-bold p-4'>Https</div>
             <p className="p-4 text-[#262d36]">HTTPS is the secure version of HTTP, providing encrypted communication between a web browser and a web server. It ensures the confidentiality and integrity of data exchanged over the network by using SSL/TLS protocols.</p>
             <p className='p-4 text-[#262d36]'>Visit the following resources to learn more:</p>
@@ -864,7 +1594,12 @@ const BackendPage = () => {
 </div>
 <div className="flex flex-col ">
   <div className="flex">
-        <div className=' p-2 border-2 rounded-xl  mb-4 border-yellow-300 cursor-pointer z-40'
+        <div 
+        id="corsButton"
+        className={` p-2 border-2 rounded-xl  mb-4 border-yellow-300 cursor-pointer z-40 ${
+          selectedOptioncors === 'Done' ? 'line-through text-red-500' :
+          selectedOptioncors === 'In progress' ? 'bg-yellow-500 text-black' :
+          ''}`}
          onClick={() => setShowSidebarCors(!showSidebarCors)}>
           Cors</div>
           {showSidebarCors&& (
@@ -874,6 +1609,23 @@ const BackendPage = () => {
             <FontAwesomeIcon icon={faTimes} className="text-[#687688]" /> 
           </button>
         </div>
+        <div className="ml-6 mt-[-20px] mb-4 dropdown relative w-52 py-2 flex flex-row  px-2 rounded-md shadow-sm border border-gray-300 hover:border-gray-400 text-sm">
+                <div className="selected-option overflow-hidden whitespace-nowrap pr-10 border-r border-gray-300"> 
+                  { selectedOptioncors ? selectedOptioncors : "Pending"}
+                </div>
+                <div className="dropdown-icon absolute right-2 top-1/2 transform -translate-y-1/2  ">
+                Update Status
+                  <span className="h-5 w-5 text-gray-400 inline-flex items-center justify-center ml-[2px]">&#9660;</span>  
+                </div>
+                <button type="button" aria-haspopup="true" aria-expanded="false" className="w-full h-full focus:outline-none  ">
+                  <select onChange={(e) => handleSelect(e.target.value, 'corsButton')} className="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer ">
+                    <option value="">Update Status</option>
+                    <option value="Done">Done</option>
+                    <option value="In progress">In progress</option>
+                    <option value="Reset">Reset</option>
+                  </select>
+                </button>
+              </div>
         <div className='text-5xl font-bold p-4'>Cors</div>
             <p className="p-4 text-[#262d36]">CORS is a security mechanism that controls access to resources on a web server from a different origin domain. It prevents malicious websites from making unauthorised requests to access sensitive data.</p>
             <p className='p-4 text-[#262d36]'>Visit the following resources to learn more:</p>
@@ -887,8 +1639,13 @@ const BackendPage = () => {
 </div>
 <div className="flex flex-col ">
   <div className="flex">
-        <div className=' p-2 border-2 rounded-xl cursor-pointer z-40 '
-         onClick={() => setShowSidebarServerSecurity(!showSidebarServerSecurity)}>
+        <div 
+        id="serverButton"
+        className={` p-2 border-2 rounded-xl cursor-pointer z-40 ${
+          selectedOptionserver === 'Done' ? 'line-through text-red-500' :
+          selectedOptionserver === 'In progress' ? 'bg-yellow-500 text-black' :
+          ''}`}
+        onClick={() => setShowSidebarServerSecurity(!showSidebarServerSecurity)}>
           Server Security</div>
           {showSidebarServerSecurity&& (
       <div className="bg-gray-200 w-2/5 h-screen fixed top-0 right-0 overflow-y-auto shadow-2xl shadow-slate-950  text-black z-50 ">
@@ -897,6 +1654,23 @@ const BackendPage = () => {
             <FontAwesomeIcon icon={faTimes} className="text-[#687688]" /> 
           </button>
         </div>
+        <div className="ml-6 mt-[-20px] mb-4 dropdown relative w-52 py-2 flex flex-row  px-2 rounded-md shadow-sm border border-gray-300 hover:border-gray-400 text-sm">
+                <div className="selected-option overflow-hidden whitespace-nowrap pr-10 border-r border-gray-300"> 
+                  { selectedOptionserver ? selectedOptionserver : "Pending"}
+                </div>
+                <div className="dropdown-icon absolute right-2 top-1/2 transform -translate-y-1/2  ">
+                Update Status
+                  <span className="h-5 w-5 text-gray-400 inline-flex items-center justify-center ml-[2px]">&#9660;</span>  
+                </div>
+                <button type="button" aria-haspopup="true" aria-expanded="false" className="w-full h-full focus:outline-none  ">
+                  <select onChange={(e) => handleSelect(e.target.value, 'serverButton')} className="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer ">
+                    <option value="">Update Status</option>
+                    <option value="Done">Done</option>
+                    <option value="In progress">In progress</option>
+                    <option value="Reset">Reset</option>
+                  </select>
+                </button>
+              </div>
         <div className='text-5xl font-bold p-4'>Server Security</div>
             <p className="p-4 text-[#262d36]">Server security involves securing the underlying infrastructure and software components of a web server to protect against various threats such as unauthorised access, malware, DDoS attacks, and data breaches</p>
             <p className='p-4 text-[#262d36]'>Visit the following resources to learn more:</p>
@@ -981,7 +1755,12 @@ const BackendPage = () => {
 <div className='flex flex-col  '>
         <div className="flex flex-col ">
   <div className="flex">
-        <div className=' p-2 border-2 rounded-xl  ml-[250px] mb-4 mt-[-120px] border-yellow-300 cursor-pointer z-40 text-center h-[45px]'
+        <div 
+        id="unitButton"
+        className={` p-2 border-2 rounded-xl  ml-[250px] mb-4 mt-[-120px] border-yellow-300 cursor-pointer z-40 text-center h-[45px] ${
+          selectedOptionunit === 'Done' ? 'line-through text-red-500' :
+          selectedOptionunit === 'In progress' ? 'bg-yellow-500 text-black' :
+          ''}`}
         onClick={() => setShowSidebarUnitTesting(!showSidebarUnitTesting)}>
           Unit Testing</div>
           {showSidebarUnitTesting&& (
@@ -991,6 +1770,23 @@ const BackendPage = () => {
             <FontAwesomeIcon icon={faTimes} className="text-[#687688]" /> 
           </button>
         </div>
+        <div className="ml-6 mt-[-20px] mb-4 dropdown relative w-52 py-2 flex flex-row  px-2 rounded-md shadow-sm border border-gray-300 hover:border-gray-400 text-sm">
+                <div className="selected-option overflow-hidden whitespace-nowrap pr-10 border-r border-gray-300"> 
+                  { selectedOptionunit ? selectedOptionunit : "Pending"}
+                </div>
+                <div className="dropdown-icon absolute right-2 top-1/2 transform -translate-y-1/2  ">
+                Update Status
+                  <span className="h-5 w-5 text-gray-400 inline-flex items-center justify-center ml-[2px]">&#9660;</span>  
+                </div>
+                <button type="button" aria-haspopup="true" aria-expanded="false" className="w-full h-full focus:outline-none  ">
+                  <select onChange={(e) => handleSelect(e.target.value, 'unitButton')} className="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer ">
+                    <option value="">Update Status</option>
+                    <option value="Done">Done</option>
+                    <option value="In progress">In progress</option>
+                    <option value="Reset">Reset</option>
+                  </select>
+                </button>
+              </div>
         <div className='text-5xl font-bold p-4'>Unit Testing</div>
             <p className="p-4 text-[#262d36]">Unit testing is the practice of testing individual units or components of a software application in isolation from the rest of the system. A unit can be a function, method, or class. Unit tests are typically written and executed by developers during the development phase. It helps verify that each unit of code functions correctly in isolation. It ensures that the individual units perform as expected according to the specifications. Popular unit testing frameworks include JUnit for Java, XCTest for Swift, NUnit for .NET, and Jest for JavaScript.</p>
             <p className='p-4 text-[#262d36]'>Visit the following resources to learn more:</p>
@@ -1007,7 +1803,12 @@ const BackendPage = () => {
 </div>
 <div className='flex flex-col  '>
         <div className="flex flex-col ">
-        <div className=' p-2 border-2 rounded-xl ml-[250px] mb-4 border-yellow-300  cursor-pointer z-40 mt-[-60px] text-center'
+        <div 
+        id="integrationButton"
+        className={` p-2 border-2 rounded-xl ml-[250px] mb-4 border-yellow-300  cursor-pointer z-40 mt-[-60px] text-center ${
+          selectedOptionintegration === 'Done' ? 'line-through text-red-500' :
+          selectedOptionintegration === 'In progress' ? 'bg-yellow-500 text-black' :
+          ''}`}
         onClick={() => setShowSidebarIntergrationTesting(!showSidebarIntegrationTesting)}>
           Integration Testing</div>
           {showSidebarIntegrationTesting&& (
@@ -1017,6 +1818,23 @@ const BackendPage = () => {
             <FontAwesomeIcon icon={faTimes} className="text-[#687688]" /> 
           </button>
         </div>
+        <div className="ml-6 mt-[-20px] mb-4 dropdown relative w-52 py-2 flex flex-row  px-2 rounded-md shadow-sm border border-gray-300 hover:border-gray-400 text-sm">
+                <div className="selected-option overflow-hidden whitespace-nowrap pr-10 border-r border-gray-300"> 
+                  { selectedOptionintegration ? selectedOptionintegration : "Pending"}
+                </div>
+                <div className="dropdown-icon absolute right-2 top-1/2 transform -translate-y-1/2  ">
+                Update Status
+                  <span className="h-5 w-5 text-gray-400 inline-flex items-center justify-center ml-[2px]">&#9660;</span>  
+                </div>
+                <button type="button" aria-haspopup="true" aria-expanded="false" className="w-full h-full focus:outline-none  ">
+                  <select onChange={(e) => handleSelect(e.target.value, 'integrationButton')} className="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer ">
+                    <option value="">Update Status</option>
+                    <option value="Done">Done</option>
+                    <option value="In progress">In progress</option>
+                    <option value="Reset">Reset</option>
+                  </select>
+                </button>
+              </div>
         <div className='text-5xl font-bold p-4'>Integration Testing</div>
             <p className="p-4 text-[#262d36]">Integration testing is the process of testing the interactions and interfaces between different components or modules of a software system. It aims to verify that integrated units work together as expected and communicate correctly. Integration testing ensures that various components of a system collaborate correctly when combined. It identifies issues related to data communication, interface compatibility, and dependencies between modules. Additionally, Integration testing can be conducted using different approaches such as top-down, bottom-up, and sandwich testing. Tools for integration testing vary depending on the technology stack and framework being used. Some popular tools include Selenium for web applications, Postman for API testing, and SOAPUI for web services. </p>
             <p className='p-4 text-[#262d36]'>Visit the following resources to learn more:</p>
@@ -1032,7 +1850,13 @@ const BackendPage = () => {
 </div>
 <div className="flex flex-col ">
   <div className="flex">
-        <div className=' p-2 border-2 rounded-xl ml-[250px] mb-4 cursor-pointer z-40 text-center'
+        <div 
+        id="continuosButton"
+        className={` p-2 border-2 rounded-xl ml-[250px] mb-4 cursor-pointer z-40 text-center ${
+          selectedOptioncontinuos === 'Done' ? 'line-through text-red-500' :
+          selectedOptioncontinuos === 'In progress' ? 'bg-yellow-500 text-black' :
+          ''}
+          `}
          onClick={() => setShowSidebarContinous(!showSidebarContinous)} >
           Continous<br/> Integration/Continous <br/>Deployment</div>
           {showSidebarContinous&& (
@@ -1042,6 +1866,23 @@ const BackendPage = () => {
             <FontAwesomeIcon icon={faTimes} className="text-[#687688]" /> 
           </button>
         </div>
+        <div className="ml-6 mt-[-20px] mb-4 dropdown relative w-52 py-2 flex flex-row  px-2 rounded-md shadow-sm border border-gray-300 hover:border-gray-400 text-sm">
+                <div className="selected-option overflow-hidden whitespace-nowrap pr-10 border-r border-gray-300"> 
+                  { selectedOptioncontinuos ? selectedOptioncontinuos : "Pending"}
+                </div>
+                <div className="dropdown-icon absolute right-2 top-1/2 transform -translate-y-1/2  ">
+                Update Status
+                  <span className="h-5 w-5 text-gray-400 inline-flex items-center justify-center ml-[2px]">&#9660;</span>  
+                </div>
+                <button type="button" aria-haspopup="true" aria-expanded="false" className="w-full h-full focus:outline-none  ">
+                  <select onChange={(e) => handleSelect(e.target.value, 'continuosButton')} className="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer ">
+                    <option value="">Update Status</option>
+                    <option value="Done">Done</option>
+                    <option value="In progress">In progress</option>
+                    <option value="Reset">Reset</option>
+                  </select>
+                </button>
+              </div>
         <div className='text-5xl font-bold p-4'>Continous Integration/Continous Deployment</div>
             <p className="p-4 text-[#262d36]">CI/CD automates the software development process. Developers frequently merge code changes and automated checks ensure everything works smoothly. This leads to faster, more reliable software releases.</p>
             <p className='p-4 text-[#262d36]'>Visit the following resources to learn more:</p>
@@ -1061,7 +1902,12 @@ const BackendPage = () => {
         <div className='flex flex-col mt-[-8px] mr-[320px] '>
         <div className="flex flex-col ">
   <div className="flex">
-        <div className=' p-2 border-2 rounded-xl  mb-6 border-yellow-300 cursor-pointer z-40 text-center'
+        <div 
+        id="databaseButton"
+        className={` p-2 border-2 rounded-xl  mb-6 border-yellow-300 cursor-pointer z-40 text-center ${
+          selectedOptiondatabase === 'Done' ? 'line-through text-red-500' :
+          selectedOptiondatabase === 'In progress' ? 'bg-yellow-500 text-black' :
+          ''}`}
         onClick={() => setShowSidebarDatabaseIndexes(!showSidebarDatabaseIndexes)} >
           Database Indexes</div>
           {showSidebarDatabaseIndexes&& (
@@ -1071,6 +1917,23 @@ const BackendPage = () => {
             <FontAwesomeIcon icon={faTimes} className="text-[#687688]" /> 
           </button>
         </div>
+        <div className="ml-6 mt-[-20px] mb-4 dropdown relative w-52 py-2 flex flex-row  px-2 rounded-md shadow-sm border border-gray-300 hover:border-gray-400 text-sm">
+                <div className="selected-option overflow-hidden whitespace-nowrap pr-10 border-r border-gray-300"> 
+                  { selectedOptiondatabase ? selectedOptiondatabase : "Pending"}
+                </div>
+                <div className="dropdown-icon absolute right-2 top-1/2 transform -translate-y-1/2  ">
+                Update Status
+                  <span className="h-5 w-5 text-gray-400 inline-flex items-center justify-center ml-[2px]">&#9660;</span>  
+                </div>
+                <button type="button" aria-haspopup="true" aria-expanded="false" className="w-full h-full focus:outline-none  ">
+                  <select onChange={(e) => handleSelect(e.target.value, 'databaseButton')} className="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer ">
+                    <option value="">Update Status</option>
+                    <option value="Done">Done</option>
+                    <option value="In progress">In progress</option>
+                    <option value="Reset">Reset</option>
+                  </select>
+                </button>
+              </div>
         <div className='text-5xl font-bold p-4'>Database Indexes</div>
             <p className="p-4 text-[#262d36]">Database indexes are data structures that improve the speed of data retrieval operations on a database table. They work by providing a quick lookup mechanism for finding rows in a table based on the values of certain columns. Indexes can significantly enhance the performance of database queries, especially for large datasets.</p>
             <p className='p-4 text-[#262d36]'>Visit the following resources to learn more:</p>
@@ -1087,7 +1950,12 @@ const BackendPage = () => {
 </div>
 <div className="flex flex-col ">
   <div className="flex">
-        <div className=' p-2 border-2 rounded-xl  mb-6 cursor-pointer z-40 '
+        <div 
+        id="capButton"
+        className={` p-2 border-2 rounded-xl  mb-6 cursor-pointer z-40 ${
+          selectedOptioncap === 'Done' ? 'line-through text-red-500' :
+          selectedOptioncap === 'In progress' ? 'bg-yellow-500 text-black' :
+          ''}`}
         onClick={() => setShowSidebarCapTheorem(!showSidebarCapTheorem)} > 
         Cap Theorem</div>
         {showSidebarCapTheorem&& (
@@ -1097,6 +1965,23 @@ const BackendPage = () => {
             <FontAwesomeIcon icon={faTimes} className="text-[#687688]" /> 
           </button>
         </div>
+        <div className="ml-6 mt-[-20px] mb-4 dropdown relative w-52 py-2 flex flex-row  px-2 rounded-md shadow-sm border border-gray-300 hover:border-gray-400 text-sm">
+                <div className="selected-option overflow-hidden whitespace-nowrap pr-10 border-r border-gray-300"> 
+                  { selectedOptioncap ? selectedOptioncap : "Pending"}
+                </div>
+                <div className="dropdown-icon absolute right-2 top-1/2 transform -translate-y-1/2  ">
+                Update Status
+                  <span className="h-5 w-5 text-gray-400 inline-flex items-center justify-center ml-[2px]">&#9660;</span>  
+                </div>
+                <button type="button" aria-haspopup="true" aria-expanded="false" className="w-full h-full focus:outline-none  ">
+                  <select onChange={(e) => handleSelect(e.target.value, 'capButton')} className="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer ">
+                    <option value="">Update Status</option>
+                    <option value="Done">Done</option>
+                    <option value="In progress">In progress</option>
+                    <option value="Reset">Reset</option>
+                  </select>
+                </button>
+              </div>
         <div className='text-5xl font-bold p-4'>Cap Theorem</div>
             <p className="p-4 text-[#262d36]">The CAP theorem, also known as Brewer's theorem, states that in a distributed data store, it's impossible to simultaneously achieve consistency (all nodes have the same data at the same time), availability (every request receives a response), and partition tolerance (the system continues to operate despite network partitions). According to CAP, distributed systems can only guarantee two out of the three properties.</p>
             <p className='p-4 text-[#262d36]'>Visit the following resources to learn more:</p>
@@ -1112,7 +1997,12 @@ const BackendPage = () => {
 </div>
 <div className="flex flex-col ">
   <div className="flex">
-        <div className=' p-2 border-2 rounded-xl cursor-pointer z-40  '
+        <div 
+        id="shardingButton"
+        className={` p-2 border-2 rounded-xl cursor-pointer z-40  ${
+                        selectedOptionsharding === 'Done' ? 'line-through text-red-500' :
+                        selectedOptionsharding === 'In progress' ? 'bg-yellow-500 text-black' :
+                        ''}`}
         onClick={() => setShowSidebarShardingStrategies(!showSidebarShardingStrategies)} >  
         Sharding Strategies</div>
         {showSidebarShardingStrategies&& (
@@ -1122,6 +2012,23 @@ const BackendPage = () => {
             <FontAwesomeIcon icon={faTimes} className="text-[#687688]" /> 
           </button>
         </div>
+        <div className="ml-6 mt-[-20px] mb-4 dropdown relative w-52 py-2 flex flex-row  px-2 rounded-md shadow-sm border border-gray-300 hover:border-gray-400 text-sm">
+                <div className="selected-option overflow-hidden whitespace-nowrap pr-10 border-r border-gray-300"> 
+                  { selectedOptionsharding ? selectedOptionsharding : "Pending"}
+                </div>
+                <div className="dropdown-icon absolute right-2 top-1/2 transform -translate-y-1/2  ">
+                Update Status
+                  <span className="h-5 w-5 text-gray-400 inline-flex items-center justify-center ml-[2px]">&#9660;</span>  
+                </div>
+                <button type="button" aria-haspopup="true" aria-expanded="false" className="w-full h-full focus:outline-none  ">
+                  <select onChange={(e) => handleSelect(e.target.value, 'shardingButton')} className="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer ">
+                    <option value="">Update Status</option>
+                    <option value="Done">Done</option>
+                    <option value="In progress">In progress</option>
+                    <option value="Reset">Reset</option>
+                  </select>
+                </button>
+              </div>
         <div className='text-5xl font-bold p-4'>Sharding Strategies</div>
             <p className="p-4 text-[#262d36]">Sharding is a technique used to horizontally partition data across multiple servers or databases. It involves breaking up a large dataset into smaller, more manageable chunks called shards, and distributing these shards across different nodes. Sharding helps distribute the workload evenly, improves scalability, and enhances performance. There are various sharding strategies, including range-based sharding, hash-based sharding, and composite sharding, each suited for different types of applications and data distributions. </p>
             <p className='p-4 text-[#262d36]'>Visit the following resources to learn more:</p>
@@ -1209,7 +2116,12 @@ const BackendPage = () => {
         <div className='flex flex-col  '>
         <div className="flex flex-col ">
   <div className="flex">
-        <div className=' p-2 border-2 rounded-xl  ml-[195px] mb-4 mt-[-15px] cursor-pointer z-40 text-center  '
+        <div 
+        id="nginxButton"
+        className={` p-2 border-2 rounded-xl  ml-[195px] mb-4 mt-[-15px] cursor-pointer z-40 text-center ${
+          selectedOptionnginx === 'Done' ? 'line-through text-red-500' :
+          selectedOptionnginx === 'In progress' ? 'bg-yellow-500 text-black' :
+          ''}`}
         onClick={() => setShowSidebarNginx(!showSidebarNginx)} >
           Nginx</div>
           {showSidebarNginx&& (
@@ -1219,6 +2131,23 @@ const BackendPage = () => {
             <FontAwesomeIcon icon={faTimes} className="text-[#687688]" /> 
           </button>
         </div>
+        <div className="ml-6 mt-[-20px] mb-4 dropdown relative w-52 py-2 flex flex-row  px-2 rounded-md shadow-sm border border-gray-300 hover:border-gray-400 text-sm">
+                <div className="selected-option overflow-hidden whitespace-nowrap pr-10 border-r border-gray-300"> 
+                  { selectedOptionnginx ? selectedOptionnginx : "Pending"}
+                </div>
+                <div className="dropdown-icon absolute right-2 top-1/2 transform -translate-y-1/2  ">
+                Update Status
+                  <span className="h-5 w-5 text-gray-400 inline-flex items-center justify-center ml-[2px]">&#9660;</span>  
+                </div>
+                <button type="button" aria-haspopup="true" aria-expanded="false" className="w-full h-full focus:outline-none  ">
+                  <select onChange={(e) => handleSelect(e.target.value, 'nginxButton')} className="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer ">
+                    <option value="">Update Status</option>
+                    <option value="Done">Done</option>
+                    <option value="In progress">In progress</option>
+                    <option value="Reset">Reset</option>
+                  </select>
+                </button>
+              </div>
         <div className='text-5xl font-bold p-4'>Nginx</div>
             <p className="p-4 text-[#262d36]">NGINX is a high-performance, open-source web server and reverse proxy server. It's known for its speed, scalability, and flexibility. NGINX is often used as a reverse proxy to handle incoming requests and distribute them to backend servers or to serve static content directly. It's commonly used for serving websites, applications, and APIs. NGINX also offers additional features like load balancing, caching, and SSL/TLS termination.</p>
             <p className='p-4 text-[#262d36]'>Visit the following resources to learn more:</p>
@@ -1234,7 +2163,12 @@ const BackendPage = () => {
 </div>
 <div className="flex flex-col ">
   <div className="flex">
-        <div className=' p-2 border-2 rounded-xl ml-[195px] mb-4 border-yellow-300 text-center cursor-pointer z-40  '
+        <div 
+        id="apacheButton"
+        className={` p-2 border-2 rounded-xl ml-[195px] mb-4 border-yellow-300 text-center cursor-pointer z-40 ${
+          selectedOptionapache === 'Done' ? 'line-through text-red-500' :
+          selectedOptionapache === 'In progress' ? 'bg-yellow-500 text-black' :
+          ''}`}
         onClick={() => setShowSidebarApache(!showSidebarApache)} >
           Apache</div>
           {showSidebarApache&& (
@@ -1244,6 +2178,23 @@ const BackendPage = () => {
             <FontAwesomeIcon icon={faTimes} className="text-[#687688]" /> 
           </button>
         </div>
+        <div className="ml-6 mt-[-20px] mb-4 dropdown relative w-52 py-2 flex flex-row  px-2 rounded-md shadow-sm border border-gray-300 hover:border-gray-400 text-sm">
+                <div className="selected-option overflow-hidden whitespace-nowrap pr-10 border-r border-gray-300"> 
+                  { selectedOptionapache ? selectedOptionapache : "Pending"}
+                </div>
+                <div className="dropdown-icon absolute right-2 top-1/2 transform -translate-y-1/2  ">
+                Update Status
+                  <span className="h-5 w-5 text-gray-400 inline-flex items-center justify-center ml-[2px]">&#9660;</span>  
+                </div>
+                <button type="button" aria-haspopup="true" aria-expanded="false" className="w-full h-full focus:outline-none  ">
+                  <select onChange={(e) => handleSelect(e.target.value, 'apacheButton')} className="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer ">
+                    <option value="">Update Status</option>
+                    <option value="Done">Done</option>
+                    <option value="In progress">In progress</option>
+                    <option value="Reset">Reset</option>
+                  </select>
+                </button>
+              </div>
         <div className='text-5xl font-bold p-4'>Apache</div>
             <p className="p-4 text-[#262d36]">Apache is one of the oldest and most widely used web servers. It's an open-source, cross-platform web server software that powers many websites on the internet. Apache is known for its stability, reliability, and extensive module support. It supports various programming languages and technologies, including PHP, Perl, and Python. Apache is highly configurable and can be customized to suit different use cases and requirements.</p>
             <p className='p-4 text-[#262d36]'>Visit the following resources to learn more:</p>
@@ -1258,7 +2209,12 @@ const BackendPage = () => {
 </div>
 <div className="flex flex-col ">
   <div className="flex">
-        <div className=' p-2 border-2 rounded-xl ml-[195px] mb-4 border-green-400 text-center cursor-pointer z-40  ' 
+        <div 
+        id="caddyButton"
+        className={` p-2 border-2 rounded-xl ml-[195px] mb-4 border-green-400 text-center cursor-pointer z-40  ${
+          selectedOptioncaddy === 'Done' ? 'line-through text-red-500' :
+          selectedOptioncaddy === 'In progress' ? 'bg-yellow-500 text-black' :
+          ''}`}
         onClick={() => setShowSidebarCaddy(!showSidebarCaddy)} >
           Caddy</div>
         {showSidebarCaddy&& (
@@ -1268,6 +2224,23 @@ const BackendPage = () => {
             <FontAwesomeIcon icon={faTimes} className="text-[#687688]" /> 
           </button>
         </div>
+        <div className="ml-6 mt-[-20px] mb-4 dropdown relative w-52 py-2 flex flex-row  px-2 rounded-md shadow-sm border border-gray-300 hover:border-gray-400 text-sm">
+                <div className="selected-option overflow-hidden whitespace-nowrap pr-10 border-r border-gray-300"> 
+                  { selectedOptioncaddy ? selectedOptioncaddy : "Pending"}
+                </div>
+                <div className="dropdown-icon absolute right-2 top-1/2 transform -translate-y-1/2  ">
+                Update Status
+                  <span className="h-5 w-5 text-gray-400 inline-flex items-center justify-center ml-[2px]">&#9660;</span>  
+                </div>
+                <button type="button" aria-haspopup="true" aria-expanded="false" className="w-full h-full focus:outline-none  ">
+                  <select onChange={(e) => handleSelect(e.target.value, 'caddyButton')} className="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer ">
+                    <option value="">Update Status</option>
+                    <option value="Done">Done</option>
+                    <option value="In progress">In progress</option>
+                    <option value="Reset">Reset</option>
+                  </select>
+                </button>
+              </div>
         <div className='text-5xl font-bold p-4'>Caddy</div>
             <p className="p-4 text-[#262d36]">Caddy is a modern, open-source web server with automatic HTTPS. It's designed to be easy to use and configure, with a focus on simplicity and security. Caddy automatically provides SSL/TLS certificates for websites using Let's Encrypt, making it easy to set up secure connections by default. It also includes features like virtual hosting, reverse proxying, and HTTP/2 support out of the box. Caddy's configuration is written in a simple and human-readable format, making it accessible to users of all levels of expertise.</p>
             <p className='p-4 text-[#262d36]'>Visit the following resources to learn more:</p>
@@ -1289,7 +2262,12 @@ const BackendPage = () => {
         <div className='flex flex-col mt-[-20px] mr-[200px] '>
         <div className="flex flex-col ">
   <div className="flex">
-        <div className=' p-2 border-2 rounded-xl  mb-6 border-green-400  cursor-pointer z-40  text-center' 
+        <div 
+        id="sseButton"
+        className={` p-2 border-2 rounded-xl  mb-6 border-green-400  cursor-pointer z-40  text-center ${
+          selectedOptionsse === 'Done' ? 'line-through text-red-500' :
+          selectedOptionsse === 'In progress' ? 'bg-yellow-500 text-black' :
+          ''}`}
          onClick={() => setShowSidebarServerScent(!showSidebarServerScent)} >
           Server Sent Events</div>
           {showSidebarServerScent&& (
@@ -1298,7 +2276,24 @@ const BackendPage = () => {
           <button onClick={() => setShowSidebarServerScent(false)}>
             <FontAwesomeIcon icon={faTimes} className="text-[#687688]" /> 
           </button>
-        </div>
+        </div>			  
+          <div className="ml-6 mt-[-20px] mb-4 dropdown relative w-52 py-2 flex flex-row  px-2 rounded-md shadow-sm border border-gray-300 hover:border-gray-400 text-sm">
+                <div className="selected-option overflow-hidden whitespace-nowrap pr-10 border-r border-gray-300"> 
+                  { selectedOptionsse ? selectedOptionsse : "Pending"}
+                </div>
+                <div className="dropdown-icon absolute right-2 top-1/2 transform -translate-y-1/2  ">
+                Update Status
+                  <span className="h-5 w-5 text-gray-400 inline-flex items-center justify-center ml-[2px]">&#9660;</span>  
+                </div>
+                <button type="button" aria-haspopup="true" aria-expanded="false" className="w-full h-full focus:outline-none  ">
+                  <select onChange={(e) => handleSelect(e.target.value, 'sseButton')} className="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer ">
+                    <option value="">Update Status</option>
+                    <option value="Done">Done</option>
+                    <option value="In progress">In progress</option>
+                    <option value="Reset">Reset</option>
+                  </select>
+                </button>
+              </div>
         <div className='text-5xl font-bold p-4'>Server Sent Events</div>
             <p className="p-4 text-[#262d36]">Server-Sent Events is a standard that enables servers to push data updates to web clients over HTTP in real-time. With SSE, a client establishes a persistent connection to the server, and the server can then continuously send updates whenever new data becomes available. SSE is well-suited for scenarios where the server needs to regularly update clients with fresh data, such as news feeds or social media timelines.</p>
             <p className='p-4 text-[#262d36]'>Visit the following resources to learn more:</p>
@@ -1315,9 +2310,14 @@ const BackendPage = () => {
 </div>
 <div className="flex flex-col ">
   <div className="flex">
-        <div className=' p-2 border-2 rounded-xl  mb-6 border-green-400 cursor-pointer z-40  text-center'
-         onClick={() => setShowSidebarWebStocks(!showSidebarWebStocks)} >
-          Web Sockes</div>
+        <div 			  
+          id="websocketsButton"
+          className={` p-2 border-2 rounded-xl  mb-6 border-green-400 cursor-pointer z-40  text-center ${
+            selectedOptionwebsockets === 'Done' ? 'line-through text-red-500' :
+            selectedOptionwebsockets === 'In progress' ? 'bg-yellow-500 text-black' :
+            ''}`}
+        onClick={() => setShowSidebarWebStocks(!showSidebarWebStocks)} >
+          Web Sockets</div>
           {showSidebarWebStocks&& (
       <div className="bg-gray-200 w-2/5 h-screen fixed top-0 right-0 overflow-y-auto shadow-2xl shadow-slate-950  text-black z-50 ">
         <div className="flex justify-end p-4 mr-2">
@@ -1325,6 +2325,23 @@ const BackendPage = () => {
             <FontAwesomeIcon icon={faTimes} className="text-[#687688]" /> 
           </button>
         </div>
+        <div className="ml-6 mt-[-20px] mb-4 dropdown relative w-52 py-2 flex flex-row  px-2 rounded-md shadow-sm border border-gray-300 hover:border-gray-400 text-sm">
+                <div className="selected-option overflow-hidden whitespace-nowrap pr-10 border-r border-gray-300"> 
+                  { selectedOptionwebsockets ? selectedOptionwebsockets : "Pending"}
+                </div>
+                <div className="dropdown-icon absolute right-2 top-1/2 transform -translate-y-1/2  ">
+                Update Status
+                  <span className="h-5 w-5 text-gray-400 inline-flex items-center justify-center ml-[2px]">&#9660;</span>  
+                </div>
+                <button type="button" aria-haspopup="true" aria-expanded="false" className="w-full h-full focus:outline-none  ">
+                  <select onChange={(e) => handleSelect(e.target.value, 'websocketsButton')} className="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer ">
+                    <option value="">Update Status</option>
+                    <option value="Done">Done</option>
+                    <option value="In progress">In progress</option>
+                    <option value="Reset">Reset</option>
+                  </select>
+                </button>
+              </div>
         <div className='text-5xl font-bold p-4'>Web Sockes</div>
             <p className="p-4 text-[#262d36]">It is a communication protocol that provides full-duplex communication channels over a single, long-lived connection between a client and a server. Unlike traditional HTTP requests, WebSockets allow for bidirectional communication, meaning both the client and server can send data to each other at any time without waiting for a request. WebSockets are ideal for applications requiring real-time, interactive communication, such as online gaming, collaborative drawing tools, or financial trading platforms.</p>
             <p className='p-4 text-[#262d36]'>Visit the following resources to learn more:</p>
@@ -1340,7 +2357,12 @@ const BackendPage = () => {
 </div>
 <div className="flex flex-col ">
   <div className="flex">
-        <div className=' p-2 border-2 rounded-xl border-green-400 cursor-pointer z-40  text-center'
+        <div
+        id="longshortButton"
+        className={` p-2 border-2 rounded-xl border-green-400 cursor-pointer z-40  text-center ${
+          selectedOptionlongshort === 'Done' ? 'line-through text-red-500' :
+          selectedOptionlongshort === 'In progress' ? 'bg-yellow-500 text-black' :
+          ''}`}
         onClick={() => setShowSidebarLongShort(!showSidebarLongShort)} >
           Long and <br/> Short Polling</div>
           {showSidebarLongShort&& (
@@ -1350,6 +2372,23 @@ const BackendPage = () => {
             <FontAwesomeIcon icon={faTimes} className="text-[#687688]" /> 
           </button>
         </div>
+        <div className="ml-6 mt-[-20px] mb-4 dropdown relative w-52 py-2 flex flex-row  px-2 rounded-md shadow-sm border border-gray-300 hover:border-gray-400 text-sm">
+                <div className="selected-option overflow-hidden whitespace-nowrap pr-10 border-r border-gray-300"> 
+                  { selectedOptionlongshort ? selectedOptionlongshort : "Pending"}
+                </div>
+                <div className="dropdown-icon absolute right-2 top-1/2 transform -translate-y-1/2  ">
+                Update Status
+                  <span className="h-5 w-5 text-gray-400 inline-flex items-center justify-center ml-[2px]">&#9660;</span>  
+                </div>
+                <button type="button" aria-haspopup="true" aria-expanded="false" className="w-full h-full focus:outline-none  ">
+                  <select onChange={(e) => handleSelect(e.target.value, 'longshortButton')} className="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer ">
+                    <option value="">Update Status</option>
+                    <option value="Done">Done</option>
+                    <option value="In progress">In progress</option>
+                    <option value="Reset">Reset</option>
+                  </select>
+                </button>
+              </div>
         <div className='text-5xl font-bold p-4'>Long and Short Polling</div>
             <p className="p-4 text-[#262d36]">Long polling is a technique where a client sends a request to the server, and the server keeps the request open until new data is available or a timeout occurs. If new data is available, the server responds with the data immediately. If not, the server holds the request open until new data becomes available or until the connection times out. Long polling is useful for scenarios where real-time updates are required but maintaining persistent connections (like WebSockets) is not feasible or desired.</p>
             <p className="p-4 text-[#262d36]">Short polling is a simpler version of polling where the client sends periodic requests to the server at regular intervals to check for updates. Unlike long polling, the server responds immediately to each request, regardless of whether new data is available or not. Short polling is less efficient compared to long polling or WebSockets since it involves frequent requests and responses, but it can still be suitable for certain use cases where real-time updates are not critical or where WebSocket support is unavailable.</p>
